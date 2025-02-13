@@ -6,15 +6,25 @@
 }
 
 html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #f4f4f9;
   color: #333;
   scroll-behavior: smooth;
+}
+
+.unwanted-whitespace {
+  display: none;
 }
 
 /* Fixed header */
@@ -208,7 +218,7 @@ section {
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin: 0 auto;
+  margin: auto;
   margin-top: 1rem;
 }
 .btn:hover {
@@ -221,6 +231,8 @@ section {
   color: #fff;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%; /* ensure it stretches */
 }
 .skill-cloud-section h2 {
