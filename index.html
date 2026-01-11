@@ -222,6 +222,12 @@
         <img src="IMG_3182.png" alt="Roam — Smart Bracelet" />
         <p>Roam — Smart Bracelet</p>
       </div>
+
+      <!-- Project Card: Scent Can -->
+      <div class="project-card" onclick="openModal('scentModal')">
+        <img src="scent.png" alt="Scent Can Diffuser" />
+        <p>Scent Can Diffuser</p>
+      </div>
       
       <!-- Project Card: Product Finder -->
       <div class="project-card" onclick="openModal('productFinderModal')">
@@ -391,7 +397,47 @@
     </p>
   </div>
 </div>
-  
+
+  <!-- Modal for Scent Can -->
+  <div id="scentModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('scentModal')">&times;</span>
+      <img src="scent.png" alt="Scent Can Documentation" class="modal-img" />
+      <h2>Scent Can</h2>
+      <p>
+        This is a portable scent can which users can control with their app
+        and bring wherever they want. This can is inspired by the portability
+        of “Zyn” can and pouches and visually reflects that. It uses a centrifuge 
+        blower mechanism and pushes air through a scent pouch. Check it out in the PDF!
+      </p>
+
+      <!-- TAGS with an icon next to each tag name -->
+      <div class="project-tags">
+        <span class="tag-badge">
+          <i class="fas fa-tag"></i> Electircal design
+        </span>
+        <span class="tag-badge">
+          <i class="fas fa-tag"></i> Prototyping
+        </span>
+        <span class="tag-badge">
+          <i class="fas fa-tag"></i> Solidworks
+        </span>
+        <span class="tag-badge">
+          <i class="fas fa-tag"></i> 3D-printing
+        </span>
+        <span class="tag-badge">
+          <i class="fas fa-tag"></i> PCB design
+        </span>
+      </div>
+
+      <p>
+        <a href="Scent Can Documentation.pdf" target="_blank" rel="noopener noreferrer">
+          View PDF
+        </a>
+      </p>
+    </div>
+  </div>
+
   <!-- Modal for Product Finder -->
   <div id="productFinderModal" class="modal">
     <div class="modal-content">
