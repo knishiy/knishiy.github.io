@@ -56,8 +56,9 @@
 
   <div class="banner">
     <b>The two tournaments below are SIMULATIONS, not the live account above.</b>
-    “Forward” runs the field on recent <i>out-of-sample</i> data (updates daily); “Backtest”
-    on older <i>in-sample</i> history. Both trade the same rule-selected basket; figures are hypothetical.
+    “Forward” tracks the field on data collected live since launch — it fills in over time
+    (blank until enough days accrue), never backfilled. “Backtest” is older historical data.
+    Both trade the same rule-selected basket; figures are hypothetical on $15k.
   </div>
 
   <h2>Forward Tournament <span id="shadowSub" class="sub"></span></h2>
@@ -94,14 +95,25 @@ fetch("./live.json").then(r=>r.json()).then(d=>{
   const x = d.live;
   document.getElementById("liveSub").textContent =
     `· equity $${Math.round(x.equity).toLocaleString()} · ${x.days} days · real Alpaca paper account · updated ${d.generated_utc} UTC`;
-  document.getElementById("liveRow").innerHTML = rowHtml(x, "●");
+  const real   = {...x, name:"Live Bot — real account"};
+  const scaled = {...x, name:"Live Bot — scaled to $15k", pnl:(x.ret||0)*15000};
+  document.getElementById("liveRow").innerHTML = rowHtml(real, "●") + rowHtml(scaled, "↳");
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
 fetch("./shadow.json").then(r=>r.json()).then(d=>{
-  document.getElementById("shadowSub").textContent =
-    `· out-of-sample ${d.start} → ${d.end}, ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()} · updated ${d.generated_utc} UTC`;
-  document.getElementById("shadowRows").innerHTML =
-    d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
+  if (d.ready && d.leaderboard.length) {
+    document.getElementById("shadowSub").textContent =
+      `· live-collected since ${d.inception} · ${d.days} trading days · ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()} · updated ${d.generated_utc} UTC`;
+    document.getElementById("shadowRows").innerHTML =
+      d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
+  } else {
+    document.getElementById("shadowSub").textContent =
+      `· collecting forward data since ${d.inception} — ${d.days}/${d.min_show} trading days`;
+    document.getElementById("shadowRows").innerHTML =
+      `<tr><td colspan="9" style="text-align:center;color:var(--dim);padding:22px">`+
+      `Genuinely forward — no backfilled history. Rankings appear once ~${d.min_show} trading `+
+      `days of live data are collected (currently ${d.days}).</td></tr>`;
+  }
 }).catch(()=>{ document.getElementById("shadowSub").textContent = "· forward data unavailable"; });
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
