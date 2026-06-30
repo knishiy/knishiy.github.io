@@ -1,0 +1,40 @@
+{
+  "generated_utc": "2026-06-30 15:08:04",
+  "status": "ok",
+  "summary": "All systems operational",
+  "components": [
+    {
+      "name": "Paper trading bot",
+      "kind": "automation",
+      "schedule": "Weekdays 10:00 ET",
+      "ok": null,
+      "last_run": null,
+      "detail": "no paper.log on this host yet"
+    },
+    {
+      "name": "Site update + health",
+      "kind": "automation",
+      "schedule": "Weekdays 10:15 ET",
+      "ok": true,
+      "last_run": "2026-06-30 15:08:04",
+      "detail": "this run"
+    },
+    {
+      "name": "Live paper account",
+      "kind": "check",
+      "schedule": "every update",
+      "ok": true,
+      "last_run": "2026-06-30 15:08:04",
+      "detail": "equity $101,678, 9d history"
+    },
+    {
+      "name": "Forward tournament",
+      "kind": "check",
+      "schedule": "every update",
+      "ok": true,
+      "last_run": "2026-06-30 15:08:04",
+      "detail": "inception 2026-06-30, 1 forward days, ready=False"
+    }
+  ],
+  "errors": []
+}
