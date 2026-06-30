@@ -13,12 +13,14 @@
          font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
   .wrap { max-width:1000px; margin:0 auto; padding:32px 18px 64px; }
   h1 { font-size:24px; margin:0 0 4px; }
-  h2 { font-size:15px; margin:26px 0 8px; display:flex; align-items:center; gap:8px; }
+  h2 { font-size:15px; margin:26px 0 8px; display:flex; align-items:center; gap:8px;
+       flex-wrap:wrap; }
   .dot { width:9px; height:9px; border-radius:50%; background:var(--good);
          box-shadow:0 0 0 3px rgba(63,185,80,.20); display:inline-block; }
-  .sub { color:var(--dim); margin:0 0 8px; font-size:13px; }
+  .sub { color:var(--dim); margin:0; font-size:13px; font-weight:400; }
+  .pagesub { color:var(--dim); margin:0 0 8px; font-size:13px; }
   .banner { background:var(--warn); border:1px solid var(--warnln); border-radius:10px;
-            padding:12px 14px; margin:18px 0 8px; font-size:13px; color:#d8e0c0; }
+            padding:12px 14px; margin:20px 0 4px; font-size:13px; color:#d8e0c0; }
   .banner b { color:#e8efb0; }
   .basket { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 14px; }
   .tier { background:var(--card); border:1px solid var(--line); border-radius:10px;
@@ -47,30 +49,23 @@
 <body>
 <div class="wrap">
   <h1>Trading Strategy Tournament</h1>
-  <p class="sub">Live paper bot vs. a backtested field of strategy methods.</p>
+  <p class="pagesub">Live paper bot · a forward (out-of-sample) competition · and a historical backtest.</p>
 
-  <h2><span class="dot"></span> Live Paper Account <span id="liveSub" class="sub" style="margin:0"></span></h2>
-  <div class="scroll">
-    <table class="live">
-      <thead><tr id="hdrLive"></tr></thead>
-      <tbody id="liveRow"></tbody>
-    </table>
-  </div>
+  <h2><span class="dot"></span> Live Paper Account <span id="liveSub" class="sub"></span></h2>
+  <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
 
   <div class="banner">
-    <b>The table below is a historical BACKTEST, not the live account above.</b> It races
-    strategy <i>methods</i> on a fixed research basket over past data — different stocks,
-    different methods, different time period. Those figures are hypothetical.
+    <b>The two tournaments below are SIMULATIONS, not the live account above.</b>
+    “Forward” runs the field on recent <i>out-of-sample</i> data (updates daily); “Backtest”
+    on older <i>in-sample</i> history. Both trade the same rule-selected basket; figures are hypothetical.
   </div>
 
-  <h2>Backtest Tournament <span id="btSub" class="sub" style="margin:0"></span></h2>
+  <h2>Forward Tournament <span id="shadowSub" class="sub"></span></h2>
+  <div class="scroll"><table><thead><tr id="hdrShadow"></tr></thead><tbody id="shadowRows"></tbody></table></div>
+
+  <h2>Backtest Tournament <span id="btSub" class="sub"></span></h2>
   <div class="basket" id="basket"></div>
-  <div class="scroll">
-    <table>
-      <thead><tr id="hdrBt"></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </div>
+  <div class="scroll"><table><thead><tr id="hdrBt"></tr></thead><tbody id="rows"></tbody></table></div>
   <footer id="foot"></footer>
 </div>
 <script>
@@ -80,49 +75,49 @@ const pct = x => x==null ? "<span class='na'>—</span>" : (x>=0?"+":"")+(x*100)
 const sr  = x => x==null ? "<span class='na'>—</span>" : x.toFixed(2);
 const cls = x => x>=0 ? "pos" : "neg";
 const usd = x => (x<0?"-$":"+$")+Math.abs(x).toLocaleString(undefined,{maximumFractionDigits:0});
-const header = el => el.innerHTML = COLS.map(c=>`<th>${c}</th>`).join("");
+const header = id => document.getElementById(id).innerHTML = COLS.map(c=>`<th>${c}</th>`).join("");
 
 function rowHtml(x, rankCell, extraClass=""){
   const dsr = x.dsr==null ? "<span class='pill'>passive</span>" : x.dsr.toFixed(2);
   return `<tr class="${extraClass}">
-    <td class="rank">${rankCell}</td>
-    <td class="name">${x.name}</td>
+    <td class="rank">${rankCell}</td><td class="name">${x.name}</td>
     <td class="${x.ret>=0?'pos':'neg'}">${pct(x.ret)}</td>
     <td class="${x.pnl>=0?'pos':'neg'}">${usd(x.pnl)}</td>
     <td class="${x.cagr==null?'na':cls(x.cagr)}">${pct(x.cagr)}</td>
     <td>${pct(x.vol)}</td>
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${sr(x.sharpe)}</td>
-    <td>${dsr}</td>
-    <td class="neg">${pct(x.maxdd)}</td>
-  </tr>`;
+    <td>${dsr}</td><td class="neg">${pct(x.maxdd)}</td></tr>`;
 }
-
-header(document.getElementById("hdrLive"));
-header(document.getElementById("hdrBt"));
+["hdrLive","hdrShadow","hdrBt"].forEach(header);
 
 fetch("./live.json").then(r=>r.json()).then(d=>{
   const x = d.live;
   document.getElementById("liveSub").textContent =
-    `· equity $${Math.round(x.equity).toLocaleString()} · ${x.days} days of history `+
-    `· real Alpaca paper account · updated ${d.generated_utc} UTC`;
+    `· equity $${Math.round(x.equity).toLocaleString()} · ${x.days} days · real Alpaca paper account · updated ${d.generated_utc} UTC`;
   document.getElementById("liveRow").innerHTML = rowHtml(x, "●");
-}).catch(e=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
+}).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
+
+fetch("./shadow.json").then(r=>r.json()).then(d=>{
+  document.getElementById("shadowSub").textContent =
+    `· out-of-sample ${d.start} → ${d.end}, ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()} · updated ${d.generated_utc} UTC`;
+  document.getElementById("shadowRows").innerHTML =
+    d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
+}).catch(()=>{ document.getElementById("shadowSub").textContent = "· forward data unavailable"; });
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
   document.getElementById("btSub").textContent =
-    `· ${d.window}, ranked by Sharpe · PnL on a hypothetical $${(d.initial_cash||0).toLocaleString()} `+
-    `· generated ${d.generated_utc} UTC`;
+    `· ${d.window}, ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()} · generated ${d.generated_utc} UTC`;
   document.getElementById("basket").innerHTML = Object.entries(d.basket)
     .map(([t,n]) => `<div class="tier"><b>${t}</b>${n.join(", ")}</div>`).join("");
   document.getElementById("rows").innerHTML =
     d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
   document.getElementById("foot").innerHTML =
-    "<b>Columns:</b> Total Return = full-period gain. PnL = profit in dollars (live = real; "+
-    "backtest = hypothetical, on the stated starting capital). CAGR = compound annual growth "+
-    "rate. Volatility = annualized std-dev. Sharpe = return per unit of risk. Deflated Sharpe "+
-    "= Sharpe penalized for the number of strategies tried (“passive” = buy-and-hold benchmark). "+
-    "Max Drawdown = worst peak-to-trough fall. “—” = not enough live history yet.<br><br>"+
-    "Research output, <b>not investment advice</b>.";
+    "<b>Columns:</b> Total Return = full-window gain. PnL = profit in dollars (live = real; "+
+    "simulations = hypothetical on the stated capital). CAGR = compound annual growth rate. "+
+    "Volatility = annualized std-dev. Sharpe = return per unit of risk. Deflated Sharpe = "+
+    "Sharpe penalized for the number of strategies tried (“passive” = buy-and-hold benchmark). "+
+    "Max Drawdown = worst peak-to-trough fall. “—” = not enough history yet.<br><br>"+
+    "The same basket is used by both tournaments. Research output, <b>not investment advice</b>.";
 }).catch(e=>{ document.getElementById("foot").textContent = "Could not load leaderboard.json — "+e; });
 </script>
 </body>
