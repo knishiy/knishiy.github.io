@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-06-30 15:08:14",
+  "generated_utc": "2026-06-30 15:30:50",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
-  "end": "2026-06-30",
-  "days": 1,
+  "end": "2026-06-29",
+  "days": 0,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
   "basket": {
     "stable": [
-      "KO",
-      "PEP",
-      "PG"
+      "VZ",
+      "PG",
+      "JNJ"
     ],
     "medium": [
-      "WMT",
-      "CVX",
-      "IBM"
+      "IBM",
+      "MSFT",
+      "GS"
     ],
     "volatile": [
-      "GE",
-      "NVDA",
-      "AMD"
+      "AMD",
+      "BA",
+      "NVDA"
     ]
   },
   "leaderboard": []

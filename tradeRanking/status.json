@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-06-30 15:28:05",
-  "status": "error",
-  "summary": "1 component(s) failing",
+  "generated_utc": "2026-06-30 15:30:35",
+  "status": "ok",
+  "summary": "All systems operational",
   "components": [
     {
       "name": "Paper trading bot",
@@ -9,14 +9,14 @@
       "schedule": "Weekdays 10:00 ET",
       "ok": true,
       "last_run": "2026-06-30 14:00:10",
-      "detail": "last wrote 1h ago"
+      "detail": "last wrote 2h ago"
     },
     {
       "name": "Site update + health",
       "kind": "automation",
       "schedule": "Weekdays 10:15 ET",
       "ok": true,
-      "last_run": "2026-06-30 15:28:05",
+      "last_run": "2026-06-30 15:30:35",
       "detail": "this run"
     },
     {
@@ -24,19 +24,17 @@
       "kind": "check",
       "schedule": "every update",
       "ok": true,
-      "last_run": "2026-06-30 15:28:05",
+      "last_run": "2026-06-30 15:30:35",
       "detail": "equity $101,678, 9d history"
     },
     {
       "name": "Forward tournament",
       "kind": "check",
       "schedule": "every update",
-      "ok": false,
-      "last_run": "2026-06-30 15:28:05",
-      "detail": "ImportError: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.\nA suitable version of pyarrow or fastparquet is required for parquet support.\nTrying to import the above resulted in these errors:\n - `Import pyarrow` failed. pyarrow is required for parquet support. Use pip or conda to install the pyarrow package.\n - `Import fastparquet` failed. fastparquet is required for parquet support. Use pip or conda to install the fastparquet package."
+      "ok": true,
+      "last_run": "2026-06-30 15:30:35",
+      "detail": "inception 2026-06-30, 0 forward days, ready=False"
     }
   ],
-  "errors": [
-    "Forward tournament: ImportError: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.\nA suitable version of pyarrow or fastparquet is required for parquet support.\nTrying to import the above resulted in these errors:\n - `Import pyarrow` failed. pyarrow is required for parquet support. Use pip or conda to install the pyarrow package.\n - `Import fastparquet` failed. fastparquet is required for parquet support. Use pip or conda to install the fastparquet package."
-  ]
+  "errors": []
 }
