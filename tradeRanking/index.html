@@ -6,17 +6,21 @@
 <title>Trading Strategy Tournament</title>
 <style>
   :root { --bg:#0d1117; --card:#161b22; --line:#30363d; --txt:#e6edf3; --dim:#8b949e;
-          --good:#3fb950; --bad:#f85149; --gold:#d29922; --warn:#1f2a14; --warnln:#3d5212; }
+          --good:#3fb950; --bad:#f85149; --gold:#d29922; --warn:#1f2a14; --warnln:#3d5212;
+          --live:#0f2a1a; --liveln:#1f6f43; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--txt);
          font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
   .wrap { max-width:1000px; margin:0 auto; padding:32px 18px 64px; }
   h1 { font-size:24px; margin:0 0 4px; }
-  .sub { color:var(--dim); margin:0 0 18px; font-size:13px; }
+  h2 { font-size:15px; margin:26px 0 8px; display:flex; align-items:center; gap:8px; }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--good);
+         box-shadow:0 0 0 3px rgba(63,185,80,.20); display:inline-block; }
+  .sub { color:var(--dim); margin:0 0 8px; font-size:13px; }
   .banner { background:var(--warn); border:1px solid var(--warnln); border-radius:10px;
-            padding:12px 14px; margin:0 0 22px; font-size:13px; color:#d8e0c0; }
+            padding:12px 14px; margin:18px 0 8px; font-size:13px; color:#d8e0c0; }
   .banner b { color:#e8efb0; }
-  .basket { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 22px; }
+  .basket { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 14px; }
   .tier { background:var(--card); border:1px solid var(--line); border-radius:10px;
           padding:10px 14px; font-size:13px; }
   .tier b { display:block; color:var(--dim); font-size:11px; text-transform:uppercase;
@@ -27,13 +31,14 @@
   th,td { padding:11px 12px; text-align:right; border-bottom:1px solid var(--line);
           white-space:nowrap; }
   th { color:var(--dim); font-weight:600; font-size:12px; }
-  td:first-child, th:first-child { text-align:left; }
-  td:nth-child(2), th:nth-child(2) { text-align:left; }
+  td:first-child, th:first-child, td:nth-child(2), th:nth-child(2) { text-align:left; }
   tr:last-child td { border-bottom:none; }
   .rank { color:var(--dim); width:30px; }
+  table.live { border-color:var(--liveln); }
+  table.live td { background:var(--live); }
   .leader td { background:rgba(210,153,34,.10); }
   .leader .name::after { content:" \1F3C6"; }
-  .pos { color:var(--good); } .neg { color:var(--bad); }
+  .pos { color:var(--good); } .neg { color:var(--bad); } .na { color:var(--dim); }
   .pill { font-size:11px; color:var(--dim); border:1px solid var(--line);
           border-radius:999px; padding:1px 8px; margin-left:6px; }
   footer { color:var(--dim); font-size:12px; margin-top:22px; line-height:1.6; }
@@ -42,72 +47,83 @@
 <body>
 <div class="wrap">
   <h1>Trading Strategy Tournament</h1>
-  <p class="sub" id="meta">Loading…</p>
+  <p class="sub">Live paper bot vs. a backtested field of strategy methods.</p>
 
-  <div class="banner">
-    <b>This is a historical BACKTEST, not a live account.</b> It races strategy
-    <i>methods</i> on a fixed research basket over past data — it is <b>not</b> the live
-    Alpaca paper bot (which trades SPY + sector ETFs separately, in real time). Different
-    stocks, different methods, different time period. Figures are hypothetical.
+  <h2><span class="dot"></span> Live Paper Account <span id="liveSub" class="sub" style="margin:0"></span></h2>
+  <div class="scroll">
+    <table class="live">
+      <thead><tr id="hdrLive"></tr></thead>
+      <tbody id="liveRow"></tbody>
+    </table>
   </div>
 
-  <div class="basket" id="basket"></div>
+  <div class="banner">
+    <b>The table below is a historical BACKTEST, not the live account above.</b> It races
+    strategy <i>methods</i> on a fixed research basket over past data — different stocks,
+    different methods, different time period. Those figures are hypothetical.
+  </div>
 
+  <h2>Backtest Tournament <span id="btSub" class="sub" style="margin:0"></span></h2>
+  <div class="basket" id="basket"></div>
   <div class="scroll">
     <table>
-      <thead><tr>
-        <th>#</th><th>Strategy</th>
-        <th>Total Return</th><th>Hypothetical PnL</th>
-        <th>CAGR (annualized)</th><th>Volatility (annualized)</th>
-        <th>Sharpe Ratio</th><th>Deflated Sharpe</th><th>Max Drawdown</th>
-      </tr></thead>
+      <thead><tr id="hdrBt"></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
   <footer id="foot"></footer>
 </div>
 <script>
-const pct = x => (x>=0?"+":"") + (x*100).toFixed(1) + "%";
+const COLS = ["#","Strategy","Total Return","PnL","CAGR (annualized)",
+              "Volatility (annualized)","Sharpe Ratio","Deflated Sharpe","Max Drawdown"];
+const pct = x => x==null ? "<span class='na'>—</span>" : (x>=0?"+":"")+(x*100).toFixed(1)+"%";
+const sr  = x => x==null ? "<span class='na'>—</span>" : x.toFixed(2);
 const cls = x => x>=0 ? "pos" : "neg";
-const usd = x => (x<0?"-$":"+$") + Math.abs(x).toLocaleString(undefined,{maximumFractionDigits:0});
+const usd = x => (x<0?"-$":"+$")+Math.abs(x).toLocaleString(undefined,{maximumFractionDigits:0});
+const header = el => el.innerHTML = COLS.map(c=>`<th>${c}</th>`).join("");
+
+function rowHtml(x, rankCell, extraClass=""){
+  const dsr = x.dsr==null ? "<span class='pill'>passive</span>" : x.dsr.toFixed(2);
+  return `<tr class="${extraClass}">
+    <td class="rank">${rankCell}</td>
+    <td class="name">${x.name}</td>
+    <td class="${x.ret>=0?'pos':'neg'}">${pct(x.ret)}</td>
+    <td class="${x.pnl>=0?'pos':'neg'}">${usd(x.pnl)}</td>
+    <td class="${x.cagr==null?'na':cls(x.cagr)}">${pct(x.cagr)}</td>
+    <td>${pct(x.vol)}</td>
+    <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${sr(x.sharpe)}</td>
+    <td>${dsr}</td>
+    <td class="neg">${pct(x.maxdd)}</td>
+  </tr>`;
+}
+
+header(document.getElementById("hdrLive"));
+header(document.getElementById("hdrBt"));
+
+fetch("./live.json").then(r=>r.json()).then(d=>{
+  const x = d.live;
+  document.getElementById("liveSub").textContent =
+    `· equity $${Math.round(x.equity).toLocaleString()} · ${x.days} days of history `+
+    `· real Alpaca paper account · updated ${d.generated_utc} UTC`;
+  document.getElementById("liveRow").innerHTML = rowHtml(x, "●");
+}).catch(e=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
-  const cash = d.initial_cash || 0;
-  document.getElementById("meta").textContent =
-    `${d.window} screen · ranked by Sharpe ratio · PnL on a hypothetical $${cash.toLocaleString()} ` +
+  document.getElementById("btSub").textContent =
+    `· ${d.window}, ranked by Sharpe · PnL on a hypothetical $${(d.initial_cash||0).toLocaleString()} `+
     `· generated ${d.generated_utc} UTC`;
-
-  const b = d.basket;
-  document.getElementById("basket").innerHTML = Object.entries(b)
-    .map(([tier,names]) => `<div class="tier"><b>${tier}</b>${names.join(", ")}</div>`).join("");
-
-  document.getElementById("rows").innerHTML = d.leaderboard.map((x,i)=>{
-    const lead = i===0 ? "leader" : "";
-    const dsr = x.dsr==null ? "<span class='pill'>passive</span>" : x.dsr.toFixed(2);
-    return `<tr class="${lead}">
-      <td class="rank">${i+1}</td>
-      <td class="name">${x.name}</td>
-      <td class="${cls(x.ret)}">${pct(x.ret)}</td>
-      <td class="${cls(x.pnl)}">${usd(x.pnl)}</td>
-      <td class="${cls(x.cagr)}">${pct(x.cagr)}</td>
-      <td>${pct(x.vol)}</td>
-      <td class="${cls(x.sharpe)}">${x.sharpe.toFixed(2)}</td>
-      <td>${dsr}</td>
-      <td class="neg">${pct(x.maxdd)}</td>
-    </tr>`;
-  }).join("");
-
+  document.getElementById("basket").innerHTML = Object.entries(d.basket)
+    .map(([t,n]) => `<div class="tier"><b>${t}</b>${n.join(", ")}</div>`).join("");
+  document.getElementById("rows").innerHTML =
+    d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
   document.getElementById("foot").innerHTML =
-    "<b>Column meanings:</b> Total Return = full-period gain. Hypothetical PnL = that " +
-    "return applied to the stated starting capital (illustrative). CAGR = compound annual " +
-    "growth rate. Volatility = annualized std-dev of returns. Sharpe = return per unit of " +
-    "risk. Deflated Sharpe = Sharpe penalized for the number of strategies tried (overfit " +
-    "guard; “passive” rows are buy-and-hold benchmarks, not counted). Max Drawdown = worst " +
-    "peak-to-trough fall.<br><br>Research output, <b>not investment advice</b>; an in-sample " +
-    "leader must still survive an out-of-sample / forward test.";
-}).catch(e=>{
-  document.getElementById("meta").textContent = "Could not load leaderboard.json — " + e;
-});
+    "<b>Columns:</b> Total Return = full-period gain. PnL = profit in dollars (live = real; "+
+    "backtest = hypothetical, on the stated starting capital). CAGR = compound annual growth "+
+    "rate. Volatility = annualized std-dev. Sharpe = return per unit of risk. Deflated Sharpe "+
+    "= Sharpe penalized for the number of strategies tried (“passive” = buy-and-hold benchmark). "+
+    "Max Drawdown = worst peak-to-trough fall. “—” = not enough live history yet.<br><br>"+
+    "Research output, <b>not investment advice</b>.";
+}).catch(e=>{ document.getElementById("foot").textContent = "Could not load leaderboard.json — "+e; });
 </script>
 </body>
 </html>
