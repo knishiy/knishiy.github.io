@@ -1,0 +1,53 @@
+{
+  "generated_utc": "2026-07-01 00:00:00",
+  "note": "Preview layout — the Analyst agent is not yet live. Rows below are examples to show the format; they are NOT real analysis.",
+  "entries": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA (example)",
+      "added": "2026-07-01",
+      "last_checked": "2026-07-01",
+      "status": "example",
+      "type": "high-vol trender",
+      "vol_tier": "volatile",
+      "momentum": "strong up",
+      "fair_value": "—",
+      "last_earnings": "—",
+      "strategies": [
+        {"name": "Donchian 50/25", "verdict": "pending backtest"},
+        {"name": "DualMomentum 12mo", "verdict": "pending backtest"}
+      ],
+      "notes": "example row"
+    },
+    {
+      "ticker": "KO",
+      "name": "Coca-Cola (example)",
+      "added": "2026-07-01",
+      "last_checked": "2026-07-01",
+      "status": "example",
+      "type": "stable compounder",
+      "vol_tier": "stable",
+      "momentum": "flat",
+      "fair_value": "—",
+      "last_earnings": "—",
+      "strategies": [
+        {"name": "Buy & hold / Hybrid", "verdict": "pending backtest"}
+      ],
+      "notes": "example row"
+    },
+    {
+      "ticker": "XYZ",
+      "name": "Example Reject",
+      "added": "2026-07-01",
+      "last_checked": "2026-07-01",
+      "status": "unfit",
+      "type": "illiquid / no edge found",
+      "vol_tier": "—",
+      "momentum": "—",
+      "fair_value": "—",
+      "last_earnings": "—",
+      "strategies": [],
+      "notes": "kept in the library; re-checked periodically in case it becomes compatible"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stock Library</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --line:#30363d; --txt:#e6edf3; --dim:#8b949e;
+          --good:#3fb950; --bad:#f85149; --gold:#d29922; --warn:#1f2a14; --warnln:#3d5212; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt);
+         font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:1060px; margin:0 auto; padding:32px 18px 64px; }
+  a { color:#58a6ff; text-decoration:none; } a:hover { text-decoration:underline; }
+  h1 { font-size:24px; margin:0 0 4px; }
+  .pagesub { color:var(--dim); margin:0 0 12px; font-size:13px; }
+  .banner { background:var(--warn); border:1px solid var(--warnln); border-radius:10px;
+            padding:12px 14px; margin:0 0 16px; font-size:13px; color:#d8e0c0; }
+  .banner b { color:#e8efb0; }
+  input[type=search]{ width:100%; max-width:340px; margin:0 0 14px; padding:8px 12px;
+    background:var(--card); border:1px solid var(--line); border-radius:8px; color:var(--txt); font-size:14px; }
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:var(--card);
+          border:1px solid var(--line); border-radius:12px; overflow:hidden; min-width:900px; }
+  th,td { padding:10px 12px; text-align:left; border-bottom:1px solid var(--line);
+          white-space:nowrap; vertical-align:top; }
+  th { color:var(--dim); font-weight:600; font-size:12px; }
+  tr:last-child td { border-bottom:none; }
+  .tick { font-weight:700; }
+  .badge { font-size:11px; padding:1px 8px; border-radius:999px; border:1px solid var(--line); }
+  .b-fit { color:var(--good); border-color:#1f6f43; }
+  .b-unfit { color:var(--bad); border-color:#6f2a25; }
+  .b-pending, .b-example { color:var(--gold); border-color:#5c471a; }
+  .strat { font-size:12px; color:var(--dim); }
+  .dim { color:var(--dim); }
+  footer { color:var(--dim); font-size:12px; margin-top:20px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="pagesub"><a href="../tradeRanking/">← Strategy Tournament</a></p>
+  <h1>Stock Library</h1>
+  <p class="pagesub" id="sub">Loading…</p>
+  <div class="banner" id="banner" style="display:none"></div>
+
+  <input type="search" id="q" placeholder="Filter by ticker, type, or status…" />
+  <div class="scroll"><table>
+    <thead><tr>
+      <th>Ticker</th><th>Type</th><th>Vol tier</th><th>Momentum</th>
+      <th>Fair value</th><th>Last earnings</th><th>Assigned strategy(ies)</th>
+      <th>Status</th><th>Added</th><th>Last checked</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <footer id="foot"></footer>
+</div>
+<script>
+const badge = s => {
+  const cls = {fit:"b-fit", unfit:"b-unfit", pending:"b-pending", example:"b-example"}[s] || "b-pending";
+  return `<span class="badge ${cls}">${s}</span>`;
+};
+let ALL = [];
+function render(list){
+  document.getElementById("rows").innerHTML = list.map(e=>{
+    const strat = (e.strategies||[]).length
+      ? e.strategies.map(s=>`${s.name} <span class="dim">(${s.verdict})</span>`).join("<br>")
+      : '<span class="dim">—</span>';
+    return `<tr>
+      <td class="tick">${e.ticker}<br><span class="dim" style="font-weight:400">${e.name||""}</span></td>
+      <td>${e.type||"—"}</td><td>${e.vol_tier||"—"}</td><td>${e.momentum||"—"}</td>
+      <td>${e.fair_value||"—"}</td><td>${e.last_earnings||"—"}</td>
+      <td class="strat">${strat}</td>
+      <td>${badge(e.status||"pending")}</td>
+      <td class="dim">${e.added||"—"}</td><td class="dim">${e.last_checked||"—"}</td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="10" class="dim" style="text-align:center;padding:22px">No entries yet.</td></tr>`;
+}
+fetch("./library.json").then(r=>r.json()).then(d=>{
+  ALL = d.entries||[];
+  document.getElementById("sub").textContent = `${ALL.length} entries · updated ${d.generated_utc} UTC`;
+  if (d.note){ const b=document.getElementById("banner"); b.style.display="block"; b.innerHTML="<b>Preview.</b> "+d.note; }
+  render(ALL);
+  document.getElementById("foot").innerHTML =
+    "Each stock is analyzed once, classified by measured properties (volatility, momentum, "+
+    "liquidity) plus fundamentals (fair value, earnings — descriptive metadata, not a signal), "+
+    "then routed to the strategy whose <b>backtest</b> confirms a fit. Entries persist unless "+
+    "deleted; “unfit” ones are re-checked periodically in case they later qualify. "+
+    "Fundamentals are metadata; only a passing backtest sets a strategy as a real fit. "+
+    "Research output, <b>not investment advice</b>.";
+}).catch(e=>{ document.getElementById("sub").textContent="Could not load library.json — "+e; });
+
+document.getElementById("q").addEventListener("input", ev=>{
+  const q = ev.target.value.toLowerCase();
+  render(ALL.filter(e => (e.ticker+" "+(e.name||"")+" "+(e.type||"")+" "+(e.status||"")).toLowerCase().includes(q)));
+});
+</script>
+</body>
+</html>
