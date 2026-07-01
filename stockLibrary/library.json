@@ -1,53 +1,85 @@
 {
-  "generated_utc": "2026-07-01 00:00:00",
-  "note": "Preview layout — the Analyst agent is not yet live. Rows below are examples to show the format; they are NOT real analysis.",
+  "generated_utc": "2026-07-01 13:55:14",
   "entries": [
     {
       "ticker": "NVDA",
-      "name": "NVIDIA (example)",
+      "name": "NVDA",
       "added": "2026-07-01",
       "last_checked": "2026-07-01",
-      "status": "example",
+      "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "strong up",
-      "fair_value": "—",
-      "last_earnings": "—",
+      "momentum": "up (+27%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
       "strategies": [
-        {"name": "Donchian 50/25", "verdict": "pending backtest"},
-        {"name": "DualMomentum 12mo", "verdict": "pending backtest"}
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +1.24"
+        }
       ],
-      "notes": "example row"
+      "notes": "vol 51%, ~$939M/day"
     },
     {
       "ticker": "KO",
-      "name": "Coca-Cola (example)",
+      "name": "KO",
       "added": "2026-07-01",
       "last_checked": "2026-07-01",
-      "status": "example",
+      "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "flat",
-      "fair_value": "—",
-      "last_earnings": "—",
+      "momentum": "up (+18%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
       "strategies": [
-        {"name": "Buy & hold / Hybrid", "verdict": "pending backtest"}
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.79"
+        }
       ],
-      "notes": "example row"
+      "notes": "vol 17%, ~$75M/day"
     },
     {
-      "ticker": "XYZ",
-      "name": "Example Reject",
+      "ticker": "AAPL",
+      "name": "AAPL",
       "added": "2026-07-01",
       "last_checked": "2026-07-01",
-      "status": "unfit",
-      "type": "illiquid / no edge found",
-      "vol_tier": "—",
-      "momentum": "—",
-      "fair_value": "—",
-      "last_earnings": "—",
-      "strategies": [],
-      "notes": "kept in the library; re-checked periodically in case it becomes compatible"
+      "status": "fit",
+      "type": "trend candidate",
+      "vol_tier": "medium",
+      "momentum": "up (+42%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.82"
+        }
+      ],
+      "notes": "vol 29%, ~$442M/day"
+    },
+    {
+      "ticker": "INTC",
+      "name": "INTC",
+      "added": "2026-07-01",
+      "last_checked": "2026-07-01",
+      "status": "fit",
+      "type": "high-vol trender",
+      "vol_tier": "volatile",
+      "momentum": "up (+524%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "DualMomentum 12mo",
+          "verdict": "Sharpe +0.98 vs B&H +0.64, maxDD -16%"
+        },
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.64"
+        }
+      ],
+      "notes": "vol 50%, ~$367M/day"
     }
   ]
 }
