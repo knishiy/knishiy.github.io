@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-06-30 15:30:45",
+  "generated_utc": "2026-07-01 09:18:20",
   "live": {
     "name": "LIVE \u2014 Paper Bot (Hybrid 60/40)",
-    "ret": 0.016776300000000077,
-    "pnl": 1677.6300000000047,
+    "ret": 0.024079799999999985,
+    "pnl": 2407.979999999996,
     "cagr": null,
     "vol": null,
     "sharpe": null,
     "dsr": null,
     "maxdd": -0.018878911566227785,
-    "equity": 101677.63,
-    "days": 9
+    "equity": 102407.98,
+    "days": 10
   }
 }
