@@ -34,6 +34,13 @@
   .strat { font-size:12px; color:var(--dim); }
   .dim { color:var(--dim); }
   footer { color:var(--dim); font-size:12px; margin-top:20px; line-height:1.6; }
+  .addrow { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:0 0 6px; }
+  input#addq { flex:1; min-width:240px; max-width:420px; padding:8px 12px; background:var(--card);
+    border:1px solid var(--line); border-radius:8px; color:var(--txt); font-size:14px; }
+  button#addbtn { padding:8px 16px; background:#238636; color:#fff; border:1px solid #2ea043;
+    border-radius:8px; font-size:14px; cursor:pointer; }
+  button#addbtn:hover { background:#2ea043; }
+  #addmsg { min-height:18px; }
 </style>
 </head>
 <body>
@@ -42,6 +49,16 @@
   <h1>Stock Library</h1>
   <p class="pagesub" id="sub">Loading…</p>
   <div class="banner" id="banner" style="display:none"></div>
+
+  <div id="addbox" style="display:none; margin:0 0 16px;">
+    <div class="addrow">
+      <input type="text" id="addq" maxlength="40"
+        placeholder="Add a stock — company name or ticker (e.g. Palantir)" />
+      <button id="addbtn" type="button">Add</button>
+    </div>
+    <div id="cf-turnstile"></div>
+    <div id="addmsg" class="pagesub"></div>
+  </div>
 
   <input type="search" id="q" placeholder="Filter by ticker, type, or status…" />
   <div class="scroll"><table>
@@ -55,6 +72,12 @@
   <footer id="foot"></footer>
 </div>
 <script>
+// --- Interactive "Add" box config. Filled in once the Cloudflare Worker + Turnstile exist;
+// while these are placeholders the box stays hidden and the page works normally. ---
+const WORKER_URL = "__WORKER_URL__";
+const TURNSTILE_SITEKEY = "__TURNSTILE_SITEKEY__";
+const ADD_ENABLED = !WORKER_URL.startsWith("__") && !TURNSTILE_SITEKEY.startsWith("__");
+
 const badge = s => {
   const cls = {fit:"b-fit", unfit:"b-unfit", pending:"b-pending", example:"b-example"}[s] || "b-pending";
   return `<span class="badge ${cls}">${s}</span>`;
@@ -93,6 +116,37 @@ document.getElementById("q").addEventListener("input", ev=>{
   const q = ev.target.value.toLowerCase();
   render(ALL.filter(e => (e.ticker+" "+(e.name||"")+" "+(e.type||"")+" "+(e.status||"")).toLowerCase().includes(q)));
 });
+
+// --- Add box: only wired up when configured (see WORKER_URL / TURNSTILE_SITEKEY above). ---
+if (ADD_ENABLED) {
+  document.getElementById("addbox").style.display = "block";
+  const s = document.createElement("script");
+  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  s.async = true; s.defer = true;
+  s.onload = () => turnstile.render("#cf-turnstile", { sitekey: TURNSTILE_SITEKEY });
+  document.head.appendChild(s);
+  document.getElementById("addbtn").addEventListener("click", submitAdd);
+  document.getElementById("addq").addEventListener("keydown", e => { if (e.key === "Enter") submitAdd(); });
+}
+
+async function submitAdd(){
+  const inp = document.getElementById("addq"), msg = document.getElementById("addmsg");
+  const q = inp.value.trim();
+  if (!q) { msg.textContent = "Enter a company name or ticker."; return; }
+  const token = (window.turnstile && turnstile.getResponse()) || "";
+  if (!token) { msg.textContent = "Please complete the verification below."; return; }
+  msg.textContent = "Adding…";
+  try {
+    const r = await fetch(WORKER_URL, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ticker: q, turnstileToken: token }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (r.ok) { msg.textContent = d.message || "Queued — refresh in ~1–2 min."; inp.value = ""; }
+    else { msg.textContent = "Error: " + (d.error || r.status); }
+  } catch (e) { msg.textContent = "Network error — try again."; }
+  if (window.turnstile) turnstile.reset();
+}
 </script>
 </body>
 </html>
