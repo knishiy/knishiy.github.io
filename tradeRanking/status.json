@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-01 14:15:01",
+  "generated_utc": "2026-07-02 04:49:59",
   "status": "ok",
   "summary": "All systems operational",
   "components": [
@@ -9,14 +9,14 @@
       "schedule": "Weekdays 10:00 ET",
       "ok": true,
       "last_run": "2026-07-01 14:00:11",
-      "detail": "last wrote 0h ago"
+      "detail": "last wrote 15h ago"
     },
     {
       "name": "Site update + health",
       "kind": "automation",
       "schedule": "Weekdays 10:15 ET",
       "ok": true,
-      "last_run": "2026-07-01 14:15:01",
+      "last_run": "2026-07-02 04:49:59",
       "detail": "this run"
     },
     {
@@ -24,7 +24,7 @@
       "kind": "check",
       "schedule": "every update",
       "ok": true,
-      "last_run": "2026-07-01 14:15:01",
+      "last_run": "2026-07-02 04:49:59",
       "detail": "equity $102,408, 10d history"
     },
     {
@@ -32,8 +32,8 @@
       "kind": "check",
       "schedule": "every update",
       "ok": true,
-      "last_run": "2026-07-01 14:15:01",
-      "detail": "inception 2026-06-30, 1 forward days, ready=False"
+      "last_run": "2026-07-02 04:49:59",
+      "detail": "inception 2026-06-30, 2 forward days, ready=False"
     }
   ],
   "errors": []

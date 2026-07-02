@@ -1,9 +1,9 @@
 {
-  "generated_utc": "2026-07-01 14:15:11",
+  "generated_utc": "2026-07-02 04:50:11",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
-  "end": "2026-06-30",
-  "days": 1,
+  "end": "2026-07-01",
+  "days": 2,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
