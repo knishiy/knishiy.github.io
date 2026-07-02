@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-07-01 13:55:14",
+  "generated_utc": "2026-07-02 06:01:03",
   "entries": [
     {
       "ticker": "NVDA",
-      "name": "NVDA",
-      "added": "2026-07-01",
-      "last_checked": "2026-07-01",
+      "name": "NVIDIA Corporation Common Stock",
+      "added": "2026-07-02",
+      "last_checked": "2026-07-02",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+27%)",
+      "momentum": "up (+29%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -18,17 +18,17 @@
           "verdict": "Sharpe +1.24"
         }
       ],
-      "notes": "vol 51%, ~$939M/day"
+      "notes": "vol 51%, ~$940M/day"
     },
     {
       "ticker": "KO",
-      "name": "KO",
-      "added": "2026-07-01",
-      "last_checked": "2026-07-01",
+      "name": "Coca-Cola Company",
+      "added": "2026-07-02",
+      "last_checked": "2026-07-02",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+18%)",
+      "momentum": "up (+17%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -41,9 +41,9 @@
     },
     {
       "ticker": "AAPL",
-      "name": "AAPL",
-      "added": "2026-07-01",
-      "last_checked": "2026-07-01",
+      "name": "Apple Inc. Common Stock",
+      "added": "2026-07-02",
+      "last_checked": "2026-07-02",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
@@ -53,33 +53,33 @@
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.82"
+          "verdict": "Sharpe +0.83"
         }
       ],
-      "notes": "vol 29%, ~$442M/day"
+      "notes": "vol 29%, ~$449M/day"
     },
     {
       "ticker": "INTC",
-      "name": "INTC",
-      "added": "2026-07-01",
-      "last_checked": "2026-07-01",
+      "name": "Intel Corporation Common Stock",
+      "added": "2026-07-02",
+      "last_checked": "2026-07-02",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+524%)",
+      "momentum": "up (+456%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.98 vs B&H +0.64, maxDD -16%"
+          "verdict": "Sharpe +0.93 vs B&H +0.61, maxDD -16%"
         },
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.64"
+          "verdict": "Sharpe +0.61"
         }
       ],
-      "notes": "vol 50%, ~$367M/day"
+      "notes": "vol 50%, ~$370M/day"
     }
   ]
 }
