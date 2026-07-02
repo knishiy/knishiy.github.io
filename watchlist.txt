@@ -1,0 +1,9 @@
+# Stock Library watchlist — one entry per line.
+# Each line may be a TICKER (e.g. NVDA) or a COMPANY NAME (e.g. Palantir); names are
+# resolved to a ticker automatically. Lines starting with '#' and blank lines are ignored.
+# Add a line to add a stock to the library; delete a line to remove it. The library
+# re-evaluates this whole list every weekday and publishes to /stockLibrary/.
+NVDA
+KO
+AAPL
+INTC
