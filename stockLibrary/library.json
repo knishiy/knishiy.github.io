@@ -1,85 +1,85 @@
 {
-  "generated_utc": "2026-07-02 20:15:20",
+  "generated_utc": "2026-07-03 14:15:12",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-03",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+29%)",
+      "momentum": "up (+24%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +1.24"
+          "verdict": "Sharpe +1.23"
         }
       ],
-      "notes": "vol 51%, ~$940M/day"
+      "notes": "vol 51%, ~$946M/day"
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
       "added": "2026-07-02",
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-03",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+17%)",
+      "momentum": "up (+22%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.79"
+          "verdict": "Sharpe +0.82"
         }
       ],
-      "notes": "vol 17%, ~$75M/day"
+      "notes": "vol 17%, ~$76M/day"
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-03",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+42%)",
+      "momentum": "up (+46%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.83"
+          "verdict": "Sharpe +0.85"
         }
       ],
-      "notes": "vol 29%, ~$449M/day"
+      "notes": "vol 29%, ~$464M/day"
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-03",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+456%)",
+      "momentum": "up (+451%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.93 vs B&H +0.61, maxDD -16%"
+          "verdict": "Sharpe +0.90 vs B&H +0.59, maxDD -16%"
         },
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.61"
+          "verdict": "Sharpe +0.59"
         }
       ],
-      "notes": "vol 50%, ~$370M/day"
+      "notes": "vol 50%, ~$371M/day"
     }
   ]
 }
