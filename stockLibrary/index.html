@@ -74,8 +74,8 @@
 <script>
 // --- Interactive "Add" box config. Filled in once the Cloudflare Worker + Turnstile exist;
 // while these are placeholders the box stays hidden and the page works normally. ---
-const WORKER_URL = "__WORKER_URL__";
-const TURNSTILE_SITEKEY = "__TURNSTILE_SITEKEY__";
+const WORKER_URL = "https://black-haze-1a5c.knishiy10.workers.dev";
+const TURNSTILE_SITEKEY = "0x4AAAAAADuX8aPPatiPR1qa";
 const ADD_ENABLED = !WORKER_URL.startsWith("__") && !TURNSTILE_SITEKEY.startsWith("__");
 
 const badge = s => {
