@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-07-07 20:15:17",
+  "generated_utc": "2026-07-08 08:23:41",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-07",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+23%)",
+      "momentum": "up (+25%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -18,36 +18,36 @@
           "verdict": "Sharpe +1.23"
         }
       ],
-      "notes": "vol 51%, ~$949M/day"
+      "notes": "vol 51%, ~$954M/day"
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-07",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+20%)",
+      "momentum": "up (+22%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.81"
+          "verdict": "Sharpe +0.82"
         }
       ],
-      "notes": "vol 17%, ~$77M/day"
+      "notes": "vol 17%, ~$78M/day"
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-07",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+47%)",
+      "momentum": "up (+49%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -56,30 +56,49 @@
           "verdict": "Sharpe +0.86"
         }
       ],
-      "notes": "vol 29%, ~$467M/day"
+      "notes": "vol 29%, ~$473M/day"
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-07",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+444%)",
+      "momentum": "up (+402%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.91 vs B&H +0.59, maxDD -16%"
+          "verdict": "Sharpe +0.85 vs B&H +0.56, maxDD -16%"
         },
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.59"
+          "verdict": "Sharpe +0.56"
         }
       ],
-      "notes": "vol 50%, ~$373M/day"
+      "notes": "vol 51%, ~$378M/day"
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer, Inc. Common Stock",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
+      "status": "fit",
+      "type": "trend candidate",
+      "vol_tier": "volatile",
+      "momentum": "down (-44%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.87"
+        }
+      ],
+      "notes": "vol 82%, ~$62M/day"
     }
   ]
 }
