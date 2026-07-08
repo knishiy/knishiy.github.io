@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-08 08:23:41",
+  "generated_utc": "2026-07-08 08:27:04",
   "entries": [
     {
       "ticker": "NVDA",
@@ -99,6 +99,20 @@
         }
       ],
       "notes": "vol 82%, ~$62M/day"
+    },
+    {
+      "ticker": "SPCX",
+      "name": "Space Exploration Technologies Corp. Class A Common Stock",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
+      "status": "unfit",
+      "type": "no / short data",
+      "vol_tier": "\u2014",
+      "momentum": "\u2014",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [],
+      "notes": "insufficient price history"
     }
   ]
 }
