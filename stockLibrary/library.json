@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-08 08:27:04",
+  "generated_utc": "2026-07-08 08:27:45",
   "entries": [
     {
       "ticker": "NVDA",
@@ -113,6 +113,25 @@
       "last_earnings": "\u2014",
       "strategies": [],
       "notes": "insufficient price history"
+    },
+    {
+      "ticker": "LMT",
+      "name": "Lockheed Martin Corp.",
+      "added": "2026-07-08",
+      "last_checked": "2026-07-08",
+      "status": "fit",
+      "type": "stable compounder",
+      "vol_tier": "stable",
+      "momentum": "up (+17%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.50"
+        }
+      ],
+      "notes": "vol 23%, ~$30M/day"
     }
   ]
 }
