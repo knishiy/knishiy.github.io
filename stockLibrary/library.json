@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-07-13 08:24:54",
+  "generated_utc": "2026-07-13 14:15:18",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
-      "added": "2026-07-13",
+      "added": "2026-07-02",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "high-vol trender",
@@ -23,7 +23,7 @@
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "added": "2026-07-13",
+      "added": "2026-07-02",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "stable compounder",
@@ -42,7 +42,7 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
-      "added": "2026-07-13",
+      "added": "2026-07-02",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "trend candidate",
@@ -61,7 +61,7 @@
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
-      "added": "2026-07-13",
+      "added": "2026-07-02",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "high-vol trender",
@@ -84,7 +84,7 @@
     {
       "ticker": "SMCI",
       "name": "Super Micro Computer, Inc. Common Stock",
-      "added": "2026-07-13",
+      "added": "2026-07-08",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "trend candidate",
@@ -103,7 +103,7 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp. Class A Common Stock",
-      "added": "2026-07-13",
+      "added": "2026-07-08",
       "last_checked": "2026-07-13",
       "status": "unfit",
       "type": "no / short data",
@@ -117,7 +117,7 @@
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corp.",
-      "added": "2026-07-13",
+      "added": "2026-07-08",
       "last_checked": "2026-07-13",
       "status": "fit",
       "type": "stable compounder",
