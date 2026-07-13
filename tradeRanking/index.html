@@ -105,15 +105,16 @@ function rowHtml(x, rankCell, extraClass=""){
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td><td>${dsr}</td>
     <td class="neg">${pct(x.maxdd)}</td></tr>`;
 }
-// Apple-Stocks-style forward chart: timeframe pills + date axis. Data is DAILY, so 1D (intraday)
-// is never available; a range whose window predates our data shows "chart unavailable".
+// Apple-Stocks-style forward chart: timeframe pills + date axis. Data is DAILY, so "1D" means
+// the most recent active trading session (last two closes) — never a market-off day; a longer
+// range whose window predates our data shows "chart unavailable".
 let _cv=null, _cash=null, _tf="All";
-const TFS=[{k:"1D",intraday:true},{k:"1W",days:7},{k:"1M",days:30},{k:"3M",days:91},
+const TFS=[{k:"1D",latest:true},{k:"1W",days:7},{k:"1M",days:30},{k:"3M",days:91},
            {k:"6M",days:182},{k:"1Y",days:365},{k:"YTD",ytd:true},{k:"All",all:true}];
 function _startIdx(tf){
   if(!_cv||!_cv.dates||_cv.dates.length<2) return -1;
   const ds=_cv.dates, last=new Date(ds[ds.length-1]), first=new Date(ds[0]);
-  if(tf.intraday) return -1;                                  // daily data — no intraday
+  if(tf.latest) return ds.length-2;                          // most recent active session (last 2 closes)
   let cutoff;
   if(tf.all) cutoff=first;
   else if(tf.ytd) cutoff=new Date(last.getFullYear(),0,1);
