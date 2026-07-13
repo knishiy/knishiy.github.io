@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-13 07:09:21",
+  "generated_utc": "2026-07-13 07:10:00",
   "entries": [
     {
       "ticker": "NVDA",
@@ -146,6 +146,25 @@
       "last_earnings": "\u2014",
       "strategies": [],
       "notes": "could not resolve 'skhyv' to a ticker"
+    },
+    {
+      "ticker": "HLIT",
+      "name": "Harmonic Inc. Common Stock",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
+      "status": "unfit",
+      "type": "illiquid (skip)",
+      "vol_tier": "volatile",
+      "momentum": "up (+51%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "none beat buy & hold",
+          "verdict": "\u2014"
+        }
+      ],
+      "notes": "vol 49%, ~$2M/day"
     }
   ]
 }
