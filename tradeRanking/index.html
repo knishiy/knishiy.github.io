@@ -65,6 +65,7 @@
   </div>
 
   <h2>Forward Tournament <span id="shadowSub" class="sub"></span></h2>
+  <div id="fwdChart" style="margin:0 0 12px"></div>
   <div class="scroll"><table><thead><tr id="hdrShadow"></tr></thead><tbody id="shadowRows"></tbody></table></div>
 
   <h2>Backtest Tournament <span id="btSub" class="sub"></span></h2>
@@ -98,6 +99,27 @@ function rowHtml(x, rankCell, extraClass=""){
     <td class="${x.cagr==null?'na':cls(x.cagr)}">${pct(x.cagr)}</td><td>${pct(x.vol)}</td>
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td><td>${dsr}</td>
     <td class="neg">${pct(x.maxdd)}</td></tr>`;
+}
+function drawChart(c, cash){
+  const el = document.getElementById("fwdChart");
+  if(!c || !c.dates || c.dates.length<2){ el.innerHTML=""; return; }
+  const W=940,H=260,pl=56,pr=12,pt=14,pb=22, names=Object.keys(c.series);
+  const colors=["#58a6ff","#3fb950","#d29922","#f85149","#bc8cff","#39c5cf"];
+  let lo=Infinity,hi=-Infinity;
+  names.forEach(n=>c.series[n].forEach(v=>{lo=Math.min(lo,v);hi=Math.max(hi,v);}));
+  if(cash){lo=Math.min(lo,cash);hi=Math.max(hi,cash);}
+  const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad; const N=c.dates.length;
+  const xx=i=> pl+(i/(N-1))*(W-pl-pr), yy=v=> pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+  const money=v=>"$"+Math.round(v).toLocaleString();
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;background:var(--card);border:1px solid var(--line);border-radius:12px">`;
+  if(cash){const yb=yy(cash); s+=`<line x1="${pl}" y1="${yb}" x2="${W-pr}" y2="${yb}" stroke="var(--line)" stroke-dasharray="4 4"/><text x="${pl-6}" y="${yb+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(cash)}</text>`;}
+  s+=`<text x="${pl-6}" y="${yy(hi)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(hi)}</text><text x="${pl-6}" y="${yy(lo)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(lo)}</text>`;
+  names.forEach((n,k)=>{ const p=c.series[n].map((v,i)=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
+    s+=`<polyline points="${p}" fill="none" stroke="${colors[k%colors.length]}" stroke-width="2"/>`; });
+  s+=`</svg>`;
+  const lastv=n=>c.series[n][c.series[n].length-1];
+  const leg=names.map((n,k)=>`<span style="color:${colors[k%colors.length]};font-size:12px;margin-right:14px;white-space:nowrap">■ <span style="color:var(--txt)">${n}</span> <span style="color:var(--dim)">${money(lastv(n))}</span></span>`).join("");
+  el.innerHTML=s+`<div style="margin:8px 2px 0;line-height:2">${leg}</div>`;
 }
 ["hdrLive","hdrShadow","hdrBt"].forEach(header);
 
@@ -135,19 +157,15 @@ fetch("./live.json").then(r=>r.json()).then(d=>{
   document.getElementById("liveRow").innerHTML = rowHtml(real, "●") + rowHtml(scaled, "↳");
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
-fetch("./shadow.json").then(r=>r.json()).then(d=>{
-  if (d.ready && d.leaderboard.length) {
-    document.getElementById("shadowSub").textContent =
-      `· live-collected since ${d.inception} · ${d.days} trading days · ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()}`;
-    document.getElementById("shadowRows").innerHTML =
-      d.leaderboard.map((x,i)=>rowHtml(x, i+1, i===0?"leader":"")).join("");
-  } else {
-    document.getElementById("shadowSub").textContent =
-      `· collecting forward data since ${d.inception} — ${d.days}/${d.min_show} trading days`;
-    document.getElementById("shadowRows").innerHTML =
-      `<tr><td colspan="9" style="text-align:center;color:var(--dim);padding:22px">`+
-      `Genuinely forward — no backfilled history. Rankings appear once ~${d.min_show} trading days of live data are collected (currently ${d.days}).</td></tr>`;
-  }
+fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+  const prelim = !d.ready;
+  document.getElementById("shadowSub").textContent = prelim
+    ? `· PRELIMINARY · ${d.days}/${d.min_show} trading days since ${d.inception} · ranked by return so far (Sharpe needs ${d.min_annual||60}d) · will reshuffle`
+    : `· live-collected since ${d.inception} · ${d.days} trading days · ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()}`;
+  document.getElementById("shadowRows").innerHTML =
+    (d.leaderboard||[]).map((x,i)=>rowHtml(x, i+1, (!prelim && i===0)?"leader":"")).join("")
+    || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no forward data yet</td></tr>`;
+  drawChart(d.curves, d.initial_cash);
 }).catch(()=>{ document.getElementById("shadowSub").textContent = "· forward data unavailable"; });
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
