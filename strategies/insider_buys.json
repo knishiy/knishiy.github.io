@@ -45,6 +45,78 @@
       }
     }
   ],
+  "holdings": {
+    "items": [
+      {
+        "name": "JBHT",
+        "weight": 0.01064,
+        "cluster": 21
+      },
+      {
+        "name": "KKR",
+        "weight": 0.01064,
+        "cluster": 13
+      },
+      {
+        "name": "SPG",
+        "weight": 0.01064,
+        "cluster": 10
+      },
+      {
+        "name": "IFF",
+        "weight": 0.01064,
+        "cluster": 10
+      },
+      {
+        "name": "TJX",
+        "weight": 0.01064,
+        "cluster": 10
+      },
+      {
+        "name": "HBAN",
+        "weight": 0.01064,
+        "cluster": 9
+      },
+      {
+        "name": "AXP",
+        "weight": 0.01064,
+        "cluster": 7
+      },
+      {
+        "name": "AIG",
+        "weight": 0.01064,
+        "cluster": 6
+      },
+      {
+        "name": "MSCI",
+        "weight": 0.01064,
+        "cluster": 5
+      },
+      {
+        "name": "IP",
+        "weight": 0.01064,
+        "cluster": 4
+      },
+      {
+        "name": "CHRW",
+        "weight": 0.01064,
+        "cluster": 4
+      },
+      {
+        "name": "CSGP",
+        "weight": 0.01064,
+        "cluster": 4
+      },
+      {
+        "name": "82 other names",
+        "weight": 0.87234,
+        "is_other": true
+      }
+    ],
+    "total_names": 94,
+    "as_of": "2026-03-30",
+    "note": "S&P 500 names with an insider buy in the last ~63 trading days (equal-weight; latest SEC data)"
+  },
   "allocation": {
     "kind": "people",
     "items": [

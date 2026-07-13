@@ -252,6 +252,12 @@ function stratHeadline(card){
   }
   return card.subtitle||"";
 }
+function stratHoldings(card){
+  const h=card.holdings; if(!h||!h.items||!h.items.length) return "";
+  const top=h.items[0], n=h.total_names||h.items.length;
+  const topStr = top.is_other ? "" : `top ${top.name} ${(top.weight*100).toFixed(0)}% · `;
+  return `<div style="color:var(--dim);font-size:12px;margin-top:6px">📊 ${topStr}${n} holding${n>1?"s":""}</div>`;
+}
 fetch("../strategies/index.json?cb="+Date.now()).then(r=>r.json()).then(async idx=>{
   const cards = await Promise.all((idx.strategies||[]).map(s=>
     fetch(`../strategies/${s.slug}.json`).then(r=>r.json()).then(c=>({...s,...c})).catch(()=>s)));
@@ -261,6 +267,7 @@ fetch("../strategies/index.json?cb="+Date.now()).then(r=>r.json()).then(async id
       <div class="scard-name">${c.name}</div>
       <div class="scard-sub">${c.subtitle||''}</div>
       <div class="scard-head">${stratHeadline(c)}</div>
+      ${stratHoldings(c)}
       <div class="scard-cta">metrics + allocation →</div>
     </a>`).join("") || `<span class="sub">no strategies published yet</span>`;
 }).catch(()=>{ document.getElementById("stratCards").innerHTML =

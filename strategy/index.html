@@ -143,10 +143,16 @@ function legend(items){
 function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 /* ------------------------------------------------------------------ render */
-let CARD=null, ITEMS=[];
+let CARD=null, ITEMS=[], HOLDINGS={items:[]};
 
-function renderPie(){
-  $("#pie").innerHTML = pieSVG(ITEMS) + legend(ITEMS);
+function renderHoldings(){
+  const h = HOLDINGS.items || [];
+  const meta = HOLDINGS.total_names
+    ? `<div class="note">${escapeHtml(HOLDINGS.note||'')}${HOLDINGS.as_of?` · as of ${escapeHtml(HOLDINGS.as_of)}`:''}`+
+      `${HOLDINGS.total_names>h.length?` · ${HOLDINGS.total_names} names total`:''}</div>` : '';
+  $("#pie").innerHTML = h.length
+    ? pieSVG(h) + legend(h) + meta
+    : `<div class="note">No current holdings — this book is in cash right now (no fresh disclosed buys in the hold window).</div>`;
 }
 function renderEditor(){
   const isPeople = CARD.allocation.kind === "people";
@@ -181,14 +187,13 @@ function bindEditor(){
         // keep the paired range/number in sync
         $("#editor").querySelectorAll(`[data-i="${i}"][data-f="weight"]`).forEach(el=>{ if(el!==e.target) el.value=ITEMS[i].weight; });
       } else { ITEMS[i].name = e.target.value; }
-      renderPie();
     });
   });
   $("#editor").querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{
-    ITEMS.splice(+e.target.dataset.del,1); renderPie(); renderEditor();
+    ITEMS.splice(+e.target.dataset.del,1); renderEditor();
   }));
   const add=$("#addRow"); if(add) add.addEventListener("click",()=>{
-    ITEMS.splice(Math.max(0,ITEMS.length-(hasDefault()?1:0)),0,{name:"",weight:1}); renderPie(); renderEditor();
+    ITEMS.splice(Math.max(0,ITEMS.length-(hasDefault()?1:0)),0,{name:"",weight:1}); renderEditor();
   });
   const save=$("#saveBtn"); if(save && SAVE_ENABLED) save.addEventListener("click", doSave);
   if (SAVE_ENABLED) mountTurnstile();
@@ -222,12 +227,14 @@ function render(){
     <p class="sub">${escapeHtml(CARD.subtitle||'')}</p>
     <div class="grid">
       <div class="card"><h2>METRICS &amp; DATA</h2>${metricsHTML()}</div>
-      <div class="card"><h2>MONEY ALLOCATION</h2>
+      <div class="card">
+        <h2>CURRENT HOLDINGS <span class="sub" style="font-weight:400;color:var(--mut)">· % of the book by stock</span></h2>
         <div class="pie-wrap" id="pie"></div>
+        <h2 style="margin-top:18px">${CARD.allocation.kind==='people'?'WHO YOU FOLLOW':'ADJUST ALLOCATION'} <span class="sub" style="font-weight:400;color:var(--mut)">· edit &amp; save</span></h2>
         <div class="editor" id="editor"></div>
       </div>
     </div>`;
-  renderPie(); renderEditor();
+  renderHoldings(); renderEditor();
 }
 
 /* ------------------------------------------------------------------ turnstile + save */
@@ -271,6 +278,7 @@ async function doSave(){
     const r=await fetch(`../strategies/${SLUG}.json`, {cache:"no-store"});
     if(!r.ok) throw new Error("not found");
     CARD=await r.json();
+    HOLDINGS=CARD.holdings||{items:[]};
     ITEMS=(CARD.allocation.items||[]).map(i=>({...i}));
     if(!ITEMS.length) ITEMS=[{name:"All qualifying (equal weight)", weight:1, is_default:true}];
     render();
