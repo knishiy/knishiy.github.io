@@ -50,6 +50,17 @@
   .tf.sel { color:#fff; background:var(--liveln); border-color:var(--liveln); }
   .tf.off { opacity:.38; cursor:not-allowed; }
   footer { color:var(--dim); font-size:12px; margin-top:22px; line-height:1.6; }
+  .stratgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:12px; margin:6px 0 10px; }
+  .scard { display:block; background:var(--card); border:1px solid var(--line); border-radius:12px;
+           padding:14px; color:var(--txt); text-decoration:none; transition:border-color .15s, transform .1s; }
+  .scard:hover { border-color:#58a6ff; transform:translateY(-1px); }
+  .badge { font-size:11px; font-weight:600; padding:2px 8px; border-radius:999px; border:1px solid var(--line); }
+  .badge.live { color:var(--gold); border-color:var(--gold); }
+  .badge.research { color:var(--good); border-color:var(--good); }
+  .scard-name { font-size:16px; font-weight:650; margin:9px 0 2px; }
+  .scard-sub { color:var(--dim); font-size:12px; line-height:1.35; }
+  .scard-head { margin-top:9px; font-size:13px; }
+  .scard-cta { color:#58a6ff; font-size:12px; margin-top:9px; }
 </style>
 </head>
 <body>
@@ -57,6 +68,9 @@
   <h1>Trading Strategy Tournament</h1>
   <p class="pagesub">Live paper bot · a forward (out-of-sample) competition · and a historical backtest. &nbsp;<a href="../stockLibrary/" style="color:#58a6ff">Stock Library →</a></p>
   <div class="status" id="statusBadge"><span class="sdot"></span> checking status…</div>
+
+  <h2>Strategies <span class="sub">· click any card for its metrics + editable money allocation</span></h2>
+  <div id="stratCards" class="stratgrid"><span class="sub">loading strategies…</span></div>
 
   <h2><span class="dot"></span> Live Paper Account <span id="liveSub" class="sub"></span></h2>
   <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
@@ -224,6 +238,33 @@ fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
     "Max Drawdown = worst peak-to-trough fall. “—” = not enough history yet.<br><br>"+
     "Research output, <b>not investment advice</b>.";
 }).catch(e=>{ document.getElementById("foot").textContent = "Could not load leaderboard.json — "+e; });
+
+// ---- Strategies: clickable cards -> the detail view (metrics + editable allocation) ----
+function stratHeadline(card){
+  for(const m of (card.metrics||[])){
+    if(m.extra && ("days" in m.extra))
+      return m.extra.ready ? `Forward · ${m.extra.days} days live` : `Forward · collecting ${m.extra.days}/${m.extra.min_show} days`;
+    if(m.extra && m.extra.recommendation){
+      const r=(m.fields||{}).ret;
+      return `Backtest · ${r!=null?((r>=0?"+":"")+(r*100).toFixed(0)+"% ret · "):""}${m.extra.recommendation}`;
+    }
+    if(m.fields && m.fields.equity!=null) return `Live · $${Math.round(m.fields.equity).toLocaleString()}`;
+  }
+  return card.subtitle||"";
+}
+fetch("../strategies/index.json?cb="+Date.now()).then(r=>r.json()).then(async idx=>{
+  const cards = await Promise.all((idx.strategies||[]).map(s=>
+    fetch(`../strategies/${s.slug}.json`).then(r=>r.json()).then(c=>({...s,...c})).catch(()=>s)));
+  document.getElementById("stratCards").innerHTML = cards.map(c=>`
+    <a class="scard" href="../strategy/?id=${encodeURIComponent(c.slug)}">
+      <span class="badge ${c.live?'live':'research'}">${c.live?'LIVE · trades':'RESEARCH'}</span>
+      <div class="scard-name">${c.name}</div>
+      <div class="scard-sub">${c.subtitle||''}</div>
+      <div class="scard-head">${stratHeadline(c)}</div>
+      <div class="scard-cta">metrics + allocation →</div>
+    </a>`).join("") || `<span class="sub">no strategies published yet</span>`;
+}).catch(()=>{ document.getElementById("stratCards").innerHTML =
+  `<span class="sub">strategy cards unavailable</span>`; });
 </script>
 </body>
 </html>
