@@ -10,3 +10,4 @@ INTC
 SMCI
 SPCX
 LMT
+skhyv

@@ -1,40 +1,40 @@
 {
-  "generated_utc": "2026-07-10 20:15:23",
+  "generated_utc": "2026-07-13 07:09:21",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+25%)",
+      "momentum": "up (+29%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +1.24"
+          "verdict": "Sharpe +1.26"
         }
       ],
-      "notes": "vol 51%, ~$964M/day"
+      "notes": "vol 51%, ~$980M/day"
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+22%)",
+      "momentum": "up (+23%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.80"
+          "verdict": "Sharpe +0.81"
         }
       ],
       "notes": "vol 17%, ~$79M/day"
@@ -42,50 +42,50 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+50%)",
+      "momentum": "up (+49%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.87"
+          "verdict": "Sharpe +0.86"
         }
       ],
-      "notes": "vol 29%, ~$478M/day"
+      "notes": "vol 29%, ~$481M/day"
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
-      "added": "2026-07-02",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+380%)",
+      "momentum": "up (+361%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.86 vs B&H +0.56, maxDD -16%"
+          "verdict": "Sharpe +0.85 vs B&H +0.56, maxDD -16%"
         },
         {
           "name": "Buy & hold",
           "verdict": "Sharpe +0.56"
         }
       ],
-      "notes": "vol 51%, ~$379M/day"
+      "notes": "vol 51%, ~$378M/day"
     },
     {
       "ticker": "SMCI",
       "name": "Super Micro Computer, Inc. Common Stock",
-      "added": "2026-07-08",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "volatile",
@@ -103,8 +103,8 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp. Class A Common Stock",
-      "added": "2026-07-08",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "unfit",
       "type": "no / short data",
       "vol_tier": "\u2014",
@@ -117,21 +117,35 @@
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corp.",
-      "added": "2026-07-08",
-      "last_checked": "2026-07-10",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+15%)",
+      "momentum": "up (+16%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.47"
+          "verdict": "Sharpe +0.48"
         }
       ],
       "notes": "vol 23%, ~$30M/day"
+    },
+    {
+      "ticker": "SKHYV",
+      "name": "skhyv",
+      "added": "2026-07-13",
+      "last_checked": "2026-07-13",
+      "status": "unresolved",
+      "type": "\u2014",
+      "vol_tier": "\u2014",
+      "momentum": "\u2014",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [],
+      "notes": "could not resolve 'skhyv' to a ticker"
     }
   ]
 }
