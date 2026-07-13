@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy detail</title>
+<!--
+  CLICK-INTO strategy detail view. Owned by the copy-trade/allocation effort.
+  It is intentionally SEPARATE from the forward/live OVERVIEW page (owned elsewhere):
+  the overview links here with ?id=<slug>. Reads /strategies/<slug>.json (published from
+  the algo repo by update_site.sh). Self-contained: no external libraries; the pie is
+  inline SVG. Saving edits goes to GitHub via a Cloudflare Worker (configure below).
+-->
+<style>
+  :root{
+    --bg:#0e1116; --card:#171b22; --line:#262c36; --fg:#e6e9ef; --mut:#9aa4b2;
+    --accent:#4c8dff; --good:#38b26b; --warn:#e0a53b; --bad:#e05c5c;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f4f6fa; --card:#fff; --line:#e2e7ef; --fg:#151a21; --mut:#5a6472; --accent:#2f6fe0; }
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--fg);
+        font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  a{ color:var(--accent); text-decoration:none; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:20px 16px 60px; }
+  .top{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .top a.back{ font-size:14px; color:var(--mut); }
+  h1{ font-size:24px; margin:2px 0; }
+  .sub{ color:var(--mut); margin:0 0 14px; }
+  .badge{ font-size:12px; font-weight:600; padding:2px 9px; border-radius:999px; border:1px solid var(--line); }
+  .badge.live{ color:var(--warn); border-color:var(--warn); }
+  .badge.research{ color:var(--good); border-color:var(--good); }
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:820px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .card h2{ font-size:15px; margin:0 0 12px; letter-spacing:.02em; }
+  .mblock{ margin-bottom:14px; }
+  .mblock .lbl{ font-size:13px; color:var(--mut); margin-bottom:6px; }
+  .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .stat{ background:var(--bg); border:1px solid var(--line); border-radius:9px; padding:8px 10px; }
+  .stat .k{ font-size:11px; color:var(--mut); text-transform:uppercase; letter-spacing:.03em; }
+  .stat .v{ font-size:16px; font-weight:650; margin-top:2px; }
+  .pos{ color:var(--good); } .neg{ color:var(--bad); }
+  .note{ font-size:13px; color:var(--mut); background:var(--bg); border:1px dashed var(--line);
+         border-radius:9px; padding:9px 11px; margin-top:6px; }
+  .pie-wrap{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  svg.pie{ flex:0 0 190px; }
+  .legend{ flex:1 1 200px; min-width:180px; }
+  .legrow{ display:flex; align-items:center; gap:8px; padding:3px 0; font-size:14px; }
+  .sw{ width:12px; height:12px; border-radius:3px; flex:0 0 auto; }
+  .legname{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .legpct{ color:var(--mut); font-variant-numeric:tabular-nums; }
+  .editor{ margin-top:14px; }
+  .erow{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .erow input[type=text]{ flex:1; min-width:0; background:var(--bg); color:var(--fg);
+        border:1px solid var(--line); border-radius:8px; padding:7px 9px; }
+  .erow input[type=range]{ flex:1; min-width:60px; accent-color:var(--accent); }
+  .erow input[type=number]{ width:64px; background:var(--bg); color:var(--fg);
+        border:1px solid var(--line); border-radius:8px; padding:6px 7px; }
+  .erow button.x{ background:none; border:none; color:var(--mut); cursor:pointer; font-size:18px; line-height:1; }
+  .erow.def input[type=text]{ opacity:.7; }
+  .row-actions{ display:flex; gap:10px; align-items:center; margin-top:10px; flex-wrap:wrap; }
+  button.btn{ background:var(--accent); color:#fff; border:none; border-radius:9px;
+        padding:9px 16px; font-weight:600; cursor:pointer; }
+  button.btn.ghost{ background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  button.btn:disabled{ opacity:.5; cursor:not-allowed; }
+  .msg{ font-size:14px; margin-top:10px; min-height:20px; }
+  .msg.ok{ color:var(--good); } .msg.err{ color:var(--bad); }
+  .cf-wrap{ margin-top:10px; }
+  .loading{ color:var(--mut); padding:40px 0; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../tradeRanking/">&larr; All strategies</a>
+  </div>
+  <div id="app"><div class="loading">Loading strategy…</div></div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ config */
+// Reuse the same Cloudflare Worker front door as the "Add stock" box. Until these are set
+// the page runs in PREVIEW mode: full interactivity + live pie, but Save is disabled.
+const WORKER_URL = "https://black-haze-1a5c.knishiy10.workers.dev";
+const TURNSTILE_SITEKEY = "0x4AAAAAADuX8aPPatiPR1qa";
+const SAVE_ENABLED = !WORKER_URL.startsWith("__") && !TURNSTILE_SITEKEY.startsWith("__");
+
+const PALETTE = ["#4c8dff","#38b26b","#e0a53b","#e05c5c","#9b6cf0","#2bb6c4",
+                 "#e070bb","#7a86f7","#5cc27a","#c9a03b","#c96b6b","#8a7bd8"];
+
+/* ------------------------------------------------------------------ helpers */
+const $ = (s, r=document) => r.querySelector(s);
+const qs = new URLSearchParams(location.search);
+const SLUG = (qs.get("id") || "").replace(/[^a-z0-9_-]/gi, "");
+const pct = x => (x*100).toFixed(1) + "%";
+const money = x => "$" + Math.round(x).toLocaleString();
+
+function fmtField(k, v){
+  if (v == null) return "—";
+  if (["ret","cagr","vol","maxdd","dsr"].includes(k)) {
+    if (k==="dsr") return (+v).toFixed(2);
+    return (v>=0?"+":"") + (v*100).toFixed(1) + "%";
+  }
+  if (k==="sharpe") return (v>=0?"+":"") + (+v).toFixed(2);
+  if (k==="equity"||k==="pnl") return money(v);
+  return String(v);
+}
+const FIELD_LABEL = { ret:"Return", cagr:"CAGR", vol:"Vol", sharpe:"Sharpe",
+                      dsr:"DSR", maxdd:"Max DD", equity:"Equity", pnl:"P&L", days:"Days" };
+
+/* ------------------------------------------------------------------ pie */
+function pieSVG(items){
+  const total = items.reduce((s,i)=>s+Math.max(0,i.weight),0) || 1;
+  const R=90, C=100; let a=-Math.PI/2, paths="";
+  items.forEach((it,idx)=>{
+    const frac=Math.max(0,it.weight)/total; const a2=a+frac*2*Math.PI;
+    if (frac>0){
+      const x1=C+R*Math.cos(a), y1=C+R*Math.sin(a), x2=C+R*Math.cos(a2), y2=C+R*Math.sin(a2);
+      const large=frac>0.5?1:0;
+      // full-circle guard (single slice)
+      if (frac>=0.9999){
+        paths += `<circle cx="${C}" cy="${C}" r="${R}" fill="${PALETTE[idx%PALETTE.length]}"/>`;
+      } else {
+        paths += `<path d="M${C},${C} L${x1.toFixed(2)},${y1.toFixed(2)} `+
+                 `A${R},${R} 0 ${large} 1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" `+
+                 `fill="${PALETTE[idx%PALETTE.length]}"><title>${it.name}: ${pct(frac)}</title></path>`;
+      }
+    }
+    a=a2;
+  });
+  return `<svg class="pie" viewBox="0 0 200 200" width="190" height="190">${paths}`+
+         `<circle cx="100" cy="100" r="46" fill="var(--card)"/></svg>`;
+}
+function legend(items){
+  const total = items.reduce((s,i)=>s+Math.max(0,i.weight),0) || 1;
+  return `<div class="legend">` + items.map((it,idx)=>
+    `<div class="legrow"><span class="sw" style="background:${PALETTE[idx%PALETTE.length]}"></span>`+
+    `<span class="legname">${escapeHtml(it.name)}</span>`+
+    `<span class="legpct">${pct(Math.max(0,it.weight)/total)}</span></div>`).join("") + `</div>`;
+}
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ------------------------------------------------------------------ render */
+let CARD=null, ITEMS=[];
+
+function renderPie(){
+  $("#pie").innerHTML = pieSVG(ITEMS) + legend(ITEMS);
+}
+function renderEditor(){
+  const isPeople = CARD.allocation.kind === "people";
+  const rows = ITEMS.map((it,i)=>`
+    <div class="erow ${it.is_default?'def':''}">
+      <input type="text" value="${escapeHtml(it.name)}" ${it.is_default?'readonly':''}
+             data-i="${i}" data-f="name" placeholder="name">
+      <input type="range" min="0" max="10" step="0.5" value="${it.weight}" data-i="${i}" data-f="weight">
+      <input type="number" min="0" step="0.5" value="${it.weight}" data-i="${i}" data-f="weight">
+      ${it.is_default||!isPeople?'':`<button class="x" data-del="${i}" title="remove">×</button>`}
+    </div>`).join("");
+  const addBtn = isPeople ? `<button class="btn ghost" id="addRow">+ Add ${CARD.allocation.section||'person'}</button>` : "";
+  const saveLabel = CARD.live ? "Propose change (needs approval)" : "Save allocation";
+  const saveNote = CARD.live
+    ? `This strategy trades real paper money — your change is sent to Discord for Approve/Reject.`
+    : `Applies on the next run.`;
+  $("#editor").innerHTML = `
+    <div class="rows">${rows}</div>
+    <div class="row-actions">${addBtn}
+      <button class="btn" id="saveBtn" ${SAVE_ENABLED?'':'disabled'}>${saveLabel}</button>
+    </div>
+    <div class="note">${escapeHtml(CARD.allocation.help||'')} ${escapeHtml(saveNote)}</div>
+    ${SAVE_ENABLED?'<div class="cf-wrap" id="cf"></div>':'<div class="note">Preview mode — saving isn’t configured yet.</div>'}
+    <div class="msg" id="msg"></div>`;
+  bindEditor();
+}
+function bindEditor(){
+  $("#editor").querySelectorAll("input").forEach(inp=>{
+    inp.addEventListener("input", e=>{
+      const i=+e.target.dataset.i, f=e.target.dataset.f;
+      if (f==="weight"){ ITEMS[i].weight = Math.max(0, +e.target.value||0);
+        // keep the paired range/number in sync
+        $("#editor").querySelectorAll(`[data-i="${i}"][data-f="weight"]`).forEach(el=>{ if(el!==e.target) el.value=ITEMS[i].weight; });
+      } else { ITEMS[i].name = e.target.value; }
+      renderPie();
+    });
+  });
+  $("#editor").querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{
+    ITEMS.splice(+e.target.dataset.del,1); renderPie(); renderEditor();
+  }));
+  const add=$("#addRow"); if(add) add.addEventListener("click",()=>{
+    ITEMS.splice(Math.max(0,ITEMS.length-(hasDefault()?1:0)),0,{name:"",weight:1}); renderPie(); renderEditor();
+  });
+  const save=$("#saveBtn"); if(save && SAVE_ENABLED) save.addEventListener("click", doSave);
+  if (SAVE_ENABLED) mountTurnstile();
+}
+function hasDefault(){ return ITEMS.some(i=>i.is_default); }
+
+function metricsHTML(){
+  return CARD.metrics.map(mb=>{
+    if(!mb.available) return `<div class="mblock"><div class="lbl">${escapeHtml(mb.label)}</div>
+      <div class="note">Not generated yet.</div></div>`;
+    const fields = Object.entries(mb.fields||{});
+    const shadow = mb.extra && ("days" in mb.extra);
+    let head = "";
+    if (mb.extra && mb.extra.recommendation) head = `<div class="note">Verdict: <b>${mb.extra.recommendation}</b> — in-sample, survivorship-caveated.</div>`;
+    if (shadow) head = `<div class="note">${mb.extra.ready?`live ${mb.extra.days}d`:`collecting ${mb.extra.days}/${mb.extra.min_show} days`} · ${mb.extra.n_buys||0} buys logged</div>`;
+    const stats = fields.length ? `<div class="stats">`+fields.map(([k,v])=>{
+      const cls = ["ret","cagr","sharpe","pnl"].includes(k) ? (v>=0?"pos":"neg") : (k==="maxdd"?"neg":"");
+      return `<div class="stat"><div class="k">${FIELD_LABEL[k]||k}</div><div class="v ${cls}">${fmtField(k,v)}</div></div>`;
+    }).join("")+`</div>` : (shadow?"":`<div class="note">No numbers yet.</div>`);
+    return `<div class="mblock"><div class="lbl">${escapeHtml(mb.label)}</div>${head}${stats}</div>`;
+  }).join("");
+}
+
+function render(){
+  document.title = CARD.name + " — strategy";
+  $("#app").innerHTML = `
+    <div class="top">
+      <h1>${escapeHtml(CARD.name)}</h1>
+      <span class="badge ${CARD.live?'live':'research'}">${CARD.live?'LIVE · real paper trades':'RESEARCH · shadow'}</span>
+    </div>
+    <p class="sub">${escapeHtml(CARD.subtitle||'')}</p>
+    <div class="grid">
+      <div class="card"><h2>METRICS &amp; DATA</h2>${metricsHTML()}</div>
+      <div class="card"><h2>MONEY ALLOCATION</h2>
+        <div class="pie-wrap" id="pie"></div>
+        <div class="editor" id="editor"></div>
+      </div>
+    </div>`;
+  renderPie(); renderEditor();
+}
+
+/* ------------------------------------------------------------------ turnstile + save */
+let TS_TOKEN="";
+function mountTurnstile(){
+  const el=$("#cf"); if(!el) return;
+  el.innerHTML = `<div class="cf-widget"></div>`;
+  if (!window.turnstile){
+    const s=document.createElement("script");
+    s.src="https://challenges.cloudflare.com/turnstile/v0/api.js"; s.async=true; s.defer=true;
+    s.onload=()=>renderTS(el); document.head.appendChild(s);
+  } else renderTS(el);
+}
+function renderTS(el){
+  try{ window.turnstile.render(el.querySelector(".cf-widget"),
+      { sitekey:TURNSTILE_SITEKEY, callback:t=>{TS_TOKEN=t;} }); }catch(e){}
+}
+async function doSave(){
+  const msg=$("#msg");
+  const clean = ITEMS.filter(i=>i.name && i.name.trim() && !i.is_default)
+                     .map(i=>({name:i.name.trim(), weight:+i.weight||0}));
+  const def = ITEMS.find(i=>i.is_default);
+  if (SAVE_ENABLED && !TS_TOKEN){ msg.className="msg err"; msg.textContent="Complete the verification first."; return; }
+  const payload = { action:"set-allocation", slug:CARD.slug, kind:CARD.allocation.kind,
+                    section:CARD.allocation.edit_target.section, live:CARD.live,
+                    items:clean, default_weight: def? (+def.weight||1):1,
+                    turnstileToken:TS_TOKEN };
+  $("#saveBtn").disabled=true; msg.className="msg"; msg.textContent="Saving…";
+  try{
+    const r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok){ msg.className="msg ok"; msg.textContent=j.message || (CARD.live?"Sent to Discord for approval.":"Saved — applies next run."); }
+    else { msg.className="msg err"; msg.textContent=j.error||"Save failed."; $("#saveBtn").disabled=false; }
+  }catch(e){ msg.className="msg err"; msg.textContent="Network error — try again."; $("#saveBtn").disabled=false; }
+}
+
+/* ------------------------------------------------------------------ boot */
+(async function(){
+  if(!SLUG){ $("#app").innerHTML=`<div class="loading">No strategy id. Use ?id=&lt;slug&gt;.</div>`; return; }
+  try{
+    const r=await fetch(`../strategies/${SLUG}.json`, {cache:"no-store"});
+    if(!r.ok) throw new Error("not found");
+    CARD=await r.json();
+    ITEMS=(CARD.allocation.items||[]).map(i=>({...i}));
+    if(!ITEMS.length) ITEMS=[{name:"All qualifying (equal weight)", weight:1, is_default:true}];
+    render();
+  }catch(e){
+    $("#app").innerHTML=`<div class="loading">Couldn’t load “${escapeHtml(SLUG)}”. It may not be published yet.</div>`;
+  }
+})();
+</script>
+</body>
+</html>

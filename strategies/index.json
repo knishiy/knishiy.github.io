@@ -1,0 +1,28 @@
+{
+  "strategies": [
+    {
+      "slug": "insider_buys",
+      "name": "Copy insider buys",
+      "subtitle": "Executives \u2014 disclosed open-market Form 4 purchases",
+      "kind": "people",
+      "live": false,
+      "editable": true
+    },
+    {
+      "slug": "congress_buys",
+      "name": "Copy congress buys",
+      "subtitle": "Politicians \u2014 disclosed congressional purchases (forward only)",
+      "kind": "people",
+      "live": false,
+      "editable": true
+    },
+    {
+      "slug": "hybrid",
+      "name": "Live hybrid",
+      "subtitle": "60% SPY core + 40% momentum sleeve \u2014 the deployed paper book",
+      "kind": "symbols",
+      "live": true,
+      "editable": true
+    }
+  ]
+}

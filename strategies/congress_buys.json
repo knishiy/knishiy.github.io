@@ -1,0 +1,35 @@
+{
+  "slug": "congress_buys",
+  "name": "Copy congress buys",
+  "subtitle": "Politicians \u2014 disclosed congressional purchases (forward only)",
+  "kind": "people",
+  "live": false,
+  "editable": true,
+  "metrics": [
+    {
+      "label": "Forward (live-collected)",
+      "source": "congress_shadow.json",
+      "available": true,
+      "fields": {},
+      "extra": {
+        "window": "forward (live-collected)"
+      }
+    }
+  ],
+  "allocation": {
+    "kind": "people",
+    "items": [
+      {
+        "name": "All other qualifying members",
+        "weight": 1.0,
+        "is_default": true
+      }
+    ],
+    "edit_target": {
+      "file": "config/follow_priority.yaml",
+      "section": "politicians"
+    },
+    "help": "Add people to weight more heavily; 'All other' is everyone else at the default weight. Empty = equal-weight every qualifying buy."
+  },
+  "edit_policy": "instant"
+}

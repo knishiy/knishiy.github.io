@@ -1,0 +1,35 @@
+{
+  "slug": "hybrid",
+  "name": "Live hybrid",
+  "subtitle": "60% SPY core + 40% momentum sleeve \u2014 the deployed paper book",
+  "kind": "symbols",
+  "live": true,
+  "editable": true,
+  "metrics": [
+    {
+      "label": "Live paper account",
+      "source": "live.json",
+      "available": true,
+      "fields": {}
+    }
+  ],
+  "allocation": {
+    "kind": "symbols",
+    "items": [
+      {
+        "name": "SPY (core)",
+        "weight": 0.6
+      },
+      {
+        "name": "Momentum sleeve (top-momentum, dynamic)",
+        "weight": 0.4
+      }
+    ],
+    "edit_target": {
+      "file": "config/allocations.yaml",
+      "section": "hybrid"
+    },
+    "help": "The sleeve rotates automatically to top-momentum names; the editable knob is the SPY core fraction. Live strategy \u2014 changes need approval."
+  },
+  "edit_policy": "live-gated"
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "insider_buys",
+  "name": "Copy insider buys",
+  "subtitle": "Executives \u2014 disclosed open-market Form 4 purchases",
+  "kind": "people",
+  "live": false,
+  "editable": true,
+  "metrics": [
+    {
+      "label": "Backtest (in-sample)",
+      "source": "proposal_result.json",
+      "available": true,
+      "fields": {
+        "ret": 1.1771191945347672,
+        "cagr": 0.16012499799254276,
+        "vol": 0.24445311185128316,
+        "sharpe": 0.7305765965055028,
+        "dsr": 0.6107817306445213,
+        "maxdd": -0.40332490521362396
+      },
+      "extra": {
+        "recommendation": "MARGINAL",
+        "window": "in-sample",
+        "verdict": {
+          "positive_return": true,
+          "beats_spy_sharpe": true,
+          "beats_spy_return": true,
+          "dsr": 0.6107817306445213,
+          "dsr_strong": true,
+          "maxdd": -0.40332490521362396,
+          "maxdd_ok": false,
+          "rank_by_sharpe": 2,
+          "n_strategies_ranked": 6,
+          "n_trials_deflation": 7
+        }
+      }
+    },
+    {
+      "label": "Forward (live-collected)",
+      "source": "insider_shadow.json",
+      "available": true,
+      "fields": {},
+      "extra": {
+        "window": "forward (live-collected)"
+      }
+    }
+  ],
+  "allocation": {
+    "kind": "people",
+    "items": [
+      {
+        "name": "All other qualifying insiders",
+        "weight": 1.0,
+        "is_default": true
+      }
+    ],
+    "edit_target": {
+      "file": "config/follow_priority.yaml",
+      "section": "executives"
+    },
+    "help": "Add people to weight more heavily; 'All other' is everyone else at the default weight. Empty = equal-weight every qualifying buy."
+  },
+  "edit_policy": "instant"
+}
