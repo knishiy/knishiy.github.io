@@ -87,6 +87,16 @@
   <div id="fwdChart" style="margin:0 0 12px"></div>
   <div class="scroll"><table><thead><tr id="hdrShadow"></tr></thead><tbody id="shadowRows"></tbody></table></div>
 
+  <h2>Copy-Trade — Insider (executives) <span id="insSub" class="sub"></span></h2>
+  <div id="insRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+  <div id="insChart" style="margin:0 0 12px"></div>
+  <div class="scroll"><table><thead><tr id="hdrIns"></tr></thead><tbody id="insRows"></tbody></table></div>
+
+  <h2>Copy-Trade — Congress (politicians) <span id="conSub" class="sub"></span></h2>
+  <div id="conRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+  <div id="conChart" style="margin:0 0 12px"></div>
+  <div class="scroll"><table><thead><tr id="hdrCon"></tr></thead><tbody id="conRows"></tbody></table></div>
+
   <h2>Backtest Tournament <span id="btSub" class="sub"></span></h2>
   <div class="basket" id="basket"></div>
   <div class="scroll"><table><thead><tr id="hdrBt"></tr></thead><tbody id="rows"></tbody></table></div>
@@ -119,64 +129,67 @@ function rowHtml(x, rankCell, extraClass=""){
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td><td>${dsr}</td>
     <td class="neg">${pct(x.maxdd)}</td></tr>`;
 }
-// Apple-Stocks-style forward chart: timeframe pills + date axis. Data is DAILY, so "1D" means
-// the most recent active trading session (last two closes) — never a market-off day; a longer
-// range whose window predates our data shows "chart unavailable".
-let _cv=null, _cash=null, _tf="All";
+// Apple-Stocks-style equity chart: timeframe pills + date axis, reusable across panels.
+// Data is DAILY, so "1D" = the most recent active session (last 2 closes). Ranges CLAMP to the
+// tracking start (inception): a range longer than the data just begins at the first day rather
+// than saying "unavailable" (that only shows when there are <2 points, e.g. a brand-new panel).
 const TFS=[{k:"1D",latest:true},{k:"1W",days:7},{k:"1M",days:30},{k:"3M",days:91},
            {k:"6M",days:182},{k:"1Y",days:365},{k:"YTD",ytd:true},{k:"All",all:true}];
-function _startIdx(tf){
-  if(!_cv||!_cv.dates||_cv.dates.length<2) return -1;
-  const ds=_cv.dates, last=new Date(ds[ds.length-1]), first=new Date(ds[0]);
-  if(tf.latest) return ds.length-2;                          // most recent active session (last 2 closes)
-  let cutoff;
-  if(tf.all) cutoff=first;
-  else if(tf.ytd) cutoff=new Date(last.getFullYear(),0,1);
-  else cutoff=new Date(last.getTime()-tf.days*864e5);
-  if(!tf.all && !tf.ytd && first>cutoff) return -1;           // data younger than window → unavailable
-  let i=ds.findIndex(d=>new Date(d)>=cutoff); if(i<0) i=0;
-  return (ds.length-i>=2)? i : -1;
-}
-function _renderRanges(){
-  const el=document.getElementById("fwdRanges");
-  el.innerHTML=TFS.map(t=>`<button class="tf ${t.k===_tf?'sel':''} ${_startIdx(t)>=0?'':'off'}" data-tf="${t.k}">${t.k}</button>`).join("");
-  el.querySelectorAll(".tf").forEach(b=>b.onclick=()=>{ _tf=b.dataset.tf; _renderRanges(); _drawChart(); });
-}
 const _fmtD=s=>new Date(s).toLocaleDateString(undefined,{month:"short",day:"numeric"});
-function _drawChart(){
-  const host=document.getElementById("fwdChart");
-  const tf=TFS.find(t=>t.k===_tf)||TFS[TFS.length-1], si=_startIdx(tf);
-  if(si<0){ host.innerHTML=`<div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:44px;text-align:center;color:var(--dim)">chart unavailable — not enough data for ${_tf}</div>`; return; }
-  const dates=_cv.dates.slice(si), names=Object.keys(_cv.series), series={};
-  names.forEach(n=>series[n]=_cv.series[n].slice(si));
-  const W=940,H=270,pl=56,pr=12,pt=14,pb=34, colors=["#58a6ff","#3fb950","#d29922","#f85149","#bc8cff","#39c5cf"];
-  let lo=Infinity,hi=-Infinity;
-  names.forEach(n=>series[n].forEach(v=>{lo=Math.min(lo,v);hi=Math.max(hi,v);}));
-  if(_cash){lo=Math.min(lo,_cash);hi=Math.max(hi,_cash);}
-  const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad; const N=dates.length;
-  const xx=i=>pl+(i/(N-1))*(W-pl-pr), yy=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
-  const money=v=>"$"+Math.round(v).toLocaleString();
-  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;background:var(--card);border:1px solid var(--line);border-radius:12px">`;
-  if(_cash){const yb=yy(_cash); s+=`<line x1="${pl}" y1="${yb}" x2="${W-pr}" y2="${yb}" stroke="var(--line)" stroke-dasharray="4 4"/><text x="${pl-6}" y="${yb+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(_cash)}</text>`;}
-  s+=`<text x="${pl-6}" y="${yy(hi)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(hi)}</text><text x="${pl-6}" y="${yy(lo)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(lo)}</text>`;
-  const ticks=Math.min(4,N);                                  // x-axis date labels
-  for(let t=0;t<ticks;t++){ const i=Math.round(t*(N-1)/(ticks-1||1)), x=xx(i), a=t===0?"start":(t===ticks-1?"end":"middle");
-    s+=`<text x="${x.toFixed(1)}" y="${H-8}" fill="var(--dim)" font-size="10" text-anchor="${a}">${_fmtD(dates[i])}</text>`; }
-  names.forEach((n,k)=>{ const p=series[n].map((v,i)=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
-    s+=`<polyline points="${p}" fill="none" stroke="${colors[k%colors.length]}" stroke-width="2"/>`; });
-  s+=`</svg>`;
-  const lastv=n=>series[n][series[n].length-1];
-  const leg=names.map((n,k)=>`<span style="color:${colors[k%colors.length]};font-size:12px;margin-right:14px;white-space:nowrap">■ <span style="color:var(--txt)">${n}</span> <span style="color:var(--dim)">${money(lastv(n))}</span></span>`).join("");
-  host.innerHTML=s+`<div style="margin:8px 2px 0;line-height:2">${leg}</div>`;
+function makeChart(rangesId, chartId){
+  let cv=null, cash=null, tf="All";
+  const startIdx=t=>{
+    if(!cv||!cv.dates||cv.dates.length<2) return -1;
+    const ds=cv.dates, last=new Date(ds[ds.length-1]);
+    if(t.latest) return ds.length-2;                          // most recent active session
+    let cutoff;
+    if(t.all) cutoff=new Date(ds[0]);
+    else if(t.ytd) cutoff=new Date(last.getFullYear(),0,1);
+    else cutoff=new Date(last.getTime()-t.days*864e5);
+    let i=ds.findIndex(d=>new Date(d)>=cutoff); if(i<0) i=0;   // clamp to inception when window is older
+    return (ds.length-i>=2)? i : -1;
+  };
+  const renderRanges=()=>{
+    const el=document.getElementById(rangesId);
+    el.innerHTML=TFS.map(t=>`<button class="tf ${t.k===tf?'sel':''} ${startIdx(t)>=0?'':'off'}" data-tf="${t.k}">${t.k}</button>`).join("");
+    el.querySelectorAll(".tf").forEach(b=>b.onclick=()=>{ const t=TFS.find(x=>x.k===b.dataset.tf);
+      if(startIdx(t)>=0){ tf=b.dataset.tf; renderRanges(); draw(); } });
+  };
+  const draw=()=>{
+    const host=document.getElementById(chartId);
+    const t=TFS.find(x=>x.k===tf)||TFS[TFS.length-1], si=startIdx(t);
+    if(si<0){ host.innerHTML=`<div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:44px;text-align:center;color:var(--dim)">chart unavailable — not enough data for ${tf}</div>`; return; }
+    const dates=cv.dates.slice(si), names=Object.keys(cv.series), series={};
+    names.forEach(n=>series[n]=cv.series[n].slice(si));
+    const W=940,H=270,pl=56,pr=12,pt=14,pb=34, colors=["#58a6ff","#3fb950","#d29922","#f85149","#bc8cff","#39c5cf"];
+    let lo=Infinity,hi=-Infinity;
+    names.forEach(n=>series[n].forEach(v=>{lo=Math.min(lo,v);hi=Math.max(hi,v);}));
+    if(cash){lo=Math.min(lo,cash);hi=Math.max(hi,cash);}
+    const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad; const N=dates.length;
+    const xx=i=>pl+(i/(N-1))*(W-pl-pr), yy=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb), money=v=>"$"+Math.round(v).toLocaleString();
+    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;background:var(--card);border:1px solid var(--line);border-radius:12px">`;
+    if(cash){const yb=yy(cash); s+=`<line x1="${pl}" y1="${yb}" x2="${W-pr}" y2="${yb}" stroke="var(--line)" stroke-dasharray="4 4"/><text x="${pl-6}" y="${yb+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(cash)}</text>`;}
+    s+=`<text x="${pl-6}" y="${yy(hi)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(hi)}</text><text x="${pl-6}" y="${yy(lo)+3}" fill="var(--dim)" font-size="10" text-anchor="end">${money(lo)}</text>`;
+    const ticks=Math.min(4,N);
+    for(let k=0;k<ticks;k++){ const i=Math.round(k*(N-1)/(ticks-1||1)), x=xx(i), a=k===0?"start":(k===ticks-1?"end":"middle");
+      s+=`<text x="${x.toFixed(1)}" y="${H-8}" fill="var(--dim)" font-size="10" text-anchor="${a}">${_fmtD(dates[i])}</text>`; }
+    names.forEach((n,k)=>{ const p=series[n].map((v,i)=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
+      s+=`<polyline points="${p}" fill="none" stroke="${colors[k%colors.length]}" stroke-width="2"/>`; });
+    s+=`</svg>`;
+    const lastv=n=>series[n][series[n].length-1];
+    const leg=names.map((n,k)=>`<span style="color:${colors[k%colors.length]};font-size:12px;margin-right:14px;white-space:nowrap">■ <span style="color:var(--txt)">${n}</span> <span style="color:var(--dim)">${money(lastv(n))}</span></span>`).join("");
+    host.innerHTML=s+`<div style="margin:8px 2px 0;line-height:2">${leg}</div>`;
+  };
+  return { load(c, csh){
+    cv=c; cash=csh;
+    if(!c||!c.dates||c.dates.length<2){ document.getElementById(rangesId).innerHTML=""; document.getElementById(chartId).innerHTML=""; return; }
+    tf="All"; if(startIdx(TFS[TFS.length-1])<0){ const av=TFS.filter(t=>startIdx(t)>=0); tf=av.length?av[av.length-1].k:"All"; }
+    renderRanges(); draw();
+  }};
 }
-function initChart(c, cash){
-  _cv=c; _cash=cash;
-  if(!c||!c.dates||c.dates.length<2){ document.getElementById("fwdRanges").innerHTML=""; document.getElementById("fwdChart").innerHTML=""; return; }
-  _tf="All";                                                  // default to the widest available range
-  if(_startIdx(TFS[TFS.length-1])<0){ const av=TFS.filter(t=>_startIdx(t)>=0); _tf=av.length?av[av.length-1].k:"All"; }
-  _renderRanges(); _drawChart();
-}
-["hdrLive","hdrShadow","hdrBt"].forEach(header);
+const fwdChart=makeChart("fwdRanges","fwdChart");
+const insChart=makeChart("insRanges","insChart"), conChart=makeChart("conRanges","conChart");
+["hdrLive","hdrShadow","hdrBt","hdrIns","hdrCon"].forEach(header);
 
 // ---- Status badge + system table (with stale failsafe) ----
 const STALE_H = 36;
@@ -220,8 +233,24 @@ fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById("shadowRows").innerHTML =
     (d.leaderboard||[]).map((x,i)=>rowHtml(x, i+1, (!prelim && i===0)?"leader":"")).join("")
     || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no forward data yet</td></tr>`;
-  initChart(d.curves, d.initial_cash);
+  fwdChart.load(d.curves, d.initial_cash);
 }).catch(()=>{ document.getElementById("shadowSub").textContent = "· forward data unavailable"; });
+
+// ---- Copy-trade forward shadows (insider / congress): same treatment, sibling tournaments ----
+function loadCopyTrade(file, subId, rowsId, chart){
+  fetch("./"+file+"?cb="+Date.now()).then(r=>r.json()).then(d=>{
+    const prelim=!d.ready, buys=d.n_buys!=null?` · ${d.n_buys} buys / ${d.n_names} names`:"";
+    document.getElementById(subId).textContent = prelim
+      ? `· PRELIMINARY · ${d.days||0}/${d.min_show||20} days since ${d.inception}${buys} · will reshuffle`
+      : `· live-collected since ${d.inception} · ${d.days} days${buys} · ranked by Sharpe`;
+    document.getElementById(rowsId).innerHTML =
+      (d.leaderboard||[]).map((x,i)=>rowHtml(x,i+1,(!prelim&&i===0)?"leader":"")).join("")
+      || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">collecting — ${d.days||0}/${d.min_show||20} trading days, ${d.n_buys||0} disclosed buys logged</td></tr>`;
+    chart.load(d.curves, d.initial_cash);
+  }).catch(()=>{ document.getElementById(subId).textContent="· data unavailable"; });
+}
+loadCopyTrade("insider_shadow.json","insSub","insRows",insChart);
+loadCopyTrade("congress_shadow.json","conSub","conRows",conChart);
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
   document.getElementById("btSub").textContent =
