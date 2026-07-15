@@ -61,6 +61,16 @@
   .scard-sub { color:var(--dim); font-size:12px; line-height:1.35; }
   .scard-head { margin-top:9px; font-size:13px; }
   .scard-cta { color:#58a6ff; font-size:12px; margin-top:9px; }
+  .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,.62); display:none; z-index:50;
+              align-items:flex-start; justify-content:center; padding:34px 16px; overflow:auto; }
+  .modal-bg.show { display:flex; }
+  .modal { background:var(--card); border:1px solid var(--line); border-radius:14px; width:100%;
+           max-width:620px; padding:20px 22px; }
+  .modal h3 { margin:0 6px 2px 0; font-size:19px; display:inline-block; }
+  .modal .close { float:right; cursor:pointer; color:var(--dim); font-size:22px; line-height:1; }
+  .mrow { display:flex; flex-wrap:wrap; gap:10px 22px; margin:12px 0; }
+  .mstat { font-size:14px; } .mstat b { display:block; color:var(--dim); font-size:10px;
+           text-transform:uppercase; letter-spacing:.05em; margin-bottom:1px; }
 </style>
 </head>
 <body>
@@ -111,6 +121,7 @@
 
   <footer id="foot"></footer>
 </div>
+<div class="modal-bg" id="stratModalBg"><div class="modal" id="stratModal"></div></div>
 <script>
 const COLS = ["#","Strategy","Total Return","PnL","CAGR (annualized)",
               "Volatility (annualized)","Sharpe Ratio","Deflated Sharpe","Max Drawdown"];
@@ -191,6 +202,49 @@ function makeChart(rangesId, chartId){
 }
 const fwdChart=makeChart("fwdRanges","fwdChart");
 const insChart=makeChart("insRanges","insChart"), conChart=makeChart("conRanges","conChart");
+
+// ---- Strategy detail report (click a tournament card) ----
+let SHADOW=null;
+function stratMiniChart(d, name){
+  const c=d.curves; if(!c||!c.dates||c.dates.length<2) return `<div class="na">not enough forward data yet</div>`;
+  const names=[name]; if(c.series["B&H SPY"]&&name!=="B&H SPY") names.push("B&H SPY");
+  const col={[name]:"#58a6ff","B&H SPY":"#8b949e"};
+  const W=580,H=180,pl=50,pr=10,pt=10,pb=22; let lo=Infinity,hi=-Infinity;
+  names.forEach(n=>(c.series[n]||[]).forEach(v=>{lo=Math.min(lo,v);hi=Math.max(hi,v);}));
+  const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad; const N=c.dates.length;
+  const xx=i=>pl+(i/(N-1))*(W-pl-pr), yy=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb), money=v=>"$"+Math.round(v).toLocaleString();
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="background:var(--bg);border:1px solid var(--line);border-radius:10px">`;
+  s+=`<text x="${pl-6}" y="${yy(hi)+3}" fill="var(--dim)" font-size="9" text-anchor="end">${money(hi)}</text><text x="${pl-6}" y="${yy(lo)+3}" fill="var(--dim)" font-size="9" text-anchor="end">${money(lo)}</text>`;
+  names.forEach(n=>{ const p=(c.series[n]||[]).map((v,i)=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
+    s+=`<polyline points="${p}" fill="none" stroke="${col[n]||'#3fb950'}" stroke-width="2"/>`; });
+  return s+`</svg><div style="margin-top:6px;font-size:12px"><span style="color:#58a6ff">■ ${name}</span> &nbsp; <span style="color:#8b949e">■ B&amp;H SPY</span></div>`;
+}
+function openStratDetail(name){
+  const d=SHADOW; if(!d) return;
+  const s=(d.strategies||{})[name]||{}, row=(d.leaderboard||[]).find(r=>r.name===name)||{}, h=s.holdings||{};
+  const items=Object.keys(h).sort((a,b)=>h[b]-h[a]);
+  const holdHtml=items.length ? items.map(t=>`<span class="pill" style="display:inline-block;margin:3px 4px 0 0">${t} ${Math.round(h[t]*100)}%</span>`).join("") : `<span class="na">in cash — no positions</span>`;
+  const stat=(l,v)=>`<div class="mstat"><b>${l}</b>${v}</div>`;
+  document.getElementById("stratModal").innerHTML = `
+    <span class="close" onclick="closeStratModal()">✕</span>
+    <h3>${name}</h3>
+    <div class="scard-sub">${s.rule||""}</div>
+    <div class="scard-head" style="color:var(--dim);font-size:12px;margin-top:6px">⏱ ${s.trades||""}</div>
+    <div class="mrow">
+      ${stat("Return so far", pct(row.ret))}${stat("PnL", row.pnl!=null?usd(row.pnl):"<span class='na'>—</span>")}
+      ${stat("Sharpe", srf(row.sharpe))}${stat("Deflated Sharpe", row.dsr!=null?srf(row.dsr):"<span class='pill'>passive</span>")}
+      ${stat("Max Drawdown", pct(row.maxdd))}
+    </div>
+    <div class="scard-sub" style="margin:6px 0 4px">Holding now — ${d.days||0} forward days since ${d.inception}:</div>
+    ${holdHtml}
+    <div class="scard-sub" style="margin:16px 0 6px">Forward equity vs SPY:</div>
+    ${stratMiniChart(d, name)}
+    <div class="na" style="font-size:12px;margin-top:14px;line-height:1.5">${d.universe_note||""}</div>`;
+  document.getElementById("stratModalBg").classList.add("show");
+}
+function closeStratModal(){ document.getElementById("stratModalBg").classList.remove("show"); }
+document.getElementById("stratModalBg").onclick=e=>{ if(e.target.id==="stratModalBg") closeStratModal(); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeStratModal(); });
 ["hdrLive","hdrShadow","hdrBt","hdrIns","hdrCon"].forEach(header);
 
 // ---- Status badge + system table (with stale failsafe) ----
@@ -236,7 +290,8 @@ fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
     (d.leaderboard||[]).map((x,i)=>rowHtml(x, i+1, (!prelim && i===0)?"leader":"")).join("")
     || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no forward data yet</td></tr>`;
   fwdChart.load(d.curves, d.initial_cash);
-  // Per-strategy detail cards: how each competitor moves, when it trades, what it holds NOW.
+  SHADOW=d;
+  // Per-strategy cards — click any for a detail report (mechanics, holdings, metrics, chart).
   document.getElementById("stratNote").innerHTML =
     d.universe_note ? `<b>What the 6 competitors hold:</b> ${d.universe_note}` : "";
   const st=d.strategies||{};
@@ -245,13 +300,16 @@ fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
     const holdHtml = items.length
       ? items.map(t=>`<span class="pill" style="display:inline-block;margin:3px 4px 0 0">${t} ${Math.round(h[t]*100)}%</span>`).join("")
       : `<span class="na">in cash — no positions right now</span>`;
-    return `<div class="scard" style="cursor:default">
+    return `<div class="scard" data-strat="${encodeURIComponent(name)}">
       <div class="scard-name">${name}</div>
       <div class="scard-sub">${s.rule||""}</div>
       <div class="scard-head" style="color:var(--dim);font-size:12px">⏱ ${s.trades||""}</div>
       <div style="margin-top:10px"><div class="scard-sub" style="margin-bottom:2px">Holding now:</div>${holdHtml}</div>
+      <div class="scard-cta">details →</div>
     </div>`;
   }).join("");
+  document.querySelectorAll("#fwdStratCards .scard").forEach(c=>
+    c.onclick=()=>openStratDetail(decodeURIComponent(c.dataset.strat)));
 }).catch(()=>{ document.getElementById("shadowSub").textContent = "· forward data unavailable"; });
 
 // ---- Copy-trade forward shadows (insider / congress): same treatment, sibling tournaments ----
