@@ -8,30 +8,30 @@
   "metrics": [
     {
       "label": "Backtest (in-sample)",
-      "source": "proposal_result.json",
+      "source": "proposal_result_insider_buys.json",
       "available": true,
       "fields": {
-        "ret": 0.4245131456145286,
-        "cagr": 0.0820284527957067,
-        "vol": 0.18744440429343798,
-        "sharpe": 0.5145989470950146,
-        "dsr": 0.515067680640284,
-        "maxdd": -0.28219233278066613
+        "ret": 1.1771191945347672,
+        "cagr": 0.16012499799254276,
+        "vol": 0.24445311185128316,
+        "sharpe": 0.7305765965055028,
+        "dsr": 0.5832101779533451,
+        "maxdd": -0.40332490521362396
       },
       "extra": {
         "recommendation": "MARGINAL",
         "window": "in-sample",
         "verdict": {
           "positive_return": true,
-          "beats_spy_sharpe": false,
-          "beats_spy_return": false,
-          "dsr": 0.515067680640284,
+          "beats_spy_sharpe": true,
+          "beats_spy_return": true,
+          "dsr": 0.5832101779533451,
           "dsr_strong": true,
-          "maxdd": -0.28219233278066613,
+          "maxdd": -0.40332490521362396,
           "maxdd_ok": false,
-          "rank_by_sharpe": 6,
-          "n_strategies_ranked": 7,
-          "n_trials_deflation": 4
+          "rank_by_sharpe": 2,
+          "n_strategies_ranked": 6,
+          "n_trials_deflation": 8
         }
       }
     },

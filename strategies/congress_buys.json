@@ -20,71 +20,71 @@
     "items": [
       {
         "name": "SPGI",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 5
       },
       {
         "name": "DHR",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 4
       },
       {
         "name": "MELI",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 4
       },
       {
-        "name": "MA",
-        "weight": 0.01493,
-        "cluster": 3
-      },
-      {
-        "name": "SCHP",
-        "weight": 0.01493,
-        "cluster": 3
-      },
-      {
         "name": "ABT",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 3
       },
       {
         "name": "LHX",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 3
       },
       {
-        "name": "MCK",
-        "weight": 0.01493,
-        "cluster": 2
+        "name": "MA",
+        "weight": 0.01515,
+        "cluster": 3
       },
       {
-        "name": "T",
-        "weight": 0.01493,
+        "name": "SCHP",
+        "weight": 0.01515,
+        "cluster": 3
+      },
+      {
+        "name": "XFIV",
+        "weight": 0.01515,
         "cluster": 2
       },
       {
         "name": "DELL",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 2
       },
       {
         "name": "AJG",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 2
       },
       {
         "name": "INTU",
-        "weight": 0.01493,
+        "weight": 0.01515,
         "cluster": 2
       },
       {
-        "name": "55 other names",
-        "weight": 0.8209,
+        "name": "WDAY",
+        "weight": 0.01515,
+        "cluster": 2
+      },
+      {
+        "name": "54 other names",
+        "weight": 0.81818,
         "is_other": true
       }
     ],
-    "total_names": 67,
+    "total_names": 66,
     "as_of": "2026-07-13",
     "note": "tickers Congress disclosed buying in the last ~63 trading days (equal-weight; free live feed, page 0)"
   },
