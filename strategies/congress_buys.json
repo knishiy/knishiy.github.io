@@ -24,19 +24,19 @@
         "cluster": 5
       },
       {
-        "name": "DHR",
-        "weight": 0.01471,
-        "cluster": 4
-      },
-      {
         "name": "MELI",
         "weight": 0.01471,
         "cluster": 4
       },
       {
-        "name": "ABT",
+        "name": "DHR",
         "weight": 0.01471,
-        "cluster": 3
+        "cluster": 4
+      },
+      {
+        "name": "MA",
+        "weight": 0.01471,
+        "cluster": 4
       },
       {
         "name": "LHX",
@@ -49,7 +49,7 @@
         "cluster": 3
       },
       {
-        "name": "MA",
+        "name": "ABT",
         "weight": 0.01471,
         "cluster": 3
       },
