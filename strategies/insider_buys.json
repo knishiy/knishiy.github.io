@@ -9,31 +9,8 @@
     {
       "label": "Backtest (in-sample)",
       "source": "proposal_result_insider_buys.json",
-      "available": true,
-      "fields": {
-        "ret": 1.1771191945347672,
-        "cagr": 0.16012499799254276,
-        "vol": 0.24445311185128316,
-        "sharpe": 0.7305765965055028,
-        "dsr": 0.5832101779533451,
-        "maxdd": -0.40332490521362396
-      },
-      "extra": {
-        "recommendation": "MARGINAL",
-        "window": "in-sample",
-        "verdict": {
-          "positive_return": true,
-          "beats_spy_sharpe": true,
-          "beats_spy_return": true,
-          "dsr": 0.5832101779533451,
-          "dsr_strong": true,
-          "maxdd": -0.40332490521362396,
-          "maxdd_ok": false,
-          "rank_by_sharpe": 2,
-          "n_strategies_ranked": 6,
-          "n_trials_deflation": 8
-        }
-      }
+      "available": false,
+      "fields": {}
     },
     {
       "label": "Forward (live-collected)",

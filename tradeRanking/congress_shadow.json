@@ -1,50 +1,13 @@
 {
-  "generated_utc": "2026-07-15 05:41:30",
+  "generated_utc": "2026-07-15 06:20:01",
   "window": "forward (live-collected)",
-  "inception": "2026-07-13",
-  "days": 2,
+  "inception": "2026-07-15",
+  "days": 0,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
-  "n_buys": 22,
-  "n_names": 22,
-  "added_this_run": 22,
-  "leaderboard": [
-    {
-      "name": "B&H SPY",
-      "ret": 0.003550595992898975,
-      "pnl": 53.25893989348462,
-      "cagr": null,
-      "vol": null,
-      "sharpe": null,
-      "dsr": null,
-      "maxdd": 0.0
-    },
-    {
-      "name": "Copy congress buys",
-      "ret": 0.002699368729573992,
-      "pnl": 40.49053094360988,
-      "cagr": null,
-      "vol": null,
-      "sharpe": null,
-      "dsr": null,
-      "maxdd": 0.0
-    }
-  ],
-  "curves": {
-    "dates": [
-      "2026-07-13",
-      "2026-07-14"
-    ],
-    "series": {
-      "B&H SPY": [
-        15000.0,
-        15053.26
-      ],
-      "Copy congress buys": [
-        15000.0,
-        15040.49
-      ]
-    }
-  }
+  "n_buys": 0,
+  "n_names": 0,
+  "added_this_run": 0,
+  "leaderboard": []
 }
