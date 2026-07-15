@@ -17,19 +17,19 @@
     "items": [
       {
         "name": "SPY",
-        "weight": 0.60214
-      },
-      {
-        "name": "XLK",
-        "weight": 0.13276
-      },
-      {
-        "name": "XLE",
-        "weight": 0.13256
+        "weight": 0.60235
       },
       {
         "name": "XLI",
-        "weight": 0.13254
+        "weight": 0.13291
+      },
+      {
+        "name": "XLE",
+        "weight": 0.13274
+      },
+      {
+        "name": "XLK",
+        "weight": 0.13199
       }
     ],
     "total_names": 4,
