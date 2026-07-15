@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-15 04:44:12",
+  "generated_utc": "2026-07-15 06:03:55",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
   "end": "2026-07-14",
@@ -24,6 +24,67 @@
       "NVDA",
       "AMD"
     ]
+  },
+  "universe_note": "All six strategies trade this fixed, rule-selected basket \u2014 NOT the Stock Library. The basket is held constant so the forward comparison stays unbiased.",
+  "strategies": {
+    "B&H SPY": {
+      "rule": "Buy & hold the S&P 500 ETF \u2014 the benchmark.",
+      "trades": "Never trades.",
+      "holdings": {
+        "SPY": 1.0
+      }
+    },
+    "B&H QQQ": {
+      "rule": "Buy & hold the Nasdaq-100 ETF.",
+      "trades": "Never trades.",
+      "holdings": {
+        "QQQ": 1.0
+      }
+    },
+    "B&H equal-weight basket": {
+      "rule": "Hold all 9 basket names in equal weight.",
+      "trades": "Never rebalances.",
+      "holdings": {
+        "KO": 0.111,
+        "PEP": 0.111,
+        "PG": 0.111,
+        "WMT": 0.111,
+        "CVX": 0.111,
+        "IBM": 0.111,
+        "GE": 0.111,
+        "NVDA": 0.111,
+        "AMD": 0.111
+      }
+    },
+    "DualMomentum 12mo top3": {
+      "rule": "Rank the basket by 12-month momentum; hold the top 3 that are also trending up, else move to cash.",
+      "trades": "Rebalances ~monthly (every 21 trading days) \u2014 low turnover.",
+      "holdings": {
+        "GE": 0.333,
+        "NVDA": 0.333,
+        "AMD": 0.333
+      }
+    },
+    "Donchian 50/25 breakout": {
+      "rule": "Go long a name when it makes a new 50-day high; exit when it makes a new 25-day low. Equal-weight the current breakouts.",
+      "trades": "Buys/sells as names cross their channel.",
+      "holdings": {
+        "KO": 0.111,
+        "PG": 0.111,
+        "IBM": 0.111,
+        "GE": 0.111,
+        "AMD": 0.111
+      }
+    },
+    "MeanReversion z20": {
+      "rule": "Buy names that are oversold (20-day z-score below -1); exit as they revert \u2014 contrarian.",
+      "trades": "Trades when names stretch from their mean.",
+      "holdings": {
+        "PEP": 0.111,
+        "PG": 0.111,
+        "WMT": 0.111
+      }
+    }
   },
   "leaderboard": [
     {
