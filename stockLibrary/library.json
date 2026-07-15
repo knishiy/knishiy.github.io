@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-15 05:52:09",
+  "generated_utc": "2026-07-15 05:52:48",
   "entries": [
     {
       "ticker": "NVDA",
@@ -203,6 +203,20 @@
         }
       ],
       "notes": "vol 17%, ~$0M/day"
+    },
+    {
+      "ticker": "KRUZ",
+      "name": "KRUZ",
+      "added": "2026-07-15",
+      "last_checked": "2026-07-15",
+      "status": "unresolved",
+      "type": "\u2014",
+      "vol_tier": "\u2014",
+      "momentum": "\u2014",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [],
+      "notes": "could not resolve 'KRUZ' to a ticker"
     }
   ]
 }
