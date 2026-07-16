@@ -1,7 +1,163 @@
 {
-  "generated_utc": "2026-07-15 20:15:16",
+  "generated_utc": "2026-07-16 04:50:33",
+  "accounts": [
+    {
+      "slug": "hybrid",
+      "name": "Hybrid 60/40",
+      "detail": "hybrid",
+      "equity": 103309.39,
+      "start": 100000.0,
+      "ret": 0.0330938999999999,
+      "pnl": 3309.3899999999994,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.018878911566227785,
+      "days": 19,
+      "holdings": {
+        "SPY": 0.6029,
+        "XLE": 0.1327,
+        "XLI": 0.1329,
+        "XLK": 0.1315
+      }
+    },
+    {
+      "slug": "dualmom",
+      "name": "DualMomentum",
+      "detail": null,
+      "equity": 100000.0,
+      "start": 100000.0,
+      "ret": 0.0,
+      "pnl": 0.0,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": 0.0,
+      "days": 2,
+      "holdings": {
+        "AMD": 0.3235,
+        "GE": 0.3418,
+        "NVDA": 0.3348
+      }
+    },
+    {
+      "slug": "donchian",
+      "name": "Donchian",
+      "detail": null,
+      "equity": 100000.0,
+      "start": 100000.0,
+      "ret": 0.0,
+      "pnl": 0.0,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": 0.0,
+      "days": 2,
+      "holdings": {
+        "AMD": 0.2415,
+        "GE": 0.2552,
+        "KO": 0.2493,
+        "PG": 0.2541
+      }
+    }
+  ],
+  "curves": {
+    "dates": [
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-27",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02",
+      "2026-07-03",
+      "2026-07-07",
+      "2026-07-08",
+      "2026-07-09",
+      "2026-07-10",
+      "2026-07-11",
+      "2026-07-14",
+      "2026-07-15"
+    ],
+    "series": {
+      "Hybrid 60/40": [
+        100000.0,
+        100000.0,
+        100000.0,
+        100000.0,
+        100000.0,
+        100147.05,
+        101921.13,
+        99996.97,
+        101677.63,
+        102407.98,
+        101972.37,
+        101897.99,
+        102667.6,
+        102190.65,
+        102267.51,
+        102943.83,
+        103368.41,
+        102858.59,
+        103309.39
+      ],
+      "DualMomentum": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        100000.0,
+        100000.0
+      ],
+      "Donchian": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        100000.0,
+        100000.0
+      ]
+    }
+  },
   "live": {
-    "name": "LIVE \u2014 Paper Bot (Hybrid 60/40)",
+    "slug": "hybrid",
+    "name": "Hybrid 60/40",
+    "detail": "hybrid",
+    "equity": 103309.39,
+    "start": 100000.0,
     "ret": 0.0330938999999999,
     "pnl": 3309.3899999999994,
     "cagr": null,
@@ -9,7 +165,12 @@
     "sharpe": null,
     "dsr": null,
     "maxdd": -0.018878911566227785,
-    "equity": 103309.39,
-    "days": 19
+    "days": 19,
+    "holdings": {
+      "SPY": 0.6029,
+      "XLE": 0.1327,
+      "XLI": 0.1329,
+      "XLK": 0.1315
+    }
   }
 }

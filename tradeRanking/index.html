@@ -79,10 +79,9 @@
   <p class="pagesub">Live paper bot · a forward (out-of-sample) competition · and a historical backtest. &nbsp;<a href="../stockLibrary/" style="color:#58a6ff">Stock Library →</a></p>
   <div class="status" id="statusBadge"><span class="sdot"></span> checking status…</div>
 
-  <h2>Strategies <span class="sub">· click any card for its metrics + editable money allocation</span></h2>
-  <div id="stratCards" class="stratgrid"><span class="sub">loading strategies…</span></div>
-
-  <h2><span class="dot"></span> Live Paper Account <span id="liveSub" class="sub"></span></h2>
+  <h2><span class="dot"></span> Live Paper Accounts <span id="liveSub" class="sub"></span></h2>
+  <div id="liveRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+  <div id="liveChart" style="margin:0 0 12px"></div>
   <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
 
   <div class="banner">
@@ -99,12 +98,14 @@
   <div id="stratNote" class="banner" style="margin:14px 0 8px"></div>
   <div id="fwdStratCards" class="stratgrid"></div>
 
-  <h2>Copy-Trade — Insider (executives) <span id="insSub" class="sub"></span></h2>
+  <h2>Copy-Trade — Insider (executives) <span id="insSub" class="sub"></span>
+    <a href="../strategy/?id=insider_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
   <div id="insRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
   <div id="insChart" style="margin:0 0 12px"></div>
   <div class="scroll"><table><thead><tr id="hdrIns"></tr></thead><tbody id="insRows"></tbody></table></div>
 
-  <h2>Copy-Trade — Congress (politicians) <span id="conSub" class="sub"></span></h2>
+  <h2>Copy-Trade — Congress (politicians) <span id="conSub" class="sub"></span>
+    <a href="../strategy/?id=congress_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
   <div id="conRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
   <div id="conChart" style="margin:0 0 12px"></div>
   <div class="scroll"><table><thead><tr id="hdrCon"></tr></thead><tbody id="conRows"></tbody></table></div>
@@ -176,7 +177,7 @@ function makeChart(rangesId, chartId){
     names.forEach(n=>series[n]=cv.series[n].slice(si));
     const W=940,H=270,pl=56,pr=12,pt=14,pb=34, colors=["#58a6ff","#3fb950","#d29922","#f85149","#bc8cff","#39c5cf"];
     let lo=Infinity,hi=-Infinity;
-    names.forEach(n=>series[n].forEach(v=>{lo=Math.min(lo,v);hi=Math.max(hi,v);}));
+    names.forEach(n=>series[n].forEach(v=>{ if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v);} }));
     if(cash){lo=Math.min(lo,cash);hi=Math.max(hi,cash);}
     const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad; const N=dates.length;
     const xx=i=>pl+(i/(N-1))*(W-pl-pr), yy=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb), money=v=>"$"+Math.round(v).toLocaleString();
@@ -186,10 +187,12 @@ function makeChart(rangesId, chartId){
     const ticks=Math.min(4,N);
     for(let k=0;k<ticks;k++){ const i=Math.round(k*(N-1)/(ticks-1||1)), x=xx(i), a=k===0?"start":(k===ticks-1?"end":"middle");
       s+=`<text x="${x.toFixed(1)}" y="${H-8}" fill="var(--dim)" font-size="10" text-anchor="${a}">${_fmtD(dates[i])}</text>`; }
-    names.forEach((n,k)=>{ const p=series[n].map((v,i)=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
+    names.forEach((n,k)=>{ const pts=series[n].map((v,i)=>[v,i]).filter(p=>p[0]!=null);
+      if(pts.length<2) return;                                  // a just-started account: no line yet
+      const p=pts.map(([v,i])=>`${xx(i).toFixed(1)},${yy(v).toFixed(1)}`).join(" ");
       s+=`<polyline points="${p}" fill="none" stroke="${colors[k%colors.length]}" stroke-width="2"/>`; });
     s+=`</svg>`;
-    const lastv=n=>series[n][series[n].length-1];
+    const lastv=n=>{ const v=series[n].filter(x=>x!=null); return v.length?v[v.length-1]:null; };
     const leg=names.map((n,k)=>`<span style="color:${colors[k%colors.length]};font-size:12px;margin-right:14px;white-space:nowrap">■ <span style="color:var(--txt)">${n}</span> <span style="color:var(--dim)">${money(lastv(n))}</span></span>`).join("");
     host.innerHTML=s+`<div style="margin:8px 2px 0;line-height:2">${leg}</div>`;
   };
@@ -202,6 +205,7 @@ function makeChart(rangesId, chartId){
 }
 const fwdChart=makeChart("fwdRanges","fwdChart");
 const insChart=makeChart("insRanges","insChart"), conChart=makeChart("conRanges","conChart");
+const liveChart=makeChart("liveRanges","liveChart");
 
 // ---- Strategy detail report (click a tournament card) ----
 let SHADOW=null;
@@ -272,13 +276,16 @@ fetch("./status.json?cb="+Date.now()).then(r=>r.json()).then(s=>{
   b.innerHTML=`<span class="sdot s-err"></span> <b>Status unavailable</b>`;
 });
 
-fetch("./live.json").then(r=>r.json()).then(d=>{
-  const x = d.live;
+fetch("./live.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+  const accts = d.accounts || (d.live ? [d.live] : []);
   document.getElementById("liveSub").textContent =
-    `· equity $${Math.round(x.equity).toLocaleString()} · ${x.days} days · real Alpaca paper account · updated ${ago(d.generated_utc)}`;
-  const real   = {...x, name:"Live Bot — real account"};
-  const scaled = {...x, name:"Live Bot — scaled to $15k", pnl:(x.ret||0)*15000};
-  document.getElementById("liveRow").innerHTML = rowHtml(real, "●") + rowHtml(scaled, "↳");
+    `· ${accts.length} real Alpaca paper account${accts.length>1?"s":""}, one per strategy · updated ${ago(d.generated_utc)}`;
+  // One row per real account; the account name links to its detail page when it has one.
+  document.getElementById("liveRow").innerHTML = accts.map((a,i)=>{
+    const nm = a.detail ? `<a href="../strategy/?id=${a.detail}" style="color:var(--txt)">${a.name}</a>` : a.name;
+    return rowHtml({...a, name:nm}, "●");
+  }).join("") || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no live accounts</td></tr>`;
+  liveChart.load(d.curves, null);
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
 fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
@@ -344,39 +351,6 @@ fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
     "Research output, <b>not investment advice</b>.";
 }).catch(e=>{ document.getElementById("foot").textContent = "Could not load leaderboard.json — "+e; });
 
-// ---- Strategies: clickable cards -> the detail view (metrics + editable allocation) ----
-function stratHeadline(card){
-  for(const m of (card.metrics||[])){
-    if(m.extra && ("days" in m.extra))
-      return m.extra.ready ? `Forward · ${m.extra.days} days live` : `Forward · collecting ${m.extra.days}/${m.extra.min_show} days`;
-    if(m.extra && m.extra.recommendation){
-      const r=(m.fields||{}).ret;
-      return `Backtest · ${r!=null?((r>=0?"+":"")+(r*100).toFixed(0)+"% ret · "):""}${m.extra.recommendation}`;
-    }
-    if(m.fields && m.fields.equity!=null) return `Live · $${Math.round(m.fields.equity).toLocaleString()}`;
-  }
-  return card.subtitle||"";
-}
-function stratHoldings(card){
-  const h=card.holdings; if(!h||!h.items||!h.items.length) return "";
-  const top=h.items[0], n=h.total_names||h.items.length;
-  const topStr = top.is_other ? "" : `top ${top.name} ${(top.weight*100).toFixed(0)}% · `;
-  return `<div style="color:var(--dim);font-size:12px;margin-top:6px">📊 ${topStr}${n} holding${n>1?"s":""}</div>`;
-}
-fetch("../strategies/index.json?cb="+Date.now()).then(r=>r.json()).then(async idx=>{
-  const cards = await Promise.all((idx.strategies||[]).map(s=>
-    fetch(`../strategies/${s.slug}.json`).then(r=>r.json()).then(c=>({...s,...c})).catch(()=>s)));
-  document.getElementById("stratCards").innerHTML = cards.map(c=>`
-    <a class="scard" href="../strategy/?id=${encodeURIComponent(c.slug)}">
-      <span class="badge ${c.live?'live':'research'}">${c.live?'LIVE · trades':'RESEARCH'}</span>
-      <div class="scard-name">${c.name}</div>
-      <div class="scard-sub">${c.subtitle||''}</div>
-      <div class="scard-head">${stratHeadline(c)}</div>
-      ${stratHoldings(c)}
-      <div class="scard-cta">metrics + allocation →</div>
-    </a>`).join("") || `<span class="sub">no strategies published yet</span>`;
-}).catch(()=>{ document.getElementById("stratCards").innerHTML =
-  `<span class="sub">strategy cards unavailable</span>`; });
 </script>
 </body>
 </html>
