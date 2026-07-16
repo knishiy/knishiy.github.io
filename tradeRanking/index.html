@@ -88,58 +88,68 @@
 </head>
 <body>
 <nav class="topnav">
-  <a class="brand" href="../tradeRanking/"><span style="color:var(--gold)">◆</span> Algo Desk</a>
+  <a class="brand" href="#home"><span style="color:var(--gold)">◆</span> Algo Desk</a>
   <div class="navlinks">
-    <a class="nav active" href="../tradeRanking/"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</a>
+    <a class="nav" data-view="home" href="#home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</a>
     <a class="nav" href="../strategy/"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg>Algorithms</a>
+    <a class="nav" data-view="tests" href="#tests"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>Tests</a>
     <a class="nav" href="../stockLibrary/"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v14"/></svg>Stock Library</a>
+    <a class="nav" data-view="system" href="#system"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg>System</a>
   </div>
 </nav>
 <div class="wrap">
-  <h1>Trading Strategy Tournament</h1>
-  <p class="pagesub">Live paper bot · a forward (out-of-sample) competition · and a historical backtest. &nbsp;<a href="../stockLibrary/" style="color:#58a6ff">Stock Library →</a></p>
-  <div class="status" id="statusBadge"><span class="sdot"></span> checking status…</div>
-
-  <h2><span class="dot"></span> Live Paper Accounts <span id="liveSub" class="sub"></span></h2>
-  <div id="liveRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
-  <div id="liveChart" style="margin:0 0 12px"></div>
-  <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
-
-  <div class="banner">
-    <b>The two tournaments below are SIMULATIONS, not the live account above.</b>
-    “Forward” tracks the field on data collected live since launch — it fills in over time
-    (blank until enough days accrue), never backfilled. “Backtest” is older historical data.
-    Both trade the same rule-selected basket; figures are hypothetical on $15k.
+  <!-- ===================== HOME: live trading ===================== -->
+  <div id="view-home" class="view">
+    <h1>Live Trading</h1>
+    <p class="pagesub">Your real Alpaca paper accounts — one per strategy. Click a name for its detail.</p>
+    <h2><span class="dot"></span> Live Paper Accounts <span id="liveSub" class="sub"></span></h2>
+    <div id="liveRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+    <div id="liveChart" style="margin:0 0 12px"></div>
+    <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
   </div>
 
-  <h2>Forward Tournament <span id="shadowSub" class="sub"></span></h2>
-  <div id="fwdRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
-  <div id="fwdChart" style="margin:0 0 12px"></div>
-  <div class="scroll"><table><thead><tr id="hdrShadow"></tr></thead><tbody id="shadowRows"></tbody></table></div>
+  <!-- ===================== TESTS: forward + backtest ===================== -->
+  <div id="view-tests" class="view" hidden>
+    <h1>Tests &amp; Tournaments</h1>
+    <div class="banner">
+      <b>Everything here is a SIMULATION, not the live accounts on Home.</b>
+      “Forward” tracks the field on data collected live since launch (blank until enough days
+      accrue), never backfilled. “Backtest” is older historical data. Figures are hypothetical.
+    </div>
 
-  <h2>Copy-Trade — Insider (executives) <span id="insSub" class="sub"></span>
-    <a href="../strategy/?id=insider_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
-  <div id="insRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
-  <div id="insChart" style="margin:0 0 12px"></div>
-  <div class="scroll"><table><thead><tr id="hdrIns"></tr></thead><tbody id="insRows"></tbody></table></div>
+    <h2>Forward Tournament <span id="shadowSub" class="sub"></span></h2>
+    <div id="fwdRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+    <div id="fwdChart" style="margin:0 0 12px"></div>
+    <div class="scroll"><table><thead><tr id="hdrShadow"></tr></thead><tbody id="shadowRows"></tbody></table></div>
 
-  <h2>Copy-Trade — Congress (politicians) <span id="conSub" class="sub"></span>
-    <a href="../strategy/?id=congress_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
-  <div id="conRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
-  <div id="conChart" style="margin:0 0 12px"></div>
-  <div class="scroll"><table><thead><tr id="hdrCon"></tr></thead><tbody id="conRows"></tbody></table></div>
+    <h2>Copy-Trade — Insider (executives) <span id="insSub" class="sub"></span>
+      <a href="../strategy/?id=insider_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
+    <div id="insRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+    <div id="insChart" style="margin:0 0 12px"></div>
+    <div class="scroll"><table><thead><tr id="hdrIns"></tr></thead><tbody id="insRows"></tbody></table></div>
 
-  <h2>Backtest Tournament <span id="btSub" class="sub"></span></h2>
-  <div class="basket" id="basket"></div>
-  <div class="scroll"><table><thead><tr id="hdrBt"></tr></thead><tbody id="rows"></tbody></table></div>
+    <h2>Copy-Trade — Congress (politicians) <span id="conSub" class="sub"></span>
+      <a href="../strategy/?id=congress_buys" style="font-size:12px;color:#58a6ff;margin-left:auto;font-weight:400">metrics + allocation →</a></h2>
+    <div id="conRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
+    <div id="conChart" style="margin:0 0 12px"></div>
+    <div class="scroll"><table><thead><tr id="hdrCon"></tr></thead><tbody id="conRows"></tbody></table></div>
 
-  <h2>System Status &amp; Automations <span id="sysSub" class="sub"></span></h2>
-  <div class="scroll"><table class="sys">
-    <thead><tr><th>Component</th><th>Type</th><th>Schedule</th><th>Last run</th><th>Status</th><th>Detail</th></tr></thead>
-    <tbody id="sysRows"></tbody>
-  </table></div>
+    <h2>Backtest Tournament <span id="btSub" class="sub"></span></h2>
+    <div class="basket" id="basket"></div>
+    <div class="scroll"><table><thead><tr id="hdrBt"></tr></thead><tbody id="rows"></tbody></table></div>
+    <footer id="foot"></footer>
+  </div>
 
-  <footer id="foot"></footer>
+  <!-- ===================== SYSTEM: state & automations ===================== -->
+  <div id="view-system" class="view" hidden>
+    <h1>System State &amp; Automations</h1>
+    <div class="status" id="statusBadge"><span class="sdot"></span> checking status…</div>
+    <h2>Automations &amp; Health <span id="sysSub" class="sub"></span></h2>
+    <div class="scroll"><table class="sys">
+      <thead><tr><th>Component</th><th>Type</th><th>Schedule</th><th>Last run</th><th>Status</th><th>Detail</th></tr></thead>
+      <tbody id="sysRows"></tbody>
+    </table></div>
+  </div>
 </div>
 <script>
 const COLS = ["#","Strategy","Total Return","PnL","CAGR (annualized)",
@@ -238,6 +248,20 @@ const insChart=makeChart("insRanges","insChart"), conChart=makeChart("conRanges"
 const liveChart=makeChart("liveRanges","liveChart");
 
 ["hdrLive","hdrShadow","hdrBt","hdrIns","hdrCon"].forEach(header);
+
+// ---- window switching: Home (live) / Tests (tournaments) / System (state) ----
+const VIEWS=["home","tests","system"];
+function showView(name){
+  if(!VIEWS.includes(name)) name="home";
+  VIEWS.forEach(v=>document.getElementById("view-"+v).hidden = v!==name);
+  document.querySelectorAll('.topnav a.nav[data-view]').forEach(a=>a.classList.toggle("active", a.dataset.view===name));
+  if(location.hash.slice(1)!==name) history.replaceState(null,"","#"+name);
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.topnav a.nav[data-view]').forEach(a=>
+  a.addEventListener("click",e=>{ e.preventDefault(); showView(a.dataset.view); }));
+window.addEventListener("hashchange",()=>showView(location.hash.slice(1)));
+showView(location.hash.slice(1)||"home");
 
 // ---- Status badge + system table (with stale failsafe) ----
 const STALE_H = 36;
