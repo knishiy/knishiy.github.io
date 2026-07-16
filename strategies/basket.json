@@ -10,6 +10,17 @@
     "NVDA",
     "AMD"
   ],
+  "names": {
+    "KO": "Coca-Cola Company",
+    "PEP": "PepsiCo, Inc. Common Stock",
+    "PG": "Procter & Gamble Company",
+    "WMT": "Walmart Inc. Common Stock",
+    "CVX": "Chevron Corporation",
+    "IBM": "International Business Machines Corporation",
+    "GE": "GE Aerospace",
+    "NVDA": "NVIDIA Corporation Common Stock",
+    "AMD": "Advanced Micro Devices, Inc. Common Stock"
+  },
   "used_by": [
     "DualMomentum",
     "Donchian",

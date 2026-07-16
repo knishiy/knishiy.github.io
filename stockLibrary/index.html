@@ -100,7 +100,11 @@
     <div style="font-size:17px; font-weight:700; margin-bottom:2px">Trading Basket</div>
     <div class="dim" style="font-size:13px; margin:0 0 12px" id="basketNote"></div>
     <div class="scroll"><table>
-      <thead><tr><th>Ticker</th><th style="text-align:right">Remove</th></tr></thead>
+      <thead><tr>
+        <th>Ticker</th><th>Type</th><th>Vol tier</th><th>Momentum</th>
+        <th>Fair value</th><th>Last earnings</th><th>Assigned strategy(ies)</th>
+        <th>Status</th><th>Added</th><th>Last checked</th><th>Remove</th>
+      </tr></thead>
       <tbody id="basketRows"></tbody>
     </table></div>
     <div class="addrow" style="margin-top:12px">
@@ -131,30 +135,35 @@ const TURNSTILE_SITEKEY = "0x4AAAAAADuX8aPPatiPR1qa";
 const ADD_ENABLED = !WORKER_URL.startsWith("__") && !TURNSTILE_SITEKEY.startsWith("__");
 
 const badge = s => {
+  if (!s || s === "—") return '<span class="dim">—</span>';
   const cls = {fit:"b-fit", unfit:"b-unfit", pending:"b-pending", example:"b-example"}[s] || "b-pending";
   return `<span class="badge ${cls}">${s}</span>`;
 };
 let ALL = [];
+// The library row's cells — reused by both the library table and the basket table so they
+// share the EXACT same format.
+function entryCells(e){
+  const strat = (e.strategies||[]).length
+    ? e.strategies.map(s=>`${s.name} <span class="dim">(${s.verdict})</span>`).join("<br>")
+    : '<span class="dim">—</span>';
+  return `<td class="tick">${e.ticker}<br><span class="dim" style="font-weight:400">${e.name||""}</span></td>
+    <td>${e.type||"—"}</td><td>${e.vol_tier||"—"}</td><td>${e.momentum||"—"}</td>
+    <td>${e.fair_value||"—"}</td><td>${e.last_earnings||"—"}</td>
+    <td class="strat">${strat}</td>
+    <td>${badge(e.status)}</td>
+    <td class="dim">${e.added||"—"}</td><td class="dim">${e.last_checked||"—"}</td>`;
+}
 function render(list){
-  document.getElementById("rows").innerHTML = list.map(e=>{
-    const strat = (e.strategies||[]).length
-      ? e.strategies.map(s=>`${s.name} <span class="dim">(${s.verdict})</span>`).join("<br>")
-      : '<span class="dim">—</span>';
-    return `<tr>
-      <td class="tick">${e.ticker}<br><span class="dim" style="font-weight:400">${e.name||""}</span></td>
-      <td>${e.type||"—"}</td><td>${e.vol_tier||"—"}</td><td>${e.momentum||"—"}</td>
-      <td>${e.fair_value||"—"}</td><td>${e.last_earnings||"—"}</td>
-      <td class="strat">${strat}</td>
-      <td>${badge(e.status||"pending")}</td>
-      <td class="dim">${e.added||"—"}</td><td class="dim">${e.last_checked||"—"}</td>
-    </tr>`;
-  }).join("") || `<tr><td colspan="10" class="dim" style="text-align:center;padding:22px">No entries yet.</td></tr>`;
+  document.getElementById("rows").innerHTML =
+    list.map(e=>`<tr>${entryCells({...e, status:e.status||"pending"})}</tr>`).join("")
+    || `<tr><td colspan="10" class="dim" style="text-align:center;padding:22px">No entries yet.</td></tr>`;
 }
 fetch("./library.json").then(r=>r.json()).then(d=>{
   ALL = d.entries||[];
   document.getElementById("sub").textContent = `${ALL.length} entries · updated ${d.generated_utc} UTC`;
   if (d.note){ const b=document.getElementById("banner"); b.style.display="block"; b.innerHTML="<b>Preview.</b> "+d.note; }
   render(ALL);
+  if (BASKET.length) renderBasket();     // now that library data is in, enrich basket rows
   document.getElementById("foot").innerHTML =
     "Each stock is analyzed once, classified by measured properties (volatility, momentum, "+
     "liquidity) plus fundamentals (fair value, earnings — descriptive metadata, not a signal), "+
@@ -187,20 +196,24 @@ if (ADD_ENABLED) {
   document.getElementById("basketAdd").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); basketAdd(); } });
 }
 
-let BASKET = [];
+let BASKET = [], NAMES = {};
 function loadBasket(){
   fetch("../strategies/basket.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
     BASKET = (d.tickers||[]).slice();
+    NAMES = d.names || {};
     document.getElementById("basketNote").textContent = d.note || "";
     renderBasket();
   }).catch(()=>{ document.getElementById("basketMsg").textContent = "basket unavailable"; });
 }
 function renderBasket(){
-  document.getElementById("basketRows").innerHTML = BASKET.length ? BASKET.map(t=>
-    `<tr><td class="tick">${t}</td>`+
-    `<td style="text-align:right"><button class="basket-x" data-del="${t}">Remove</button></td></tr>`).join("")
-    : `<tr><td colspan="2" class="dim" style="text-align:center;padding:16px">empty — add at least 2 tickers</td></tr>`;
-  document.querySelectorAll("#basketRows [data-del]").forEach(x=>x.onclick=()=>{
+  const el = document.getElementById("basketRows"); if(!el) return;
+  el.innerHTML = BASKET.length ? BASKET.map(t=>{
+    // Reuse the library entry (full analyzed data) if the name is in the library; otherwise
+    // show ticker + resolved company name, with the analyzed columns as "—".
+    const e = ALL.find(x=>x.ticker===t) || {ticker:t, name:(NAMES[t]||""), status:"—"};
+    return `<tr>${entryCells(e)}<td style="text-align:right"><button class="basket-x" data-del="${t}">Remove</button></td></tr>`;
+  }).join("") : `<tr><td colspan="11" class="dim" style="text-align:center;padding:16px">empty — add at least 2 tickers</td></tr>`;
+  el.querySelectorAll("[data-del]").forEach(x=>x.onclick=()=>{
     BASKET = BASKET.filter(t=>t!==x.dataset.del); renderBasket(); });
 }
 function basketAdd(){
