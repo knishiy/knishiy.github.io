@@ -265,39 +265,14 @@ function render(){
   else if(CARD.basket) renderBasket();
 }
 
-/* ---------------------------------------------------- basket editor (dualmom/donchian) */
+/* -------------------------------------- basket (read-only here; edit in the Stock Library) */
 let BASKET=[];
 function renderBasket(){
-  const chips = BASKET.map(t=>`<span class="pill" style="display:inline-block;margin:3px 5px 3px 0;padding:3px 6px 3px 10px">${escapeHtml(t)} <span data-del="${escapeHtml(t)}" style="cursor:pointer;color:var(--bad);padding:0 3px">×</span></span>`).join("");
+  const chips = BASKET.map(t=>`<span class="pill" style="display:inline-block;margin:3px 5px 3px 0;padding:3px 10px">${escapeHtml(t)}</span>`).join("");
   $("#basketEditor").innerHTML = `
-    <div id="basketChips" style="margin-bottom:8px">${chips||'<span class="sub">empty</span>'}</div>
-    <div class="erow"><input type="text" id="basketAdd" placeholder="add ticker — e.g. MSFT" style="flex:1">
-      <button class="btn ghost" id="basketAddBtn">+ Add</button></div>
-    <div class="row-actions"><button class="btn" id="basketSave" ${SAVE_ENABLED?'':'disabled'}>Save basket</button></div>
-    <div class="note">Shared by <b>DualMomentum</b> and <b>Donchian</b> — editing changes what BOTH trade, forward. Saving re-evaluates automatically and posts the result to Discord. Add names you want to trade going forward, not ones that flatter a past backtest.</div>
-    ${SAVE_ENABLED?'<div class="cf-wrap" id="basketCf"></div>':'<div class="note">Preview mode — saving isn’t configured yet.</div>'}
-    <div class="msg" id="basketMsg"></div>`;
-  $("#basketEditor").querySelectorAll("[data-del]").forEach(x=>x.onclick=()=>{
-    BASKET=BASKET.filter(t=>t!==x.dataset.del); renderBasket(); });
-  const add=()=>{ const v=($("#basketAdd").value||"").trim().toUpperCase();
-    if(v && /^[A-Z0-9.\-]{1,8}$/.test(v) && !BASKET.includes(v)){ BASKET.push(v); renderBasket(); } };
-  $("#basketAddBtn").onclick=add;
-  $("#basketAdd").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); }});
-  const save=$("#basketSave"); if(save && SAVE_ENABLED) save.addEventListener("click", doSaveBasket);
-  if (SAVE_ENABLED) mountTurnstile("basketCf");
-}
-async function doSaveBasket(){
-  const msg=$("#basketMsg");
-  if(BASKET.length<2){ msg.className="msg err"; msg.textContent="Keep at least 2 tickers."; return; }
-  if(SAVE_ENABLED && !TS_TOKEN){ msg.className="msg err"; msg.textContent="Complete the verification first."; return; }
-  $("#basketSave").disabled=true; msg.className="msg"; msg.textContent="Saving…";
-  try{
-    const r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({action:"basket-set", tickers:BASKET, turnstileToken:TS_TOKEN})});
-    const j=await r.json().catch(()=>({}));
-    if(r.ok){ msg.className="msg ok"; msg.textContent=j.message||"Saved — re-evaluating."; }
-    else { msg.className="msg err"; msg.textContent=j.error||"Save failed."; $("#basketSave").disabled=false; }
-  }catch(e){ msg.className="msg err"; msg.textContent="Network error — try again."; $("#basketSave").disabled=false; }
+    <div style="margin-bottom:8px">${chips||'<span class="sub">empty</span>'}</div>
+    <div class="note">Shared by DualMomentum, Donchian &amp; MeanReversion.
+      <a href="../stockLibrary/" style="color:var(--accent)">Manage the basket in the Stock Library →</a></div>`;
 }
 
 /* ------------------------------------------------------------------ turnstile + save */

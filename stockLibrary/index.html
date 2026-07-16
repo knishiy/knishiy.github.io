@@ -82,6 +82,20 @@
     <div id="addmsg" class="pagesub"></div>
   </div>
 
+  <div id="basketbox" style="display:none; margin:0 0 18px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px">
+    <div style="font-weight:650; margin-bottom:2px">Trading Basket
+      <span class="dim" style="font-weight:400; font-size:13px">· the universe DualMomentum · Donchian · MeanReversion trade from</span></div>
+    <div class="dim" style="font-size:12px; margin:2px 0 10px" id="basketNote"></div>
+    <div id="basketChips" style="margin-bottom:10px"></div>
+    <div class="addrow">
+      <input type="text" id="basketAdd" maxlength="8" placeholder="add ticker — e.g. MSFT">
+      <button id="basketAddBtn" type="button">Add</button>
+      <button id="basketSaveBtn" type="button">Save basket</button>
+    </div>
+    <div class="dim" style="font-size:12px;margin-top:6px">Applies to those 3 live accounts forward and auto-re-evaluates (posts to Discord). Not the whole library, and not what the Hybrid or copy-trade strategies use.</div>
+    <div id="basketMsg" class="pagesub"></div>
+  </div>
+
   <input type="search" id="q" placeholder="Filter by ticker, type, or status…" />
   <div class="scroll"><table>
     <thead><tr>
@@ -149,6 +163,50 @@ if (ADD_ENABLED) {
   document.head.appendChild(s);
   document.getElementById("addbtn").addEventListener("click", submitAdd);
   document.getElementById("addq").addEventListener("keydown", e => { if (e.key === "Enter") submitAdd(); });
+  // Basket editor (shares the same Worker + Turnstile widget as the Add box).
+  document.getElementById("basketbox").style.display = "block";
+  loadBasket();
+  document.getElementById("basketAddBtn").addEventListener("click", basketAdd);
+  document.getElementById("basketSaveBtn").addEventListener("click", basketSave);
+  document.getElementById("basketAdd").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); basketAdd(); } });
+}
+
+let BASKET = [];
+function loadBasket(){
+  fetch("../strategies/basket.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+    BASKET = (d.tickers||[]).slice();
+    document.getElementById("basketNote").textContent = d.note || "";
+    renderBasket();
+  }).catch(()=>{ document.getElementById("basketMsg").textContent = "basket unavailable"; });
+}
+function renderBasket(){
+  document.getElementById("basketChips").innerHTML = BASKET.map(t=>
+    `<span class="badge b-fit" style="margin:3px 5px 3px 0;display:inline-block">${t} `+
+    `<span data-del="${t}" style="cursor:pointer">×</span></span>`).join("")
+    || '<span class="dim">empty</span>';
+  document.querySelectorAll("#basketChips [data-del]").forEach(x=>x.onclick=()=>{
+    BASKET = BASKET.filter(t=>t!==x.dataset.del); renderBasket(); });
+}
+function basketAdd(){
+  const inp = document.getElementById("basketAdd");
+  const v = (inp.value||"").trim().toUpperCase();
+  if (v && /^[A-Z0-9.\-]{1,8}$/.test(v) && !BASKET.includes(v)) { BASKET.push(v); renderBasket(); inp.value=""; }
+}
+async function basketSave(){
+  const msg = document.getElementById("basketMsg");
+  if (BASKET.length < 2) { msg.textContent = "Keep at least 2 tickers."; return; }
+  const token = (window.turnstile && turnstile.getResponse()) || "";
+  if (!token) { msg.textContent = "Please complete the verification below."; return; }
+  msg.textContent = "Saving…";
+  try {
+    const r = await fetch(WORKER_URL, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "basket-set", tickers: BASKET, turnstileToken: token }),
+    });
+    const d = await r.json().catch(()=>({}));
+    msg.textContent = r.ok ? (d.message || "Saved — re-evaluating.") : ("Error: " + (d.error || r.status));
+  } catch (e) { msg.textContent = "Network error — try again."; }
+  if (window.turnstile) turnstile.reset();
 }
 
 async function submitAdd(){

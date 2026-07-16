@@ -1,0 +1,19 @@
+{
+  "tickers": [
+    "KO",
+    "PEP",
+    "PG",
+    "WMT",
+    "CVX",
+    "IBM",
+    "GE",
+    "NVDA",
+    "AMD"
+  ],
+  "used_by": [
+    "DualMomentum",
+    "Donchian",
+    "MeanReversion"
+  ],
+  "note": "The universe the trend strategies (DualMomentum, Donchian, MeanReversion) trade \u2014 NOT the whole library, and NOT what the Hybrid or the copy-trade strategies use."
+}
