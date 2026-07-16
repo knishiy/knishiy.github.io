@@ -253,17 +253,57 @@ function render(){
         <div class="pie-wrap" id="pie"></div>
         ${CARD.editable ? `
         <h2 style="margin-top:18px">${CARD.allocation.kind==='people'?'WHO YOU FOLLOW':'ADJUST ALLOCATION'} <span class="sub" style="font-weight:400;color:var(--mut)">· edit &amp; save</span></h2>
-        <div class="editor" id="editor"></div>` : `
-        <div class="note" style="margin-top:16px">${escapeHtml(CARD.allocation.help||'Rule-based strategy — positions are set automatically; nothing to edit.')}</div>`}
+        <div class="editor" id="editor"></div>`
+        : CARD.basket ? `
+        <h2 style="margin-top:18px">BASKET <span class="sub" style="font-weight:400;color:var(--mut)">· the shared universe DualMomentum &amp; Donchian trade from</span></h2>
+        <div class="editor" id="basketEditor"></div>`
+        : `<div class="note" style="margin-top:16px">${escapeHtml(CARD.allocation.help||'Rule-based strategy — positions are set automatically; nothing to edit.')}</div>`}
       </div>
     </div>`;
-  renderHoldings(); if(CARD.editable) renderEditor();
+  renderHoldings();
+  if(CARD.editable) renderEditor();
+  else if(CARD.basket) renderBasket();
+}
+
+/* ---------------------------------------------------- basket editor (dualmom/donchian) */
+let BASKET=[];
+function renderBasket(){
+  const chips = BASKET.map(t=>`<span class="pill" style="display:inline-block;margin:3px 5px 3px 0;padding:3px 6px 3px 10px">${escapeHtml(t)} <span data-del="${escapeHtml(t)}" style="cursor:pointer;color:var(--bad);padding:0 3px">×</span></span>`).join("");
+  $("#basketEditor").innerHTML = `
+    <div id="basketChips" style="margin-bottom:8px">${chips||'<span class="sub">empty</span>'}</div>
+    <div class="erow"><input type="text" id="basketAdd" placeholder="add ticker — e.g. MSFT" style="flex:1">
+      <button class="btn ghost" id="basketAddBtn">+ Add</button></div>
+    <div class="row-actions"><button class="btn" id="basketSave" ${SAVE_ENABLED?'':'disabled'}>Save basket</button></div>
+    <div class="note">Shared by <b>DualMomentum</b> and <b>Donchian</b> — editing changes what BOTH trade, forward. Saving re-evaluates automatically and posts the result to Discord. Add names you want to trade going forward, not ones that flatter a past backtest.</div>
+    ${SAVE_ENABLED?'<div class="cf-wrap" id="basketCf"></div>':'<div class="note">Preview mode — saving isn’t configured yet.</div>'}
+    <div class="msg" id="basketMsg"></div>`;
+  $("#basketEditor").querySelectorAll("[data-del]").forEach(x=>x.onclick=()=>{
+    BASKET=BASKET.filter(t=>t!==x.dataset.del); renderBasket(); });
+  const add=()=>{ const v=($("#basketAdd").value||"").trim().toUpperCase();
+    if(v && /^[A-Z0-9.\-]{1,8}$/.test(v) && !BASKET.includes(v)){ BASKET.push(v); renderBasket(); } };
+  $("#basketAddBtn").onclick=add;
+  $("#basketAdd").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); }});
+  const save=$("#basketSave"); if(save && SAVE_ENABLED) save.addEventListener("click", doSaveBasket);
+  if (SAVE_ENABLED) mountTurnstile("basketCf");
+}
+async function doSaveBasket(){
+  const msg=$("#basketMsg");
+  if(BASKET.length<2){ msg.className="msg err"; msg.textContent="Keep at least 2 tickers."; return; }
+  if(SAVE_ENABLED && !TS_TOKEN){ msg.className="msg err"; msg.textContent="Complete the verification first."; return; }
+  $("#basketSave").disabled=true; msg.className="msg"; msg.textContent="Saving…";
+  try{
+    const r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"basket-set", tickers:BASKET, turnstileToken:TS_TOKEN})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok){ msg.className="msg ok"; msg.textContent=j.message||"Saved — re-evaluating."; }
+    else { msg.className="msg err"; msg.textContent=j.error||"Save failed."; $("#basketSave").disabled=false; }
+  }catch(e){ msg.className="msg err"; msg.textContent="Network error — try again."; $("#basketSave").disabled=false; }
 }
 
 /* ------------------------------------------------------------------ turnstile + save */
 let TS_TOKEN="";
-function mountTurnstile(){
-  const el=$("#cf"); if(!el) return;
+function mountTurnstile(elId="cf"){
+  const el=$("#"+elId); if(!el) return;
   el.innerHTML = `<div class="cf-widget"></div>`;
   if (!window.turnstile){
     const s=document.createElement("script");
@@ -322,6 +362,7 @@ async function renderHub(){
     if(!r.ok) throw new Error("not found");
     CARD=await r.json();
     HOLDINGS=CARD.holdings||{items:[]};
+    BASKET=(CARD.basket||[]).slice();
     ITEMS=(CARD.allocation.items||[]).map(i=>({...i}));
     if(!ITEMS.length) ITEMS=[{name:"All qualifying (equal weight)", weight:1, is_default:true}];
     render();

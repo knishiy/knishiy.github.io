@@ -77,5 +77,16 @@
     "editable": false,
     "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
   },
-  "edit_policy": "live-gated"
+  "edit_policy": "live-gated",
+  "basket": [
+    "KO",
+    "PEP",
+    "PG",
+    "WMT",
+    "CVX",
+    "IBM",
+    "GE",
+    "NVDA",
+    "AMD"
+  ]
 }
