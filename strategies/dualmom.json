@@ -46,15 +46,15 @@
     "items": [
       {
         "name": "NVDA",
-        "weight": 0.3365
-      },
-      {
-        "name": "AMD",
-        "weight": 0.334
+        "weight": 0.3384
       },
       {
         "name": "GE",
-        "weight": 0.3295
+        "weight": 0.3331
+      },
+      {
+        "name": "AMD",
+        "weight": 0.3284
       }
     ],
     "total_names": 3,

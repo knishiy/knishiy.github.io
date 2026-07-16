@@ -1,13 +1,13 @@
 {
-  "generated_utc": "2026-07-16 14:15:28",
+  "generated_utc": "2026-07-16 20:15:29",
   "window": "forward (live-collected)",
   "inception": "2026-07-15",
-  "days": 0,
+  "days": 1,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
-  "n_buys": 0,
-  "n_names": 0,
-  "added_this_run": 0,
+  "n_buys": 6,
+  "n_names": 6,
+  "added_this_run": 6,
   "leaderboard": []
 }
