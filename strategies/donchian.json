@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 100000.0,
-        "ret": 0.0,
-        "pnl": 0.0,
-        "maxdd": 0.0,
-        "days": 2
+        "equity": 99906.82,
+        "ret": -0.0009317999999999271,
+        "pnl": -93.17999999999302,
+        "maxdd": -0.0009317999999999271,
+        "days": 3
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.03307764472777486,
-        "maxdd": -0.04080246464758286
+        "ret": -0.03418719008608484,
+        "maxdd": -0.04190314575941101
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 10,
+        "days": 11,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -38,37 +38,27 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 0.37827476476507904,
-        "cagr": 0.07410229237246324,
-        "vol": 0.09647815018652205,
-        "sharpe": 0.7894000250705014,
-        "dsr": 0.78839259856752,
-        "maxdd": -0.1665064747542634
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
-        "name": "GE",
-        "weight": 0.2552
+        "name": "KO",
+        "weight": 0.2575
       },
       {
         "name": "PG",
-        "weight": 0.2541
-      },
-      {
-        "name": "KO",
-        "weight": 0.2493
+        "weight": 0.2536
       },
       {
         "name": "AMD",
-        "weight": 0.2415
+        "weight": 0.2462
+      },
+      {
+        "name": "GE",
+        "weight": 0.2427
       }
     ],
     "total_names": 4,

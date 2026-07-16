@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.014153369664661408,
-        "maxdd": -0.005199415017668851
+        "ret": 0.011390862742615804,
+        "maxdd": -0.007909205848396383
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 10,
+        "days": 11,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -26,18 +26,8 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 0.26215495770602626,
-        "cagr": 0.053244220403656506,
-        "vol": 0.15413479314171485,
-        "sharpe": 0.41375387259522617,
-        "dsr": 0.5094249833363007,
-        "maxdd": -0.2472608766162505
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
@@ -53,9 +43,13 @@
       {
         "name": "WMT",
         "weight": 0.111
+      },
+      {
+        "name": "IBM",
+        "weight": 0.111
       }
     ],
-    "total_names": 3,
+    "total_names": 4,
     "as_of": "2026-06-30",
     "note": "simulated forward positions"
   },
