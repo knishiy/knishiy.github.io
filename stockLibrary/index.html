@@ -41,11 +41,31 @@
     border-radius:8px; font-size:14px; cursor:pointer; }
   button#addbtn:hover { background:#2ea043; }
   #addmsg { min-height:18px; }
+  /* --- shared top nav (Home / Algorithms / Stock Library) --- */
+  .topnav { position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:18px;
+            background:#0b0e14; border-bottom:1px solid var(--line); padding:9px 22px; }
+  .topnav .brand { font-weight:700; font-size:16px; color:var(--txt); text-decoration:none;
+                   display:flex; align-items:center; gap:8px; }
+  .topnav .navlinks { display:flex; gap:4px; margin:0 auto; }
+  .topnav a.nav { display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--dim);
+                  text-decoration:none; font-size:10px; font-weight:600; letter-spacing:.05em;
+                  text-transform:uppercase; padding:6px 16px; border-bottom:2px solid transparent; }
+  .topnav a.nav svg { width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2;
+                      stroke-linecap:round; stroke-linejoin:round; }
+  .topnav a.nav:hover { color:var(--txt); }
+  .topnav a.nav.active { color:#d29922; border-bottom-color:#d29922; }
 </style>
 </head>
 <body>
+<nav class="topnav">
+  <a class="brand" href="../tradeRanking/"><span style="color:#d29922">◆</span> Algo Desk</a>
+  <div class="navlinks">
+    <a class="nav" href="../tradeRanking/"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</a>
+    <a class="nav" href="../strategy/"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg>Algorithms</a>
+    <a class="nav active" href="../stockLibrary/"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v14"/></svg>Stock Library</a>
+  </div>
+</nav>
 <div class="wrap">
-  <p class="pagesub"><a href="../tradeRanking/">← Strategy Tournament</a></p>
   <h1>Stock Library</h1>
   <p class="pagesub" id="sub">Loading…</p>
   <div class="banner" id="banner" style="display:none"></div>

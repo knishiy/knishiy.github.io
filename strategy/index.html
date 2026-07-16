@@ -69,14 +69,33 @@
   .msg.ok{ color:var(--good); } .msg.err{ color:var(--bad); }
   .cf-wrap{ margin-top:10px; }
   .loading{ color:var(--mut); padding:40px 0; text-align:center; }
+  /* --- shared top nav (Home / Algorithms / Stock Library) --- */
+  .topnav { position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:18px;
+            background:#0b0e14; border-bottom:1px solid var(--line); padding:9px 22px; }
+  .topnav .brand { font-weight:700; font-size:16px; color:var(--fg); text-decoration:none;
+                   display:flex; align-items:center; gap:8px; }
+  .topnav .navlinks { display:flex; gap:4px; margin:0 auto; }
+  .topnav a.nav { display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--mut);
+                  text-decoration:none; font-size:10px; font-weight:600; letter-spacing:.05em;
+                  text-transform:uppercase; padding:6px 16px; border-bottom:2px solid transparent; }
+  .topnav a.nav svg { width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2;
+                      stroke-linecap:round; stroke-linejoin:round; }
+  .topnav a.nav:hover { color:var(--fg); }
+  .topnav a.nav.active { color:var(--warn); border-bottom-color:var(--warn); }
+  .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:8px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <a class="back" href="../tradeRanking/">&larr; All strategies</a>
+<nav class="topnav">
+  <a class="brand" href="../tradeRanking/"><span style="color:var(--warn)">◆</span> Algo Desk</a>
+  <div class="navlinks">
+    <a class="nav" href="../tradeRanking/"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</a>
+    <a class="nav active" href="../strategy/"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg>Algorithms</a>
+    <a class="nav" href="../stockLibrary/"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v14"/></svg>Stock Library</a>
   </div>
-  <div id="app"><div class="loading">Loading strategy…</div></div>
+</nav>
+<div class="wrap">
+  <div id="app"><div class="loading">Loading…</div></div>
 </div>
 
 <script>
@@ -230,11 +249,13 @@ function render(){
       <div class="card">
         <h2>CURRENT HOLDINGS <span class="sub" style="font-weight:400;color:var(--mut)">· % of the book by stock</span></h2>
         <div class="pie-wrap" id="pie"></div>
+        ${CARD.editable ? `
         <h2 style="margin-top:18px">${CARD.allocation.kind==='people'?'WHO YOU FOLLOW':'ADJUST ALLOCATION'} <span class="sub" style="font-weight:400;color:var(--mut)">· edit &amp; save</span></h2>
-        <div class="editor" id="editor"></div>
+        <div class="editor" id="editor"></div>` : `
+        <div class="note" style="margin-top:16px">${escapeHtml(CARD.allocation.help||'Rule-based strategy — positions are set automatically; nothing to edit.')}</div>`}
       </div>
     </div>`;
-  renderHoldings(); renderEditor();
+  renderHoldings(); if(CARD.editable) renderEditor();
 }
 
 /* ------------------------------------------------------------------ turnstile + save */
@@ -271,9 +292,29 @@ async function doSave(){
   }catch(e){ msg.className="msg err"; msg.textContent="Network error — try again."; $("#saveBtn").disabled=false; }
 }
 
+/* -------------------------------------------------- hub (no ?id -> list all algorithms) */
+async function renderHub(){
+  document.title = "Algorithms";
+  let idx;
+  try{ idx = await (await fetch("../strategies/index.json?cb="+Date.now())).json(); }
+  catch(e){ $("#app").innerHTML=`<div class="loading">Couldn’t load the algorithm list.</div>`; return; }
+  const cards = (idx.strategies||[]).map(s=>`
+    <a class="scard" href="?id=${encodeURIComponent(s.slug)}"
+       style="display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+              padding:15px;color:var(--fg);text-decoration:none">
+      <span class="badge ${s.live?'live':'research'}">${s.live?'LIVE · trades':'RESEARCH'}</span>
+      <div style="font-size:16px;font-weight:650;margin:9px 0 3px">${escapeHtml(s.name)}</div>
+      <div style="color:var(--mut);font-size:12px;line-height:1.4">${escapeHtml(s.subtitle||'')}</div>
+      <div style="color:var(--accent);font-size:12px;margin-top:10px">open →</div>
+    </a>`).join("");
+  $("#app").innerHTML = `<h1 style="margin:2px 0 2px">Algorithms</h1>
+    <p class="sub" style="margin:0 0 14px">Every strategy — click one for its metrics, holdings, and allocation.</p>
+    <div class="hubgrid">${cards}</div>`;
+}
+
 /* ------------------------------------------------------------------ boot */
 (async function(){
-  if(!SLUG){ $("#app").innerHTML=`<div class="loading">No strategy id. Use ?id=&lt;slug&gt;.</div>`; return; }
+  if(!SLUG){ return renderHub(); }
   try{
     const r=await fetch(`../strategies/${SLUG}.json`, {cache:"no-store"});
     if(!r.ok) throw new Error("not found");

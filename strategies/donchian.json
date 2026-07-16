@@ -1,0 +1,85 @@
+{
+  "slug": "donchian",
+  "name": "Donchian breakout",
+  "subtitle": "Trend-following \u2014 buys 50-day breakouts, exits to cash on 25-day lows",
+  "kind": "rule",
+  "live": true,
+  "editable": false,
+  "metrics": [
+    {
+      "label": "Live paper account",
+      "source": "live.json",
+      "available": true,
+      "fields": {
+        "equity": 100000.0,
+        "ret": 0.0,
+        "pnl": 0.0,
+        "maxdd": 0.0,
+        "days": 2
+      }
+    },
+    {
+      "label": "Forward (live-collected)",
+      "source": "shadow.json",
+      "available": true,
+      "fields": {
+        "ret": -0.03307764472777486,
+        "maxdd": -0.04080246464758286
+      },
+      "extra": {
+        "inception": "2026-06-30",
+        "days": 10,
+        "min_show": 20,
+        "ready": false,
+        "n_buys": null,
+        "n_names": null
+      }
+    },
+    {
+      "label": "Backtest",
+      "source": "leaderboard.json",
+      "available": true,
+      "fields": {
+        "ret": 0.37827476476507904,
+        "cagr": 0.07410229237246324,
+        "vol": 0.09647815018652205,
+        "sharpe": 0.7894000250705014,
+        "dsr": 0.78839259856752,
+        "maxdd": -0.1665064747542634
+      },
+      "extra": {
+        "window": "in-sample"
+      }
+    }
+  ],
+  "holdings": {
+    "items": [
+      {
+        "name": "GE",
+        "weight": 0.2552
+      },
+      {
+        "name": "PG",
+        "weight": 0.2541
+      },
+      {
+        "name": "KO",
+        "weight": 0.2493
+      },
+      {
+        "name": "AMD",
+        "weight": 0.2415
+      }
+    ],
+    "total_names": 4,
+    "as_of": "now",
+    "note": "live paper positions (actual money allocation)"
+  },
+  "allocation": {
+    "kind": "rule",
+    "items": [],
+    "editable": false,
+    "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
+  },
+  "edit_policy": "live-gated"
+}

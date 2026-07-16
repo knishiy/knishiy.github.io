@@ -1,0 +1,69 @@
+{
+  "slug": "meanrev",
+  "name": "MeanReversion",
+  "subtitle": "Buy-the-dip \u2014 oversold entries; research-only (no live account yet)",
+  "kind": "rule",
+  "live": false,
+  "editable": false,
+  "metrics": [
+    {
+      "label": "Forward (live-collected)",
+      "source": "shadow.json",
+      "available": true,
+      "fields": {
+        "ret": 0.014153369664661408,
+        "maxdd": -0.005199415017668851
+      },
+      "extra": {
+        "inception": "2026-06-30",
+        "days": 10,
+        "min_show": 20,
+        "ready": false,
+        "n_buys": null,
+        "n_names": null
+      }
+    },
+    {
+      "label": "Backtest",
+      "source": "leaderboard.json",
+      "available": true,
+      "fields": {
+        "ret": 0.26215495770602626,
+        "cagr": 0.053244220403656506,
+        "vol": 0.15413479314171485,
+        "sharpe": 0.41375387259522617,
+        "dsr": 0.5094249833363007,
+        "maxdd": -0.2472608766162505
+      },
+      "extra": {
+        "window": "in-sample"
+      }
+    }
+  ],
+  "holdings": {
+    "items": [
+      {
+        "name": "PEP",
+        "weight": 0.111
+      },
+      {
+        "name": "PG",
+        "weight": 0.111
+      },
+      {
+        "name": "WMT",
+        "weight": 0.111
+      }
+    ],
+    "total_names": 3,
+    "as_of": "2026-06-30",
+    "note": "simulated forward positions"
+  },
+  "allocation": {
+    "kind": "rule",
+    "items": [],
+    "editable": false,
+    "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
+  },
+  "edit_policy": "instant"
+}

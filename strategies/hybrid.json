@@ -1,6 +1,6 @@
 {
   "slug": "hybrid",
-  "name": "Live hybrid",
+  "name": "Live hybrid (60/40)",
   "subtitle": "60% SPY core + 40% momentum sleeve \u2014 the deployed paper book",
   "kind": "symbols",
   "live": true,
@@ -10,32 +10,16 @@
       "label": "Live paper account",
       "source": "live.json",
       "available": true,
-      "fields": {}
+      "fields": {
+        "equity": 103309.39,
+        "ret": 0.0330938999999999,
+        "pnl": 3309.3899999999994,
+        "maxdd": -0.018878911566227785,
+        "days": 19
+      }
     }
   ],
-  "holdings": {
-    "items": [
-      {
-        "name": "SPY",
-        "weight": 0.60235
-      },
-      {
-        "name": "XLI",
-        "weight": 0.13291
-      },
-      {
-        "name": "XLE",
-        "weight": 0.13274
-      },
-      {
-        "name": "XLK",
-        "weight": 0.13199
-      }
-    ],
-    "total_names": 4,
-    "as_of": "now",
-    "note": "live Alpaca paper positions (actual money allocation)"
-  },
+  "holdings": {},
   "allocation": {
     "kind": "symbols",
     "items": [

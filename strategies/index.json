@@ -18,11 +18,35 @@
     },
     {
       "slug": "hybrid",
-      "name": "Live hybrid",
+      "name": "Live hybrid (60/40)",
       "subtitle": "60% SPY core + 40% momentum sleeve \u2014 the deployed paper book",
       "kind": "symbols",
       "live": true,
       "editable": true
+    },
+    {
+      "slug": "dualmom",
+      "name": "DualMomentum",
+      "subtitle": "Cross-sectional momentum \u2014 holds the top-3 trending names of the basket",
+      "kind": "rule",
+      "live": true,
+      "editable": false
+    },
+    {
+      "slug": "donchian",
+      "name": "Donchian breakout",
+      "subtitle": "Trend-following \u2014 buys 50-day breakouts, exits to cash on 25-day lows",
+      "kind": "rule",
+      "live": true,
+      "editable": false
+    },
+    {
+      "slug": "meanrev",
+      "name": "MeanReversion",
+      "subtitle": "Buy-the-dip \u2014 oversold entries; research-only (no live account yet)",
+      "kind": "rule",
+      "live": false,
+      "editable": false
     }
   ]
 }
