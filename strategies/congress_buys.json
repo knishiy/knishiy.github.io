@@ -10,10 +10,13 @@
       "label": "Forward (live-collected)",
       "source": "congress_shadow.json",
       "available": true,
-      "fields": {},
+      "fields": {
+        "ret": 0.0,
+        "maxdd": 0.0
+      },
       "extra": {
         "inception": "2026-07-15",
-        "days": 1,
+        "days": 2,
         "min_show": 20,
         "ready": false,
         "n_buys": 6,
@@ -59,12 +62,12 @@
         "cluster": 2
       },
       {
-        "name": "GS",
+        "name": "IEF",
         "weight": 0.01667,
         "cluster": 2
       },
       {
-        "name": "GIGB",
+        "name": "GS",
         "weight": 0.01667,
         "cluster": 2
       },
