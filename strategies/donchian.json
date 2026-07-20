@@ -46,19 +46,19 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.257
-      },
-      {
-        "name": "GE",
-        "weight": 0.2543
-      },
-      {
-        "name": "PG",
-        "weight": 0.2485
+        "weight": 0.2557
       },
       {
         "name": "KO",
-        "weight": 0.2403
+        "weight": 0.2497
+      },
+      {
+        "name": "GE",
+        "weight": 0.2474
+      },
+      {
+        "name": "PG",
+        "weight": 0.2472
       }
     ],
     "total_names": 4,

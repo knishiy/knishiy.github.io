@@ -27,72 +27,72 @@
   "holdings": {
     "items": [
       {
+        "name": "SPGI",
+        "weight": 0.01639,
+        "cluster": 5
+      },
+      {
+        "name": "MELI",
+        "weight": 0.01639,
+        "cluster": 4
+      },
+      {
+        "name": "DHR",
+        "weight": 0.01639,
+        "cluster": 4
+      },
+      {
+        "name": "MA",
+        "weight": 0.01639,
+        "cluster": 3
+      },
+      {
         "name": "SCHP",
-        "weight": 0.01667,
+        "weight": 0.01639,
         "cluster": 3
       },
       {
         "name": "NVDA",
-        "weight": 0.01667,
-        "cluster": 3
-      },
-      {
-        "name": "MELI",
-        "weight": 0.01667,
-        "cluster": 3
-      },
-      {
-        "name": "MA",
-        "weight": 0.01667,
-        "cluster": 3
-      },
-      {
-        "name": "ZTS",
-        "weight": 0.01667,
-        "cluster": 3
-      },
-      {
-        "name": "SPGI",
-        "weight": 0.01667,
+        "weight": 0.01639,
         "cluster": 3
       },
       {
         "name": "GS",
-        "weight": 0.01667,
+        "weight": 0.01639,
+        "cluster": 2
+      },
+      {
+        "name": "INTU",
+        "weight": 0.01639,
         "cluster": 2
       },
       {
         "name": "IEF",
-        "weight": 0.01667,
-        "cluster": 2
-      },
-      {
-        "name": "DELL",
-        "weight": 0.01667,
-        "cluster": 2
-      },
-      {
-        "name": "DHR",
-        "weight": 0.01667,
+        "weight": 0.01639,
         "cluster": 2
       },
       {
         "name": "CEG",
-        "weight": 0.01667,
+        "weight": 0.01639,
         "cluster": 2
       },
       {
-        "name": "GIGB",
-        "weight": 0.01667,
+        "name": "DELL",
+        "weight": 0.01639,
         "cluster": 2
       },
       {
-        "name": "48 other names",
-        "weight": 0.8,
+        "name": "AJG",
+        "weight": 0.01639,
+        "cluster": 2
+      },
+      {
+        "name": "49 other names",
+        "weight": 0.80328,
         "is_other": true
       }
     ],
-    "total_names": 60,
+    "total_names": 61,
     "as_of": "2026-07-17",
     "note": "tickers Congress disclosed buying in the last ~63 trading days (equal-weight; free live feed, page 0)"
   },
