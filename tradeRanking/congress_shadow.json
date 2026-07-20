@@ -1,14 +1,14 @@
 {
-  "generated_utc": "2026-07-20 14:15:22",
+  "generated_utc": "2026-07-20 20:15:29",
   "window": "forward (live-collected)",
   "inception": "2026-07-15",
   "days": 3,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
-  "n_buys": 9,
-  "n_names": 9,
-  "added_this_run": 0,
+  "n_buys": 22,
+  "n_names": 22,
+  "added_this_run": 13,
   "leaderboard": [
     {
       "name": "B&H SPY",
