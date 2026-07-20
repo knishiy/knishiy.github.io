@@ -1,49 +1,49 @@
 {
-  "generated_utc": "2026-07-17 20:15:23",
+  "generated_utc": "2026-07-20 11:30:44",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+21%)",
+      "momentum": "up (+17%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +1.25"
+          "verdict": "Sharpe +1.24"
         }
       ],
-      "notes": "vol 51%, ~$978M/day"
+      "notes": "vol 51%, ~$982M/day"
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
       "added": "2026-07-02",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+26%)",
+      "momentum": "up (+19%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.83"
+          "verdict": "Sharpe +0.78"
         }
       ],
-      "notes": "vol 17%, ~$82M/day"
+      "notes": "vol 17%, ~$84M/day"
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
@@ -56,36 +56,36 @@
           "verdict": "Sharpe +0.89"
         }
       ],
-      "notes": "vol 29%, ~$496M/day"
+      "notes": "vol 29%, ~$503M/day"
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+328%)",
+      "momentum": "up (+317%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.78 vs B&H +0.51, maxDD -16%"
+          "verdict": "Sharpe +0.77 vs B&H +0.51, maxDD -16%"
         },
         {
           "name": "Buy & hold",
           "verdict": "Sharpe +0.51"
         }
       ],
-      "notes": "vol 51%, ~$394M/day"
+      "notes": "vol 51%, ~$399M/day"
     },
     {
       "ticker": "SMCI",
       "name": "Super Micro Computer, Inc. Common Stock",
       "added": "2026-07-08",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "volatile",
@@ -104,7 +104,7 @@
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp. Class A Common Stock",
       "added": "2026-07-08",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "unfit",
       "type": "no / short data",
       "vol_tier": "\u2014",
@@ -118,11 +118,11 @@
       "ticker": "LMT",
       "name": "Lockheed Martin Corp.",
       "added": "2026-07-08",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+12%)",
+      "momentum": "up (+11%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -136,8 +136,8 @@
     {
       "ticker": "SKHYV",
       "name": "skhyv",
-      "added": "2026-07-17",
-      "last_checked": "2026-07-17",
+      "added": "2026-07-20",
+      "last_checked": "2026-07-20",
       "status": "unresolved",
       "type": "\u2014",
       "vol_tier": "\u2014",
@@ -151,11 +151,11 @@
       "ticker": "HLIT",
       "name": "Harmonic Inc. Common Stock",
       "added": "2026-07-13",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "volatile",
-      "momentum": "up (+34%)",
+      "momentum": "up (+29%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -170,30 +170,30 @@
       "ticker": "ASML",
       "name": "ASML Holding N.V. New York Registry Shares",
       "added": "2026-07-13",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+138%)",
+      "momentum": "up (+136%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.85"
+          "verdict": "Sharpe +0.84"
         }
       ],
-      "notes": "vol 42%, ~$153M/day"
+      "notes": "vol 42%, ~$155M/day"
     },
     {
       "ticker": "NANC",
       "name": "Unusual Whales Subversive Democratic Trading ETF",
       "added": "2026-07-15",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "stable",
-      "momentum": "up (+20%)",
+      "momentum": "up (+18%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -207,8 +207,8 @@
     {
       "ticker": "KRUZ",
       "name": "KRUZ",
-      "added": "2026-07-17",
-      "last_checked": "2026-07-17",
+      "added": "2026-07-20",
+      "last_checked": "2026-07-20",
       "status": "unresolved",
       "type": "\u2014",
       "vol_tier": "\u2014",
@@ -222,25 +222,25 @@
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc. Common Stock",
       "added": "2026-07-16",
-      "last_checked": "2026-07-17",
+      "last_checked": "2026-07-20",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+609%)",
+      "momentum": "up (+614%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Donchian 50/25",
-          "verdict": "Sharpe +1.10 vs B&H +0.89, maxDD -34%"
+          "verdict": "Sharpe +1.10 vs B&H +0.90, maxDD -34%"
         },
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +1.05 vs B&H +0.89, maxDD -19%"
+          "verdict": "Sharpe +1.06 vs B&H +0.90, maxDD -19%"
         },
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.89"
+          "verdict": "Sharpe +0.90"
         }
       ],
       "notes": "vol 59%, ~$170M/day"

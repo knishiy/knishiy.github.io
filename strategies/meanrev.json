@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.023947902687294853,
+        "ret": 0.018456441785190902,
         "maxdd": -0.007909205848396383
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 12,
+        "days": 13,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -37,15 +37,15 @@
         "weight": 0.111
       },
       {
-        "name": "PG",
-        "weight": 0.111
-      },
-      {
-        "name": "WMT",
-        "weight": 0.111
-      },
-      {
         "name": "IBM",
+        "weight": 0.111
+      },
+      {
+        "name": "GE",
+        "weight": 0.111
+      },
+      {
+        "name": "AMD",
         "weight": 0.111
       }
     ],

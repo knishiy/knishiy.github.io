@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 94926.86,
-        "ret": -0.05073139999999998,
-        "pnl": -5073.139999999999,
-        "maxdd": -0.05073139999999998,
-        "days": 4
+        "equity": 94223.48,
+        "ret": -0.05776520000000007,
+        "pnl": -5776.520000000004,
+        "maxdd": -0.05776520000000007,
+        "days": 5
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.02384785043032378,
-        "maxdd": -0.05242071969320927
+        "ret": -0.03149605871916805,
+        "maxdd": -0.05984505790644212
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 12,
+        "days": 13,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -45,16 +45,16 @@
   "holdings": {
     "items": [
       {
-        "name": "GE",
-        "weight": 0.3401
+        "name": "AMD",
+        "weight": 0.3383
       },
       {
-        "name": "AMD",
-        "weight": 0.3313
+        "name": "GE",
+        "weight": 0.3347
       },
       {
         "name": "NVDA",
-        "weight": 0.3287
+        "weight": 0.3269
       }
     ],
     "total_names": 3,
