@@ -84,6 +84,21 @@
                       stroke-linecap:round; stroke-linejoin:round; }
   .topnav a.nav:hover { color:var(--txt); }
   .topnav a.nav.active { color:var(--gold); border-bottom-color:var(--gold); }
+  /* --- Proposals window (LLM research output) --- */
+  table.prop { min-width:620px; }
+  table.prop td { white-space:normal; vertical-align:top; }
+  table.prop td.num { white-space:nowrap; text-align:right; }
+  .propname { font-weight:650; }
+  .reason { color:var(--dim); font-size:12px; margin-top:3px; line-height:1.45; }
+  .rec { font-size:10.5px; font-weight:600; padding:2px 8px; border-radius:999px;
+         border:1px solid var(--line); color:var(--dim); white-space:nowrap; }
+  .rec.strong, .rec.live { color:var(--good); border-color:var(--good); }
+  .rec.marginal { color:var(--gold); border-color:var(--gold); }
+  .rec.reject, .rec.weak { color:var(--bad); border-color:var(--bad); }
+  .pcs { margin-top:6px; display:flex; flex-wrap:wrap; gap:4px; }
+  .pc { font-size:10.5px; border-radius:6px; padding:1px 7px; border:1px solid var(--line); color:var(--dim); }
+  .pc.pro { color:var(--good); border-color:rgba(63,185,80,.4); }
+  .pc.con { color:var(--bad); border-color:rgba(248,81,73,.4); }
 </style>
 </head>
 <body>
@@ -94,6 +109,7 @@
     <a class="nav" href="../strategy/"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg>Algorithms</a>
     <a class="nav" data-view="tests" href="#tests"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>Tests</a>
     <a class="nav" href="../stockLibrary/"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v14"/></svg>Stock Library</a>
+    <a class="nav" data-view="proposals" href="#proposals"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.7 1 1.2 1 2.5h6c0-1.3.3-1.8 1-2.5A6 6 0 0012 3z"/></svg>Proposals</a>
     <a class="nav" data-view="system" href="#system"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg>System</a>
   </div>
 </nav>
@@ -138,6 +154,31 @@
     <div class="basket" id="basket"></div>
     <div class="scroll"><table><thead><tr id="hdrBt"></tr></thead><tbody id="rows"></tbody></table></div>
     <footer id="foot"></footer>
+  </div>
+
+  <!-- ===================== PROPOSALS: LLM research output ===================== -->
+  <div id="view-proposals" class="view" hidden>
+    <h1>LLM Proposals</h1>
+    <p class="pagesub" id="propNote">Everything the two research routines have proposed — with the reason for each.</p>
+    <div class="banner">
+      <b>Two propose-only researchers.</b> A <b>strategy-research routine</b> proposes new
+      algorithms; a <b>Scout / discovery routine</b> proposes new stocks. Each is measured by a
+      deterministic gate — but nothing here trades until <b>you approve it in Discord</b>. The LLM
+      never promotes a proposal to forward, paper, or live on its own.
+    </div>
+
+    <h2>Algorithm proposals <span id="algoSub" class="sub"></span></h2>
+    <div class="scroll"><table class="prop"><thead><tr>
+      <th>Strategy &amp; rationale</th><th>Status</th><th>Return</th><th>Sharpe</th><th>DSR</th><th>Max DD</th>
+    </tr></thead><tbody id="algoRows"></tbody></table></div>
+
+    <h2>Stock proposals <span id="stockSub" class="sub"></span></h2>
+    <div class="scroll"><table class="prop"><thead><tr>
+      <th>Ticker &amp; reason</th><th>For</th><th>&#916; Sharpe</th><th>Standalone</th><th>Corr SPY</th><th>Fair value</th>
+    </tr></thead><tbody id="stockRows"></tbody></table></div>
+
+    <h2>Also evaluated <span id="evalSub" class="sub"></span></h2>
+    <div class="basket" id="evalWrap"></div>
   </div>
 
   <!-- ===================== SYSTEM: state & automations ===================== -->
@@ -249,8 +290,8 @@ const liveChart=makeChart("liveRanges","liveChart");
 
 ["hdrLive","hdrShadow","hdrBt","hdrIns","hdrCon"].forEach(header);
 
-// ---- window switching: Home (live) / Tests (tournaments) / System (state) ----
-const VIEWS=["home","tests","system"];
+// ---- window switching: Home / Tests / Proposals / System ----
+const VIEWS=["home","tests","proposals","system"];
 function showView(name){
   if(!VIEWS.includes(name)) name="home";
   VIEWS.forEach(v=>document.getElementById("view-"+v).hidden = v!==name);
@@ -324,6 +365,60 @@ function loadCopyTrade(file, subId, rowsId, chart){
 }
 loadCopyTrade("insider_shadow.json","insSub","insRows",insChart);
 loadCopyTrade("congress_shadow.json","conSub","conRows",conChart);
+
+// ---- Proposals window: what the two LLM researchers proposed, with reasons ----
+const esc = s => (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const recClass = r => ({STRONG:"strong",MARGINAL:"marginal",WEAK:"weak",REJECT:"reject"}[r]||"");
+const dsh = x => x==null ? "<span class='na'>—</span>" : (x>=0?"+":"")+x.toFixed(2);
+const emptyR = n => `<tr><td colspan="${n}" class="na" style="text-align:center;padding:22px">none yet</td></tr>`;
+fetch("./proposals.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+  if(d.note) document.getElementById("propNote").textContent = d.note;
+
+  const inT = d.algorithms.filter(a=>a.status==='in tournament').length;
+  document.getElementById("algoSub").textContent =
+    `· ${d.algorithms.length} proposed by the strategy-research routine · ${inT} in the backtest tournament · updated ${ago(d.generated_utc)}`;
+  document.getElementById("algoRows").innerHTML = d.algorithms.map(a=>{
+    const st = a.status==='in tournament'
+      ? `<span class="rec live">In tournament</span>` : `<span class="rec">Awaiting review</span>`;
+    const vn = a.verdict_note ? `<div class="reason">Gate: ${esc(a.verdict_note)}</div>` : "";
+    const m = a.metrics||{}, rc = m.ret==null?'na':(m.ret>=0?'pos':'neg');
+    return `<tr>
+      <td><span class="propname">${esc(a.name)}</span><div class="reason">${esc(a.reason)}</div>${vn}</td>
+      <td>${st}</td>
+      <td class="num ${rc}">${pct(m.ret)}</td>
+      <td class="num">${srf(m.sharpe)}</td>
+      <td class="num">${srf(m.dsr)}</td>
+      <td class="num neg">${pct(m.maxdd)}</td></tr>`;
+  }).join("") || emptyR(6);
+
+  document.getElementById("stockSub").textContent =
+    `· ${d.stocks.length} tickers proposed by Scout / LLM discovery · ranked by verdict, then marginal Sharpe`;
+  document.getElementById("stockRows").innerHTML = d.stocks.map(s=>{
+    const pcs = [...(s.pros||[]).map(p=>`<span class="pc pro">+ ${esc(p)}</span>`),
+                 ...(s.cons||[]).map(c=>`<span class="pc con">− ${esc(c)}</span>`)].join("");
+    const fv = s.fair_value
+      ? `${esc(s.fair_value.verdict||"—")}${s.fair_value.gap_pct!=null?` <span class="na">(${(s.fair_value.gap_pct*100).toFixed(0)}%)</span>`:""}`
+      : "<span class='na'>—</span>";
+    const sa = s.standalone_sharpe==null ? "<span class='na'>—</span>"
+      : `${s.standalone_sharpe.toFixed(2)}${s.spy_sharpe!=null?` <span class="na">vs ${s.spy_sharpe.toFixed(2)}</span>`:""}`;
+    return `<tr>
+      <td><span class="propname">${esc(s.ticker)}</span> <span class="rec ${recClass(s.recommendation)}">${esc(s.recommendation||'—')}</span>
+        <div class="reason">${esc(s.reason)}</div>${pcs?`<div class="pcs">${pcs}</div>`:""}</td>
+      <td>${esc(s.target)}</td>
+      <td class="num">${dsh(s.d_sharpe)}</td>
+      <td class="num">${sa}</td>
+      <td class="num">${srf(s.corr_spy)}</td>
+      <td class="num">${fv}</td></tr>`;
+  }).join("") || emptyR(6);
+
+  const ev = d.evaluated||{};
+  document.getElementById("evalSub").textContent =
+    `· ${ev.n_evaluated||0} tickers run through the deterministic gate`
+    + (ev.counts?` · ${Object.entries(ev.counts).map(([k,v])=>v+" "+k).join(", ")}`:"");
+  document.getElementById("evalWrap").innerHTML = (ev.recent||[]).map(r=>
+    `<div class="tier"><b>${esc(r.ticker)}</b> <span class="rec ${recClass(r.recommendation)}">${esc(r.recommendation)}</span></div>`
+  ).join("") || "<span class='na'>none evaluated yet</span>";
+}).catch(()=>{ document.getElementById("algoSub").textContent = "· proposals unavailable"; });
 
 fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
   document.getElementById("btSub").textContent =

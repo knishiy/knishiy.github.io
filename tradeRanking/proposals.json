@@ -1,0 +1,242 @@
+{
+  "generated_utc": "2026-07-20 13:26:15",
+  "algorithms": [
+    {
+      "slug": "insider_buys",
+      "name": "Copy insider buys (Form 4, S&P 500)",
+      "reason": "Mirror disclosed open-market insider PURCHASES (SEC Form 4, code P) among liquid S&P 500 names, held ~3 months from the filing date. Buy-side insider trades carry a documented out-of-sample premium (Lakonishok-Lee; Cohen-Malloy-Pomorski); sells are ignored as noisy. Disclosure-date keyed, one parameter (hold horizon), no discretion.",
+      "status": "in tournament",
+      "recommendation": "MARGINAL",
+      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
+      "metrics": {
+        "ret": 1.1771191945347672,
+        "sharpe": 0.7305765965055028,
+        "dsr": 0.5593019611263803,
+        "maxdd": -0.40332490521362396
+      },
+      "date": "2026-07-15 05:27:55"
+    },
+    {
+      "slug": "insider_buys_sellexit",
+      "name": "Copy insider buys \u2014 cluster-sell exit",
+      "reason": "Equal-weight insider buy mirror PLUS an early exit when >= 2 insiders sell a held name (a disclosed cluster sell). Insider sells are mostly noise (taxes/10b5-1), so only broad independent selling triggers an exit; lone sales are ignored. One knob, same universe/hold/disclosure discipline as the baseline it must beat.",
+      "status": "in tournament",
+      "recommendation": "MARGINAL",
+      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
+      "metrics": {
+        "ret": 1.2520327497421326,
+        "sharpe": 0.7418560481689548,
+        "dsr": 0.5694203021317152,
+        "maxdd": -0.4127664445078375
+      },
+      "date": "2026-07-15 05:27:04"
+    },
+    {
+      "slug": "insider_buys_conviction",
+      "name": "Copy insider buys \u2014 conviction-weighted",
+      "reason": "Weight each disclosed open-market insider buy by cluster_size x ln(1+$value): multiple independent insider buys (clusters) are the strongest documented insider signal (Lakonishok-Lee; Cohen-Malloy-Pomorski), and dollar size separates real conviction from token purchases. Log damping is standard, not tuned. Same universe, hold horizon, disclosure-date discipline as the equal-weight baseline it must beat.",
+      "status": "in tournament",
+      "recommendation": "MARGINAL",
+      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
+      "metrics": {
+        "ret": 1.0733763565221963,
+        "sharpe": 0.6910645452798793,
+        "dsr": 0.5480251836205098,
+        "maxdd": -0.4356554752919418
+      },
+      "date": "2026-07-15 05:13:59"
+    },
+    {
+      "slug": "fiftytwo_week_high",
+      "name": "52-Week High Proximity",
+      "reason": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 participants under-react to positive news when price approaches the reference point, creating a persistent drift. Distinct from past-return momentum; internationally documented across 49 markets.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    },
+    {
+      "slug": "gold_trend",
+      "name": "Gold trend (Donchian 50/25 GLD)",
+      "reason": "Time-series trend following on gold \u2014 a century-scale documented edge (Moskowitz-Ooi-Pedersen 2012; Hurst-Ooi-Pedersen 2017) on the book's first non-equity, low-correlation sleeve. Reuses the incumbent Donchian 50/25 breakout with ZERO parameters tuned on gold data. GLD is physically backed (no futures roll drag), so unlike oil wrappers the ETF's trend is the underlying's trend.",
+      "status": "awaiting review",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    },
+    {
+      "slug": "low_vol_anomaly",
+      "name": "Low-Vol Anomaly top-3",
+      "reason": "Frazzini & Pedersen (2014) 'Betting Against Beta': leverage-constrained and benchmark-aware investors overpay for high-volatility assets, so the lowest-realized-vol names earn superior risk-adjusted returns out-of-sample across 21+ country samples (Baker & Haugen 2012; Blitz & van Vliet 2007). Select the 3 least-volatile ETFs, size inversely to realized vol (risk parity within the selection), rebalance monthly.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    },
+    {
+      "slug": "residual_momentum",
+      "name": "Residual Momentum 12mo",
+      "reason": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the idiosyncratic underreaction signal. Daniel & Moskowitz (2016, JFE) show that raw momentum crashes are driven by its market-factor loading \u2014 a residual signal sidesteps this while preserving the alpha. Rank sector ETFs by residual return, hold the top 3, rebalance monthly.",
+      "status": "awaiting review",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    },
+    {
+      "slug": "tsmom_volweighted",
+      "name": "TSMOM vol-weighted 12mo",
+      "reason": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size inversely to its volatility (risk parity within the long book), rebalance monthly to keep turnover \u2014 and thus cost \u2014 low. Distinct from the cross-sectional DualMomentum already tested.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    },
+    {
+      "slug": "vol_target",
+      "name": "Vol-Targeted Equal Weight",
+      "reason": "Moreira & Muir (2017, JoF 72(4)) 'Volatility-Managed Portfolios': scale equity exposure inversely to recent realized variance; the conditional equity Sharpe ratio is counter-cyclical (highest in calm markets, near-zero or negative during spikes), so a static exposure strategy wastes its risk budget at the worst moments. Hold all instruments equally but reduce total exposure when portfolio vol exceeds a 10% annual target and increase it when vol is low \u2014 capped at 1\u00d7 (long-only, no leverage).",
+      "status": "awaiting review",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null
+    }
+  ],
+  "stocks": [
+    {
+      "ticker": "AAPL",
+      "target": "tournament basket",
+      "recommendation": "STRONG",
+      "type": "trend candidate",
+      "reason": "trend candidate; medium vol; momentum up",
+      "pros": [
+        "standalone Sharpe +1.01 vs SPY +0.76",
+        "basket Sharpe +1.07\u2192+1.17 (+0.11)",
+        "deflated Sharpe 0.99",
+        "corr to SPY +0.77"
+      ],
+      "cons": [
+        "basket maxDD -34%\u2192-35%"
+      ],
+      "d_sharpe": 0.10514639251154634,
+      "standalone_sharpe": 1.0104090823333547,
+      "spy_sharpe": 0.764324069786146,
+      "corr_spy": 0.771930319844153,
+      "dsr": 0.9855993771183016,
+      "maxdd": -0.3850920357207943,
+      "fair_value": null
+    },
+    {
+      "ticker": "ABBV",
+      "target": "tournament basket",
+      "recommendation": "MARGINAL",
+      "type": "trend candidate",
+      "reason": "trend candidate; medium vol; momentum up",
+      "pros": [
+        "basket Sharpe +1.07\u2192+1.12 (+0.06)",
+        "basket maxDD -34%\u2192-34%",
+        "deflated Sharpe 0.98",
+        "corr to SPY +0.46"
+      ],
+      "cons": [
+        "standalone Sharpe +0.61 vs SPY +0.76"
+      ],
+      "d_sharpe": 0.05907481806207082,
+      "standalone_sharpe": 0.6099935583654557,
+      "spy_sharpe": 0.764324069786146,
+      "corr_spy": 0.45585728601818537,
+      "dsr": 0.9791661662012099,
+      "maxdd": -0.4509348507722677,
+      "fair_value": null
+    },
+    {
+      "ticker": "KO",
+      "target": "momentum sleeve",
+      "recommendation": "MARGINAL",
+      "type": "stable compounder",
+      "reason": "defensive staple \u2014 low-beta cash-flow compounder for the defensive side of the sleeve",
+      "pros": [
+        "book Sharpe +0.76\u2192+0.79 (+0.03)",
+        "deflated Sharpe 0.98",
+        "corr to SPY +0.58"
+      ],
+      "cons": [
+        "standalone Sharpe +0.53 vs SPY +0.78",
+        "book maxDD -29%\u2192-29%"
+      ],
+      "d_sharpe": 0.03467781310193174,
+      "standalone_sharpe": 0.5301895478227546,
+      "spy_sharpe": 0.7836519192137645,
+      "corr_spy": 0.5838510881610257,
+      "dsr": 0.9751255742172824,
+      "maxdd": -0.3699351701782818,
+      "fair_value": {
+        "verdict": "undervalued",
+        "gap_pct": -0.14392911318522028
+      }
+    },
+    {
+      "ticker": "A",
+      "target": "tournament basket",
+      "recommendation": "MARGINAL",
+      "type": "range / mean-revert",
+      "reason": "range / mean-revert; medium vol; momentum flat",
+      "pros": [
+        "basket Sharpe +1.07\u2192+1.07 (+0.01)",
+        "basket maxDD -34%\u2192-34%",
+        "deflated Sharpe 0.97",
+        "corr to SPY +0.68"
+      ],
+      "cons": [
+        "standalone Sharpe +0.51 vs SPY +0.76"
+      ],
+      "d_sharpe": 0.0057573931010739265,
+      "standalone_sharpe": 0.5082882011702768,
+      "spy_sharpe": 0.764324069786146,
+      "corr_spy": 0.6795579069348469,
+      "dsr": 0.9731971316842312,
+      "maxdd": -0.42732474137432785,
+      "fair_value": null
+    }
+  ],
+  "evaluated": {
+    "n_evaluated": 5,
+    "counts": {
+      "REJECT": 3,
+      "MARGINAL": 2
+    },
+    "recent": [
+      {
+        "ticker": "KO",
+        "recommendation": "MARGINAL",
+        "at": "2026-07-13 06:00:22"
+      },
+      {
+        "ticker": "URA",
+        "recommendation": "MARGINAL",
+        "at": "2026-07-13 05:18:11"
+      },
+      {
+        "ticker": "TLN",
+        "recommendation": "REJECT",
+        "at": "2026-07-13 04:41:35"
+      },
+      {
+        "ticker": "KTOS",
+        "recommendation": "REJECT",
+        "at": "2026-07-13 04:41:35"
+      },
+      {
+        "ticker": "MP",
+        "recommendation": "REJECT",
+        "at": "2026-07-13 04:41:35"
+      }
+    ]
+  },
+  "note": "Both researchers are propose-only. An algorithm reaches the backtest tournament, and a stock the basket, only after a human approves it in Discord \u2014 the LLM never trades and never promotes a proposal to forward/paper/live on its own."
+}
