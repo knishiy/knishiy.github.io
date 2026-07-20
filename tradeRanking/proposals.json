@@ -1,5 +1,6 @@
 {
-  "generated_utc": "2026-07-20 13:26:15",
+  "generated_utc": "2026-07-20 14:07:09",
+  "discord_checked": true,
   "algorithms": [
     {
       "slug": "insider_buys",
@@ -14,7 +15,8 @@
         "dsr": 0.5593019611263803,
         "maxdd": -0.40332490521362396
       },
-      "date": "2026-07-15 05:27:55"
+      "date": "2026-07-15 05:27:55",
+      "discord": "not sent"
     },
     {
       "slug": "insider_buys_sellexit",
@@ -29,7 +31,8 @@
         "dsr": 0.5694203021317152,
         "maxdd": -0.4127664445078375
       },
-      "date": "2026-07-15 05:27:04"
+      "date": "2026-07-15 05:27:04",
+      "discord": "not sent"
     },
     {
       "slug": "insider_buys_conviction",
@@ -44,7 +47,8 @@
         "dsr": 0.5480251836205098,
         "maxdd": -0.4356554752919418
       },
-      "date": "2026-07-15 05:13:59"
+      "date": "2026-07-15 05:13:59",
+      "discord": "not sent"
     },
     {
       "slug": "fiftytwo_week_high",
@@ -54,7 +58,8 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "not sent"
     },
     {
       "slug": "gold_trend",
@@ -64,7 +69,8 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "failed"
     },
     {
       "slug": "low_vol_anomaly",
@@ -74,7 +80,8 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "not sent"
     },
     {
       "slug": "residual_momentum",
@@ -84,7 +91,8 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "failed"
     },
     {
       "slug": "tsmom_volweighted",
@@ -94,7 +102,8 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "not sent"
     },
     {
       "slug": "vol_target",
@@ -104,13 +113,15 @@
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
-      "date": null
+      "date": null,
+      "discord": "failed"
     }
   ],
   "stocks": [
     {
       "ticker": "AAPL",
       "target": "tournament basket",
+      "discord": "not sent",
       "recommendation": "STRONG",
       "type": "trend candidate",
       "reason": "trend candidate; medium vol; momentum up",
@@ -134,6 +145,7 @@
     {
       "ticker": "ABBV",
       "target": "tournament basket",
+      "discord": "not sent",
       "recommendation": "MARGINAL",
       "type": "trend candidate",
       "reason": "trend candidate; medium vol; momentum up",
@@ -157,6 +169,7 @@
     {
       "ticker": "KO",
       "target": "momentum sleeve",
+      "discord": "not sent",
       "recommendation": "MARGINAL",
       "type": "stable compounder",
       "reason": "defensive staple \u2014 low-beta cash-flow compounder for the defensive side of the sleeve",
@@ -183,6 +196,7 @@
     {
       "ticker": "A",
       "target": "tournament basket",
+      "discord": "not sent",
       "recommendation": "MARGINAL",
       "type": "range / mean-revert",
       "reason": "range / mean-revert; medium vol; momentum flat",

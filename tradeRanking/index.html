@@ -169,12 +169,12 @@
 
     <h2>Algorithm proposals <span id="algoSub" class="sub"></span></h2>
     <div class="scroll"><table class="prop"><thead><tr>
-      <th>Strategy &amp; rationale</th><th>Status</th><th>Return</th><th>Sharpe</th><th>DSR</th><th>Max DD</th>
+      <th>Strategy &amp; rationale</th><th>Status</th><th>Sent to you?</th><th>Return</th><th>Sharpe</th><th>DSR</th><th>Max DD</th>
     </tr></thead><tbody id="algoRows"></tbody></table></div>
 
     <h2>Stock proposals <span id="stockSub" class="sub"></span></h2>
     <div class="scroll"><table class="prop"><thead><tr>
-      <th>Ticker &amp; reason</th><th>For</th><th>&#916; Sharpe</th><th>Standalone</th><th>Corr SPY</th><th>Fair value</th>
+      <th>Ticker &amp; reason</th><th>For</th><th>Sent to you?</th><th>&#916; Sharpe</th><th>Standalone</th><th>Corr SPY</th><th>Fair value</th>
     </tr></thead><tbody id="stockRows"></tbody></table></div>
 
     <h2>Also evaluated <span id="evalSub" class="sub"></span></h2>
@@ -371,6 +371,11 @@ const esc = s => (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;
 const recClass = r => ({STRONG:"strong",MARGINAL:"marginal",WEAK:"weak",REJECT:"reject"}[r]||"");
 const dsh = x => x==null ? "<span class='na'>—</span>" : (x>=0?"+":"")+x.toFixed(2);
 const emptyR = n => `<tr><td colspan="${n}" class="na" style="text-align:center;padding:22px">none yet</td></tr>`;
+// Was a proposal actually delivered to Discord? sent / failed-to-send / not-sent / unchecked.
+const dnote = s => s==="sent" ? `<span class="rec live">🔔 Sent</span>`
+  : s==="failed" ? `<span class="rec reject">⚠ Send failed</span>`
+  : s==="not sent" ? `<span class="rec">Not sent</span>`
+  : `<span class="na">—</span>`;
 fetch("./proposals.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
   if(d.note) document.getElementById("propNote").textContent = d.note;
 
@@ -385,11 +390,12 @@ fetch("./proposals.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
     return `<tr>
       <td><span class="propname">${esc(a.name)}</span><div class="reason">${esc(a.reason)}</div>${vn}</td>
       <td>${st}</td>
+      <td>${dnote(a.discord)}</td>
       <td class="num ${rc}">${pct(m.ret)}</td>
       <td class="num">${srf(m.sharpe)}</td>
       <td class="num">${srf(m.dsr)}</td>
       <td class="num neg">${pct(m.maxdd)}</td></tr>`;
-  }).join("") || emptyR(6);
+  }).join("") || emptyR(7);
 
   document.getElementById("stockSub").textContent =
     `· ${d.stocks.length} tickers proposed by Scout / LLM discovery · ranked by verdict, then marginal Sharpe`;
@@ -405,11 +411,12 @@ fetch("./proposals.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
       <td><span class="propname">${esc(s.ticker)}</span> <span class="rec ${recClass(s.recommendation)}">${esc(s.recommendation||'—')}</span>
         <div class="reason">${esc(s.reason)}</div>${pcs?`<div class="pcs">${pcs}</div>`:""}</td>
       <td>${esc(s.target)}</td>
+      <td>${dnote(s.discord)}</td>
       <td class="num">${dsh(s.d_sharpe)}</td>
       <td class="num">${sa}</td>
       <td class="num">${srf(s.corr_spy)}</td>
       <td class="num">${fv}</td></tr>`;
-  }).join("") || emptyR(6);
+  }).join("") || emptyR(7);
 
   const ev = d.evaluated||{};
   document.getElementById("evalSub").textContent =
