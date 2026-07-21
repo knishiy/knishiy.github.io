@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:50:28",
+  "generated_utc": "2026-07-21 14:51:03",
   "entries": [
     {
       "ticker": "NVDA",
@@ -358,6 +358,25 @@
         }
       ],
       "notes": "vol 39%, ~$3M/day"
+    },
+    {
+      "ticker": "RDDT",
+      "name": "Reddit, Inc.",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "fit",
+      "type": "high-vol trender",
+      "vol_tier": "volatile",
+      "momentum": "up (+23%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +1.07"
+        }
+      ],
+      "notes": "vol 81%, ~$35M/day"
     }
   ]
 }
