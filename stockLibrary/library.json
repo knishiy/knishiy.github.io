@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:53:43",
+  "generated_utc": "2026-07-21 14:54:22",
   "entries": [
     {
       "ticker": "NVDA",
@@ -453,6 +453,25 @@
         }
       ],
       "notes": "vol 27%, ~$71M/day"
+    },
+    {
+      "ticker": "SRFM",
+      "name": "Surf Air Mobility Inc.",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "unfit",
+      "type": "illiquid (skip)",
+      "vol_tier": "volatile",
+      "momentum": "down (-86%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "none beat buy & hold",
+          "verdict": "\u2014"
+        }
+      ],
+      "notes": "vol 151%, ~$0M/day"
     }
   ]
 }
