@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:48:22",
+  "generated_utc": "2026-07-21 14:49:14",
   "entries": [
     {
       "ticker": "NVDA",
@@ -301,6 +301,25 @@
         }
       ],
       "notes": "vol 63%, ~$48M/day"
+    },
+    {
+      "ticker": "XOM",
+      "name": "ExxonMobil Holdings Corporation",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "fit",
+      "type": "trend candidate",
+      "vol_tier": "medium",
+      "momentum": "up (+42%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +1.01"
+        }
+      ],
+      "notes": "vol 29%, ~$88M/day"
     }
   ]
 }
