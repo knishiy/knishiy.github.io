@@ -16,14 +16,17 @@
       "label": "Forward (live-collected)",
       "source": "insider_shadow.json",
       "available": true,
-      "fields": {},
+      "fields": {
+        "ret": 0.0,
+        "maxdd": 0.0
+      },
       "extra": {
         "inception": "2026-07-15",
-        "days": 0,
+        "days": 4,
         "min_show": 20,
         "ready": false,
-        "n_buys": 0,
-        "n_names": 0
+        "n_buys": 1,
+        "n_names": 1
       }
     }
   ],

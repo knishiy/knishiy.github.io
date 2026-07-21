@@ -1,13 +1,56 @@
 {
-  "generated_utc": "2026-07-21 14:25:22",
+  "generated_utc": "2026-07-21 20:15:36",
   "window": "forward (live-collected)",
   "inception": "2026-07-15",
-  "days": 0,
+  "days": 4,
   "min_show": 20,
   "ready": false,
   "initial_cash": 15000,
-  "n_buys": 0,
-  "n_names": 0,
-  "added_this_run": 0,
-  "leaderboard": []
+  "n_buys": 1,
+  "n_names": 1,
+  "added_this_run": 1,
+  "leaderboard": [
+    {
+      "name": "B&H SPY",
+      "ret": -0.016851923000489988,
+      "pnl": -252.77884500734982,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.016851923000489988
+    },
+    {
+      "name": "Copy insider buys",
+      "ret": 0.0,
+      "pnl": 0.0,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": 0.0
+    }
+  ],
+  "curves": {
+    "dates": [
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-20"
+    ],
+    "series": {
+      "B&H SPY": [
+        15000.0,
+        14918.72,
+        14771.07,
+        14747.22
+      ],
+      "Copy insider buys": [
+        15000.0,
+        15000.0,
+        15000.0,
+        15000.0
+      ]
+    }
+  }
 }
