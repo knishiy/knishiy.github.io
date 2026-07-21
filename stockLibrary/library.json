@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:54:22",
+  "generated_utc": "2026-07-21 14:55:04",
   "entries": [
     {
       "ticker": "NVDA",
@@ -472,6 +472,20 @@
         }
       ],
       "notes": "vol 151%, ~$0M/day"
+    },
+    {
+      "ticker": "ALM",
+      "name": "Almonty Industries Inc. Common Shares",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "unfit",
+      "type": "no / short data",
+      "vol_tier": "\u2014",
+      "momentum": "\u2014",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [],
+      "notes": "insufficient price history"
     }
   ]
 }
