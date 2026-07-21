@@ -89,6 +89,11 @@
                     color:var(--mut); font-weight:600; padding:6px 10px; border-bottom:1px solid var(--line); }
   table.trades td { padding:6px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
   table.trades tbody tr:last-child td { border-bottom:none; }
+  /* current internal state (regime router, etc.) */
+  .statebox { background:var(--card); border:1px solid var(--line); border-left-width:4px;
+              border-radius:11px; padding:11px 14px; margin:0 0 14px; }
+  .statetop { display:flex; align-items:center; gap:9px; flex-wrap:wrap; font-size:15px; }
+  .statedot { width:9px; height:9px; border-radius:50%; flex:none; }
 </style>
 </head>
 <body>
@@ -252,6 +257,7 @@ function render(){
       <span class="badge ${CARD.live?'live':'research'}">${CARD.live?'LIVE · real paper trades':'RESEARCH · shadow'}</span>
     </div>
     <p class="sub">${escapeHtml(CARD.subtitle||'')}</p>
+    ${stateHTML()}
     <div class="grid">
       <div class="card"><h2>METRICS &amp; DATA</h2>${metricsHTML()}</div>
       <div class="card">
@@ -273,6 +279,25 @@ function render(){
   renderHoldings();
   if(CARD.editable) renderEditor();
   else if(CARD.basket) renderBasket();
+}
+
+/* -------------------------------------- current internal state (e.g. a router's regime) */
+function stateHTML(){
+  const s = CARD.state;
+  if(!s || !s.label) return "";
+  // Holdings alone can't show what a router DECIDED — "holds KO/PG" could be either sleeve.
+  const on = /on$/i.test(s.label);
+  const col = s.label === "unknown" ? "var(--mut)" : (on ? "var(--good)" : "var(--warn)");
+  const held = s.days_held != null && s.since
+    ? ` — held <b>${s.days_held}</b> days (since ${escapeHtml(s.since)})` : "";
+  return `<div class="statebox" style="border-color:${col}">
+      <div class="statetop">
+        <span class="statedot" style="background:${col}"></span>
+        <b style="color:${col}">${escapeHtml(s.label)}</b>
+        ${s.sleeve ? `<span class="sub" style="margin:0">→ ${escapeHtml(s.sleeve)}</span>` : ""}
+      </div>
+      <div class="sub" style="margin:6px 0 0">${escapeHtml(s.detail||"")}${held}</div>
+    </div>`;
 }
 
 /* -------------------------------------- trade history + frequency */

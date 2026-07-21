@@ -124,6 +124,7 @@
       }
     ]
   },
+  "state": null,
   "allocation": {
     "kind": "rule",
     "items": [],

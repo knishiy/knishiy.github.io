@@ -51,6 +51,17 @@
     "available": true,
     "items": []
   },
+  "state": {
+    "label": "Risk-on",
+    "sleeve": "DualMomentum + Donchian (trend)",
+    "detail": "SPY +7.0% vs its 200d average \u00b7 20d vol 12% (threshold 30%)",
+    "since": "2026-04-09",
+    "days_held": 69,
+    "inputs": {
+      "trend_ok": true,
+      "vol_ok": true
+    }
+  },
   "allocation": {
     "kind": "rule",
     "items": [],

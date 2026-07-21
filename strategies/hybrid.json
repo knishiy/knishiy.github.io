@@ -597,6 +597,7 @@
       }
     ]
   },
+  "state": null,
   "allocation": {
     "kind": "symbols",
     "items": [

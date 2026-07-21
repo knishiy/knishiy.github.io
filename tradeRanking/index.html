@@ -211,7 +211,19 @@ const NAME2SLUG = {
   "Donchian":"donchian", "Donchian breakout":"donchian", "Donchian 50/25 breakout":"donchian",
   "MeanReversion":"meanrev", "MeanReversion z20":"meanrev",
   "Copy insider buys":"insider_buys", "Copy congress buys":"congress_buys",
+  // Short aliases; the full names arrive from the card index below. These are the fallback
+  // if strategies/index.json can't be fetched, so a link never silently disappears.
+  "Regime Switch":"regime_switch", "Risk Parity":"risk_parity",
+  "Residual Momentum":"residual_momentum", "Low-Vol Anomaly":"low_vol_anomaly",
+  "52-Week High":"fiftytwo_week_high", "TSMOM":"tsmom_volweighted",
 };
+// Learn every published strategy's name->slug from the card index, so a strategy approved in
+// Discord becomes clickable here with NO edit to this file. The panel loads wait on it —
+// otherwise rows render before the map exists and quietly lose their links.
+const SLUGS_READY = fetch("../strategies/index.json?cb="+Date.now())
+  .then(r=>r.json())
+  .then(d => (d.strategies||[]).forEach(x => { if(x.name && x.slug) NAME2SLUG[x.name]=x.slug; }))
+  .catch(()=>{});
 function linkName(name){
   const key = Object.keys(NAME2SLUG).find(k => name===k || name.includes(k));
   return key ? `<a href="../strategy/?id=${NAME2SLUG[key]}" style="color:var(--txt)">${name}</a>` : name;
@@ -329,7 +341,7 @@ fetch("./status.json?cb="+Date.now()).then(r=>r.json()).then(s=>{
   b.innerHTML=`<span class="sdot s-err"></span> <b>Status unavailable</b>`;
 });
 
-fetch("./live.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+SLUGS_READY.then(()=>fetch("./live.json?cb="+Date.now())).then(r=>r.json()).then(d=>{
   const accts = d.accounts || (d.live ? [d.live] : []);
   // A backfilled account's LINE starts before its money did (forward-test context spliced in).
   // Its return/PnL columns are real-money only, so say so rather than let the chart imply gains.
@@ -344,7 +356,7 @@ fetch("./live.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
   liveChart.load(d.curves, null);
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
-fetch("./shadow.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
+SLUGS_READY.then(()=>fetch("./shadow.json?cb="+Date.now())).then(r=>r.json()).then(d=>{
   const prelim = !d.ready;
   document.getElementById("shadowSub").textContent = prelim
     ? `· PRELIMINARY · ${d.days}/${d.min_show} trading days since ${d.inception} · ranked by return so far (Sharpe needs ${d.min_annual||60}d) · will reshuffle`
@@ -368,8 +380,10 @@ function loadCopyTrade(file, subId, rowsId, chart){
     chart.load(d.curves, d.initial_cash);
   }).catch(()=>{ document.getElementById(subId).textContent="· data unavailable"; });
 }
-loadCopyTrade("insider_shadow.json","insSub","insRows",insChart);
-loadCopyTrade("congress_shadow.json","conSub","conRows",conChart);
+SLUGS_READY.then(()=>{
+  loadCopyTrade("insider_shadow.json","insSub","insRows",insChart);
+  loadCopyTrade("congress_shadow.json","conSub","conRows",conChart);
+});
 
 // ---- Proposals window: what the two LLM researchers proposed, with reasons ----
 const esc = s => (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -432,7 +446,7 @@ fetch("./proposals.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
   ).join("") || "<span class='na'>none evaluated yet</span>";
 }).catch(()=>{ document.getElementById("algoSub").textContent = "· proposals unavailable"; });
 
-fetch("./leaderboard.json").then(r=>r.json()).then(d=>{
+SLUGS_READY.then(()=>fetch("./leaderboard.json")).then(r=>r.json()).then(d=>{
   document.getElementById("btSub").textContent =
     `· ${d.window}, ranked by Sharpe · PnL on $${(d.initial_cash||0).toLocaleString()} · generated ${d.generated_utc} UTC`;
   document.getElementById("basket").innerHTML = Object.entries(d.basket)

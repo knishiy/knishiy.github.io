@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 12:09:24",
+  "generated_utc": "2026-07-21 12:14:03",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
   "end": "2026-07-20",
@@ -35,7 +35,8 @@
       "holdings": {
         "SPY": 1.0
       },
-      "trade_log": {}
+      "trade_log": {},
+      "state": null
     },
     "B&H QQQ": {
       "rule": "Buy & hold the Nasdaq-100 ETF.",
@@ -43,7 +44,8 @@
       "holdings": {
         "QQQ": 1.0
       },
-      "trade_log": {}
+      "trade_log": {},
+      "state": null
     },
     "B&H equal-weight basket": {
       "rule": "Hold all 9 basket names in equal weight.",
@@ -61,7 +63,8 @@
         "PWR": 0.091,
         "TPL": 0.091
       },
-      "trade_log": {}
+      "trade_log": {},
+      "state": null
     },
     "DualMomentum 12mo top3": {
       "rule": "Rank the basket by 12-month momentum; hold the top 3 that are also trending up, else move to cash.",
@@ -103,7 +106,8 @@
             "weight_to": 0.0
           }
         ]
-      }
+      },
+      "state": null
     },
     "Donchian 50/25 breakout": {
       "rule": "Go long a name when it makes a new 50-day high; exit when it makes a new 25-day low. Equal-weight the current breakouts.",
@@ -137,7 +141,8 @@
             "weight_to": 0.0
           }
         ]
-      }
+      },
+      "state": null
     },
     "MeanReversion z20": {
       "rule": "Buy names that are oversold (20-day z-score below -1); exit as they revert \u2014 contrarian.",
@@ -262,7 +267,8 @@
             "weight_to": 0.0909
           }
         ]
-      }
+      },
+      "state": null
     },
     "Residual Momentum 12mo": {
       "rule": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the idiosyncratic underreaction signal. Daniel & Moskowitz (2016, JFE) show that raw momentum crashes are driven by its market-factor loading \u2014 a residual signal sidesteps this while preserving the alpha. Rank sector ETFs by residual return, hold the top 3, rebalance monthly.",
@@ -304,7 +310,8 @@
             "weight_to": 0.0
           }
         ]
-      }
+      },
+      "state": null
     },
     "Low-Vol Anomaly top-3": {
       "rule": "Frazzini & Pedersen (2014) 'Betting Against Beta': leverage-constrained and benchmark-aware investors overpay for high-volatility assets, so the lowest-realized-vol names earn superior risk-adjusted returns out-of-sample across 21+ country samples (Baker & Haugen 2012; Blitz & van Vliet 2007). Select the 3 least-volatile ETFs, size inversely to realized vol (risk parity within the selection), rebalance monthly.",
@@ -337,7 +344,8 @@
             "weight_to": 0.3102
           }
         ]
-      }
+      },
+      "state": null
     },
     "52-Week High Proximity": {
       "rule": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 participants under-react to positive news when price approaches the reference point, creating a persistent drift. Distinct from past-return momentum; internationally documented across 49 markets.",
@@ -379,7 +387,8 @@
             "weight_to": 0.3333
           }
         ]
-      }
+      },
+      "state": null
     },
     "TSMOM vol-weighted 12mo": {
       "rule": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size inversely to its volatility (risk parity within the long book), rebalance monthly to keep turnover \u2014 and thus cost \u2014 low. Distinct from the cross-sectional DualMomentum already tested.",
@@ -446,7 +455,8 @@
             "weight_to": 0.0912
           }
         ]
-      }
+      },
+      "state": null
     },
     "Risk Parity (All Weather, unlevered)": {
       "rule": "Bridgewater All Weather (Dalio, 1996): a 60/40 book holds 60% of its dollars in equities but ~90% of its RISK there, so it is not actually diversified. Weight inversely to volatility instead, equalising each asset's risk contribution. The mechanism is leverage aversion (Asness, Frazzini & Pedersen 2012, FAJ, 'Leverage Aversion and Risk Parity'): investors who cannot borrow bid up high-beta assets, leaving low-beta assets better risk-adjusted returns; supporting evidence in Chaves et al. (2011) and Clarke et al. (2013). This is the UNLEVERED variant because the project forbids leverage, so judge it on Sharpe and drawdown, not total return. One conventional parameter (60-day vol).",
@@ -491,7 +501,8 @@
             "weight_to": 0.1381
           }
         ]
-      }
+      },
+      "state": null
     },
     "Regime Switch (trend/vol router)": {
       "rule": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filter (Faber 2007, JWM) and realized-volatility clustering (Engle 1982; Schwert 1989). Risk-on (SPY above its 200d MA and 20d vol under 30% annualized) holds 1/2 DualMomentum + 1/2 Donchian; risk-off holds MeanReversion, which in stress is naturally mostly cash. All three sub-rules already have measured records in this tournament \u2014 this adds only the routing layer. Null hypothesis: the equal-weight ensemble of the same three rules; if switching cannot beat that forward, it is noise.",
@@ -544,6 +555,17 @@
             "weight_to": 0.0
           }
         ]
+      },
+      "state": {
+        "label": "Risk-on",
+        "sleeve": "DualMomentum + Donchian (trend)",
+        "detail": "SPY +7.0% vs its 200d average \u00b7 20d vol 12% (threshold 30%)",
+        "since": "2026-04-09",
+        "days_held": 69,
+        "inputs": {
+          "trend_ok": true,
+          "vol_ok": true
+        }
       }
     }
   },
