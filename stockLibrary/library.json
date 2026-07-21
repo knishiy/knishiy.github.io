@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:49:53",
+  "generated_utc": "2026-07-21 14:50:28",
   "entries": [
     {
       "ticker": "NVDA",
@@ -339,6 +339,25 @@
         }
       ],
       "notes": "vol 25%, ~$39M/day"
+    },
+    {
+      "ticker": "DHT",
+      "name": "DHT HOLDINGS, INC.",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "unfit",
+      "type": "illiquid (skip)",
+      "vol_tier": "medium",
+      "momentum": "up (+82%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "none beat buy & hold",
+          "verdict": "\u2014"
+        }
+      ],
+      "notes": "vol 39%, ~$3M/day"
     }
   ]
 }
