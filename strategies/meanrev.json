@@ -56,36 +56,121 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2628
-      },
-      {
-        "name": "IBM",
-        "weight": 0.2468
+        "weight": 0.208
       },
       {
         "name": "GE",
-        "weight": 0.2452
+        "weight": 0.2
+      },
+      {
+        "name": "PWR",
+        "weight": 0.1985
       },
       {
         "name": "PEP",
-        "weight": 0.2452
+        "weight": 0.1975
+      },
+      {
+        "name": "IBM",
+        "weight": 0.196
       }
     ],
-    "total_names": 4,
+    "total_names": 5,
     "as_of": "now",
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 4,
+    "n": 13,
     "available": true,
     "first": "2026-07-20",
-    "last": "2026-07-20",
-    "active_days": 1,
-    "span_days": 1,
+    "last": "2026-07-21",
+    "active_days": 2,
+    "span_days": 2,
     "per_week": null,
-    "buys": 4,
-    "sells": 0,
+    "buys": 7,
+    "sells": 6,
     "items": [
+      {
+        "at": "2026-07-21 14:15",
+        "date": "2026-07-21",
+        "symbol": "PWR",
+        "side": "buy",
+        "qty": 14.3131,
+        "price": 636.41,
+        "value": 9108.98
+      },
+      {
+        "at": "2026-07-21 14:15",
+        "date": "2026-07-21",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 3.9835,
+        "price": 526.0,
+        "value": 2095.32
+      },
+      {
+        "at": "2026-07-21 14:15",
+        "date": "2026-07-21",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 5.8774,
+        "price": 344.86,
+        "value": 2026.9
+      },
+      {
+        "at": "2026-07-21 14:15",
+        "date": "2026-07-21",
+        "symbol": "IBM",
+        "side": "sell",
+        "qty": 9.4177,
+        "price": 210.93,
+        "value": 1986.48
+      },
+      {
+        "at": "2026-07-21 14:15",
+        "date": "2026-07-21",
+        "symbol": "PEP",
+        "side": "sell",
+        "qty": 14.8086,
+        "price": 134.76,
+        "value": 1995.67
+      },
+      {
+        "at": "2026-07-21 13:30",
+        "date": "2026-07-21",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 0.4494,
+        "price": 525.48,
+        "value": 236.15
+      },
+      {
+        "at": "2026-07-21 13:30",
+        "date": "2026-07-21",
+        "symbol": "IBM",
+        "side": "sell",
+        "qty": 0.3216,
+        "price": 209.85,
+        "value": 67.5
+      },
+      {
+        "at": "2026-07-21 13:30",
+        "date": "2026-07-21",
+        "symbol": "PEP",
+        "side": "buy",
+        "qty": 0.6145,
+        "price": 134.9,
+        "value": 82.9
+      },
+      {
+        "at": "2026-07-21 13:30",
+        "date": "2026-07-21",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 0.5525,
+        "price": 345.0,
+        "value": 190.63
+      },
       {
         "at": "2026-07-20 13:35",
         "date": "2026-07-20",

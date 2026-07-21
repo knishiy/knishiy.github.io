@@ -56,19 +56,19 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2618
-      },
-      {
-        "name": "KO",
-        "weight": 0.2486
-      },
-      {
-        "name": "PG",
-        "weight": 0.2453
+        "weight": 0.2592
       },
       {
         "name": "GE",
-        "weight": 0.2443
+        "weight": 0.2493
+      },
+      {
+        "name": "KO",
+        "weight": 0.2465
+      },
+      {
+        "name": "PG",
+        "weight": 0.245
       }
     ],
     "total_names": 4,
@@ -76,16 +76,52 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 16,
+    "n": 20,
     "available": true,
     "first": "2026-07-15",
-    "last": "2026-07-20",
-    "active_days": 4,
-    "span_days": 6,
+    "last": "2026-07-21",
+    "active_days": 5,
+    "span_days": 7,
     "per_week": null,
     "buys": 11,
-    "sells": 5,
+    "sells": 9,
     "items": [
+      {
+        "at": "2026-07-21 14:10",
+        "date": "2026-07-21",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 4.3213,
+        "price": 523.71,
+        "value": 2263.13
+      },
+      {
+        "at": "2026-07-21 14:10",
+        "date": "2026-07-21",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 5.1693,
+        "price": 343.73,
+        "value": 1776.89
+      },
+      {
+        "at": "2026-07-21 14:10",
+        "date": "2026-07-21",
+        "symbol": "PG",
+        "side": "sell",
+        "qty": 13.0078,
+        "price": 148.02,
+        "value": 1925.42
+      },
+      {
+        "at": "2026-07-21 14:10",
+        "date": "2026-07-21",
+        "symbol": "KO",
+        "side": "sell",
+        "qty": 25.3054,
+        "price": 82.1,
+        "value": 2077.58
+      },
       {
         "at": "2026-07-20 14:10",
         "date": "2026-07-20",

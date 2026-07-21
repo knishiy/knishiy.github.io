@@ -56,15 +56,15 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3457
-      },
-      {
-        "name": "NVDA",
-        "weight": 0.3318
+        "weight": 0.3461
       },
       {
         "name": "GE",
-        "weight": 0.3225
+        "weight": 0.3282
+      },
+      {
+        "name": "PWR",
+        "weight": 0.3256
       }
     ],
     "total_names": 3,
@@ -72,16 +72,43 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 14,
+    "n": 17,
     "available": true,
     "first": "2026-07-15",
-    "last": "2026-07-20",
-    "active_days": 4,
-    "span_days": 6,
+    "last": "2026-07-21",
+    "active_days": 5,
+    "span_days": 7,
     "per_week": null,
-    "buys": 9,
-    "sells": 5,
+    "buys": 11,
+    "sells": 6,
     "items": [
+      {
+        "at": "2026-07-21 14:05",
+        "date": "2026-07-21",
+        "symbol": "PWR",
+        "side": "buy",
+        "qty": 50.5545,
+        "price": 637.58,
+        "value": 32232.55
+      },
+      {
+        "at": "2026-07-21 14:05",
+        "date": "2026-07-21",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 2.176,
+        "price": 344.92,
+        "value": 750.56
+      },
+      {
+        "at": "2026-07-21 14:05",
+        "date": "2026-07-21",
+        "symbol": "NVDA",
+        "side": "sell",
+        "qty": 157.4146,
+        "price": 204.48,
+        "value": 32188.14
+      },
       {
         "at": "2026-07-20 14:05",
         "date": "2026-07-20",

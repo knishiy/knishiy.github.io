@@ -45,11 +45,90 @@
       }
     }
   ],
-  "holdings": {},
+  "holdings": {
+    "items": [
+      {
+        "name": "AMD",
+        "weight": 0.3208
+      },
+      {
+        "name": "GE",
+        "weight": 0.3085
+      },
+      {
+        "name": "PWR",
+        "weight": 0.2405
+      },
+      {
+        "name": "KO",
+        "weight": 0.0653
+      },
+      {
+        "name": "PG",
+        "weight": 0.0649
+      }
+    ],
+    "total_names": 5,
+    "as_of": "now",
+    "note": "live paper positions (actual money allocation)"
+  },
   "trades": {
-    "n": 0,
+    "n": 5,
     "available": true,
-    "items": []
+    "first": "2026-07-21",
+    "last": "2026-07-21",
+    "active_days": 1,
+    "span_days": 1,
+    "per_week": null,
+    "buys": 5,
+    "sells": 0,
+    "items": [
+      {
+        "at": "2026-07-21 13:33",
+        "date": "2026-07-21",
+        "symbol": "PG",
+        "side": "buy",
+        "qty": 30.4798,
+        "price": 148.22,
+        "value": 4517.86
+      },
+      {
+        "at": "2026-07-21 13:33",
+        "date": "2026-07-21",
+        "symbol": "KO",
+        "side": "buy",
+        "qty": 55.3514,
+        "price": 81.7,
+        "value": 4522.33
+      },
+      {
+        "at": "2026-07-21 13:32",
+        "date": "2026-07-21",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 62.151,
+        "price": 342.73,
+        "value": 21301.29
+      },
+      {
+        "at": "2026-07-21 13:31",
+        "date": "2026-07-21",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 42.1235,
+        "price": 527.07,
+        "value": 22202.02
+      },
+      {
+        "at": "2026-07-21 13:30",
+        "date": "2026-07-21",
+        "symbol": "PWR",
+        "side": "buy",
+        "qty": 26.348,
+        "price": 646.0,
+        "value": 17020.78
+      }
+    ]
   },
   "state": {
     "label": "Risk-on",
