@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:46:57",
+  "generated_utc": "2026-07-21 14:47:39",
   "entries": [
     {
       "ticker": "NVDA",
@@ -263,6 +263,25 @@
         }
       ],
       "notes": "vol 17%, ~$26M/day"
+    },
+    {
+      "ticker": "QQQM",
+      "name": "Invesco Exchange-Traded Fund Trust II Invesco NASDAQ 100 ETF",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "fit",
+      "type": "stable compounder",
+      "vol_tier": "stable",
+      "momentum": "up (+25%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.80"
+        }
+      ],
+      "notes": "vol 23%, ~$18M/day"
     }
   ]
 }
