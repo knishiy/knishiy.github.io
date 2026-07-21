@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:51:40",
+  "generated_utc": "2026-07-21 14:52:19",
   "entries": [
     {
       "ticker": "NVDA",
@@ -396,6 +396,25 @@
         }
       ],
       "notes": "vol 38%, ~$18M/day"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials, Inc. Common Stock",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "fit",
+      "type": "high-vol trender",
+      "vol_tier": "volatile",
+      "momentum": "up (+178%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +1.03"
+        }
+      ],
+      "notes": "vol 46%, ~$187M/day"
     }
   ]
 }
