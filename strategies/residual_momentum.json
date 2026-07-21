@@ -1,30 +1,18 @@
 {
-  "slug": "dualmom",
-  "name": "DualMomentum",
-  "subtitle": "Cross-sectional momentum \u2014 holds the top-3 trending names of the basket",
+  "slug": "residual_momentum",
+  "name": "Residual Momentum 12mo",
+  "subtitle": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the i\u2026",
   "kind": "rule",
-  "live": true,
+  "live": false,
   "editable": false,
   "metrics": [
-    {
-      "label": "Live paper account",
-      "source": "live.json",
-      "available": true,
-      "fields": {
-        "equity": 94053.5,
-        "ret": -0.05946499999999999,
-        "pnl": -5946.5,
-        "maxdd": -0.05946499999999999,
-        "days": 6
-      }
-    },
     {
       "label": "Forward (live-collected)",
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.03263095670750238,
-        "maxdd": -0.060946736389126954
+        "ret": -0.003814054020558233,
+        "maxdd": -0.036177753039186356
       },
       "extra": {
         "inception": "2026-06-30",
@@ -40,12 +28,12 @@
       "source": "leaderboard.json",
       "available": true,
       "fields": {
-        "ret": 1.2883116709578206,
-        "cagr": 0.20255286424620245,
-        "vol": 0.29334860291927806,
-        "sharpe": 0.7758428031630271,
-        "dsr": 0.600787202293306,
-        "maxdd": -0.3417809565001394
+        "ret": 1.243312978817399,
+        "cagr": 0.19724314217385963,
+        "vol": 0.2601639568856538,
+        "sharpe": 0.8224466909945662,
+        "dsr": 0.6379368180501808,
+        "maxdd": -0.2899908815899024
       },
       "extra": {
         "window": "in-sample"
@@ -55,21 +43,21 @@
   "holdings": {
     "items": [
       {
+        "name": "KO",
+        "weight": 0.333
+      },
+      {
+        "name": "CVX",
+        "weight": 0.333
+      },
+      {
         "name": "AMD",
-        "weight": 0.3457
-      },
-      {
-        "name": "NVDA",
-        "weight": 0.3319
-      },
-      {
-        "name": "GE",
-        "weight": 0.3224
+        "weight": 0.333
       }
     ],
     "total_names": 3,
-    "as_of": "now",
-    "note": "live paper positions (actual money allocation)"
+    "as_of": "2026-06-30",
+    "note": "simulated forward positions"
   },
   "allocation": {
     "kind": "rule",
@@ -77,7 +65,7 @@
     "editable": false,
     "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
   },
-  "edit_policy": "live-gated",
+  "edit_policy": "instant",
   "basket": [
     "KO",
     "PEP",

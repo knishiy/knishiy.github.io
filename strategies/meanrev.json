@@ -1,22 +1,34 @@
 {
   "slug": "meanrev",
   "name": "MeanReversion",
-  "subtitle": "Buy-the-dip \u2014 oversold entries; research-only (no live account yet)",
+  "subtitle": "Buy-the-dip \u2014 oversold entries on the shared basket",
   "kind": "rule",
-  "live": false,
+  "live": true,
   "editable": false,
   "metrics": [
+    {
+      "label": "Live paper account",
+      "source": "live.json",
+      "available": true,
+      "fields": {
+        "equity": 99122.71,
+        "ret": -0.008772899999999972,
+        "pnl": -877.2899999999936,
+        "maxdd": -0.008772899999999972,
+        "days": 3
+      }
+    },
     {
       "label": "Forward (live-collected)",
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.018456441785190902,
+        "ret": 0.016602020428398756,
         "maxdd": -0.007909205848396383
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 13,
+        "days": 14,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -26,32 +38,42 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": false,
-      "fields": {}
+      "available": true,
+      "fields": {
+        "ret": 0.26300807078664756,
+        "cagr": 0.05340279985239982,
+        "vol": 0.15412887403520173,
+        "sharpe": 0.41474033008359307,
+        "dsr": 0.30651288211225136,
+        "maxdd": -0.2472679559035622
+      },
+      "extra": {
+        "window": "in-sample"
+      }
     }
   ],
   "holdings": {
     "items": [
       {
-        "name": "PEP",
-        "weight": 0.111
+        "name": "AMD",
+        "weight": 0.2617
       },
       {
         "name": "IBM",
-        "weight": 0.111
+        "weight": 0.2489
+      },
+      {
+        "name": "PEP",
+        "weight": 0.2454
       },
       {
         "name": "GE",
-        "weight": 0.111
-      },
-      {
-        "name": "AMD",
-        "weight": 0.111
+        "weight": 0.244
       }
     ],
     "total_names": 4,
-    "as_of": "2026-06-30",
-    "note": "simulated forward positions"
+    "as_of": "now",
+    "note": "live paper positions (actual money allocation)"
   },
   "allocation": {
     "kind": "rule",
@@ -59,7 +81,7 @@
     "editable": false,
     "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
   },
-  "edit_policy": "instant",
+  "edit_policy": "live-gated",
   "basket": [
     "KO",
     "PEP",
@@ -69,6 +91,8 @@
     "IBM",
     "GE",
     "NVDA",
-    "AMD"
+    "AMD",
+    "PWR",
+    "TPL"
   ]
 }

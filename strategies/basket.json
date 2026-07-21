@@ -8,7 +8,9 @@
     "IBM",
     "GE",
     "NVDA",
-    "AMD"
+    "AMD",
+    "PWR",
+    "TPL"
   ],
   "names": {
     "KO": "Coca-Cola Company",
@@ -19,7 +21,9 @@
     "IBM": "International Business Machines Corporation",
     "GE": "GE Aerospace",
     "NVDA": "NVIDIA Corporation Common Stock",
-    "AMD": "Advanced Micro Devices, Inc. Common Stock"
+    "AMD": "Advanced Micro Devices, Inc. Common Stock",
+    "PWR": "Quanta Services, Inc.",
+    "TPL": "Texas Pacific Land Corporation"
   },
   "used_by": [
     "DualMomentum",

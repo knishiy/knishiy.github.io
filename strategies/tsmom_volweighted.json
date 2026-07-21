@@ -1,0 +1,102 @@
+{
+  "slug": "tsmom_volweighted",
+  "name": "TSMOM vol-weighted 12mo",
+  "subtitle": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size \u2026",
+  "kind": "rule",
+  "live": false,
+  "editable": false,
+  "metrics": [
+    {
+      "label": "Forward (live-collected)",
+      "source": "shadow.json",
+      "available": true,
+      "fields": {
+        "ret": -0.007994156389603546,
+        "maxdd": -0.0315862878186447
+      },
+      "extra": {
+        "inception": "2026-06-30",
+        "days": 14,
+        "min_show": 20,
+        "ready": false,
+        "n_buys": null,
+        "n_names": null
+      }
+    },
+    {
+      "label": "Backtest",
+      "source": "leaderboard.json",
+      "available": true,
+      "fields": {
+        "ret": 0.4245467025585501,
+        "cagr": 0.08203413201428034,
+        "vol": 0.18743819601666717,
+        "sharpe": 0.514637638050088,
+        "dsr": 0.3842640249347541,
+        "maxdd": -0.2821994685400062
+      },
+      "extra": {
+        "window": "in-sample"
+      }
+    }
+  ],
+  "holdings": {
+    "items": [
+      {
+        "name": "KO",
+        "weight": 0.192
+      },
+      {
+        "name": "PEP",
+        "weight": 0.181
+      },
+      {
+        "name": "CVX",
+        "weight": 0.152
+      },
+      {
+        "name": "WMT",
+        "weight": 0.145
+      },
+      {
+        "name": "GE",
+        "weight": 0.105
+      },
+      {
+        "name": "NVDA",
+        "weight": 0.103
+      },
+      {
+        "name": "IBM",
+        "weight": 0.074
+      },
+      {
+        "name": "AMD",
+        "weight": 0.049
+      }
+    ],
+    "total_names": 8,
+    "as_of": "2026-06-30",
+    "note": "simulated forward positions"
+  },
+  "allocation": {
+    "kind": "rule",
+    "items": [],
+    "editable": false,
+    "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
+  },
+  "edit_policy": "instant",
+  "basket": [
+    "KO",
+    "PEP",
+    "PG",
+    "WMT",
+    "CVX",
+    "IBM",
+    "GE",
+    "NVDA",
+    "AMD",
+    "PWR",
+    "TPL"
+  ]
+}

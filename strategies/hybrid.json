@@ -11,17 +11,39 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 102108.65,
-        "ret": 0.021086500000000008,
-        "pnl": 2108.649999999994,
+        "equity": 101978.63,
+        "ret": 0.019786300000000034,
+        "pnl": 1978.6300000000047,
         "maxdd": -0.018878911566227785,
-        "sharpe": 2.009779081148249,
-        "cagr": 0.2700102071762258,
-        "days": 22
+        "sharpe": 1.8475411018933705,
+        "cagr": 0.23945550863592113,
+        "days": 23
       }
     }
   ],
-  "holdings": {},
+  "holdings": {
+    "items": [
+      {
+        "name": "SPY",
+        "weight": 0.5999
+      },
+      {
+        "name": "XLK",
+        "weight": 0.1349
+      },
+      {
+        "name": "XLE",
+        "weight": 0.1332
+      },
+      {
+        "name": "XLI",
+        "weight": 0.132
+      }
+    ],
+    "total_names": 4,
+    "as_of": "now",
+    "note": "live paper positions (actual money allocation)"
+  },
   "allocation": {
     "kind": "symbols",
     "items": [

@@ -1,30 +1,18 @@
 {
-  "slug": "dualmom",
-  "name": "DualMomentum",
-  "subtitle": "Cross-sectional momentum \u2014 holds the top-3 trending names of the basket",
+  "slug": "fiftytwo_week_high",
+  "name": "52-Week High Proximity",
+  "subtitle": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 partici\u2026",
   "kind": "rule",
-  "live": true,
+  "live": false,
   "editable": false,
   "metrics": [
-    {
-      "label": "Live paper account",
-      "source": "live.json",
-      "available": true,
-      "fields": {
-        "equity": 94053.5,
-        "ret": -0.05946499999999999,
-        "pnl": -5946.5,
-        "maxdd": -0.05946499999999999,
-        "days": 6
-      }
-    },
     {
       "label": "Forward (live-collected)",
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.03263095670750238,
-        "maxdd": -0.060946736389126954
+        "ret": -0.1063349502126586,
+        "maxdd": -0.12596896987328843
       },
       "extra": {
         "inception": "2026-06-30",
@@ -40,12 +28,12 @@
       "source": "leaderboard.json",
       "available": true,
       "fields": {
-        "ret": 1.2883116709578206,
-        "cagr": 0.20255286424620245,
-        "vol": 0.29334860291927806,
-        "sharpe": 0.7758428031630271,
-        "dsr": 0.600787202293306,
-        "maxdd": -0.3417809565001394
+        "ret": 0.5923421010708059,
+        "cagr": 0.10921584036883814,
+        "vol": 0.21072625995385208,
+        "sharpe": 0.5976019583580916,
+        "dsr": 0.4523343841460641,
+        "maxdd": -0.2950440240017721
       },
       "extra": {
         "window": "in-sample"
@@ -55,21 +43,21 @@
   "holdings": {
     "items": [
       {
-        "name": "AMD",
-        "weight": 0.3457
+        "name": "KO",
+        "weight": 0.333
       },
       {
-        "name": "NVDA",
-        "weight": 0.3319
+        "name": "IBM",
+        "weight": 0.333
       },
       {
         "name": "GE",
-        "weight": 0.3224
+        "weight": 0.333
       }
     ],
     "total_names": 3,
-    "as_of": "now",
-    "note": "live paper positions (actual money allocation)"
+    "as_of": "2026-06-30",
+    "note": "simulated forward positions"
   },
   "allocation": {
     "kind": "rule",
@@ -77,7 +65,7 @@
     "editable": false,
     "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
   },
-  "edit_policy": "live-gated",
+  "edit_policy": "instant",
   "basket": [
     "KO",
     "PEP",

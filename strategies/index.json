@@ -43,7 +43,39 @@
     {
       "slug": "meanrev",
       "name": "MeanReversion",
-      "subtitle": "Buy-the-dip \u2014 oversold entries; research-only (no live account yet)",
+      "subtitle": "Buy-the-dip \u2014 oversold entries on the shared basket",
+      "kind": "rule",
+      "live": true,
+      "editable": false
+    },
+    {
+      "slug": "residual_momentum",
+      "name": "Residual Momentum 12mo",
+      "subtitle": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the i\u2026",
+      "kind": "rule",
+      "live": false,
+      "editable": false
+    },
+    {
+      "slug": "low_vol_anomaly",
+      "name": "Low-Vol Anomaly top-3",
+      "subtitle": "Frazzini & Pedersen (2014) 'Betting Against Beta': leverage-constrained and benchmark-aware investors overpay for high-volatility assets, so the lowes\u2026",
+      "kind": "rule",
+      "live": false,
+      "editable": false
+    },
+    {
+      "slug": "fiftytwo_week_high",
+      "name": "52-Week High Proximity",
+      "subtitle": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 partici\u2026",
+      "kind": "rule",
+      "live": false,
+      "editable": false
+    },
+    {
+      "slug": "tsmom_volweighted",
+      "name": "TSMOM vol-weighted 12mo",
+      "subtitle": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size \u2026",
       "kind": "rule",
       "live": false,
       "editable": false
