@@ -331,8 +331,13 @@ fetch("./status.json?cb="+Date.now()).then(r=>r.json()).then(s=>{
 
 fetch("./live.json?cb="+Date.now()).then(r=>r.json()).then(d=>{
   const accts = d.accounts || (d.live ? [d.live] : []);
+  // A backfilled account's LINE starts before its money did (forward-test context spliced in).
+  // Its return/PnL columns are real-money only, so say so rather than let the chart imply gains.
+  const bf = accts.filter(a => a.backfilled).map(a => a.name);
   document.getElementById("liveSub").textContent =
-    `· ${accts.length} real Alpaca paper account${accts.length>1?"s":""}, one per strategy · updated ${ago(d.generated_utc)}`;
+    `· ${accts.length} real Alpaca paper account${accts.length>1?"s":""}, one per strategy · updated ${ago(d.generated_utc)}`
+    + (bf.length ? ` · ${bf.join(", ")}: chart includes simulated pre-account history — Return/PnL are real-money only`
+                 : "");
   // One row per real account; the account name links to its detail page when it has one.
   document.getElementById("liveRow").innerHTML = accts.map(a=>rowHtml(a, "●")).join("")
     || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no live accounts</td></tr>`;

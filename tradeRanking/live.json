@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 07:44:39",
+  "generated_utc": "2026-07-21 07:54:12",
   "accounts": [
     {
       "slug": "hybrid",
@@ -16,11 +16,12 @@
       "maxdd": -0.018878911566227785,
       "days": 23,
       "holdings": {
-        "SPY": 0.5998,
-        "XLE": 0.1333,
+        "SPY": 0.5999,
+        "XLE": 0.1332,
         "XLI": 0.132,
         "XLK": 0.1349
-      }
+      },
+      "backfilled": false
     },
     {
       "slug": "dualmom",
@@ -38,9 +39,10 @@
       "days": 6,
       "holdings": {
         "AMD": 0.3457,
-        "GE": 0.3223,
-        "NVDA": 0.332
-      }
+        "GE": 0.3224,
+        "NVDA": 0.3319
+      },
+      "backfilled": false
     },
     {
       "slug": "donchian",
@@ -58,31 +60,33 @@
       "days": 6,
       "holdings": {
         "AMD": 0.2613,
-        "GE": 0.2437,
+        "GE": 0.2436,
         "KO": 0.2491,
         "PG": 0.246
-      }
+      },
+      "backfilled": false
     },
     {
       "slug": "meanrev",
       "name": "MeanReversion",
       "detail": null,
       "equity": 99122.71,
-      "start": 97661.20935828773,
-      "ret": 0.014965006590800023,
-      "pnl": 1461.5006417122786,
+      "start": 100000.0,
+      "ret": -0.008772899999999972,
+      "pnl": -877.2899999999936,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
       "maxdd": -0.008772899999999972,
-      "days": 15,
+      "days": 3,
       "holdings": {
         "AMD": 0.2617,
         "GE": 0.244,
         "IBM": 0.2489,
         "PEP": 0.2454
-      }
+      },
+      "backfilled": true
     }
   ],
   "curves": {
@@ -239,10 +243,11 @@
     "maxdd": -0.018878911566227785,
     "days": 23,
     "holdings": {
-      "SPY": 0.5998,
-      "XLE": 0.1333,
+      "SPY": 0.5999,
+      "XLE": 0.1332,
       "XLI": 0.132,
       "XLK": 0.1349
-    }
+    },
+    "backfilled": false
   }
 }
