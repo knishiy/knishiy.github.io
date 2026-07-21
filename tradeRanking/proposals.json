@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 05:53:30",
+  "generated_utc": "2026-07-21 07:50:32",
   "discord_checked": true,
   "algorithms": [
     {
@@ -70,7 +70,7 @@
       "verdict_note": "",
       "metrics": null,
       "date": null,
-      "discord": "failed"
+      "discord": "sent"
     },
     {
       "slug": "gold_trend",
@@ -98,7 +98,7 @@
       "slug": "residual_momentum",
       "name": "Residual Momentum 12mo",
       "reason": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the idiosyncratic underreaction signal. Daniel & Moskowitz (2016, JFE) show that raw momentum crashes are driven by its market-factor loading \u2014 a residual signal sidesteps this while preserving the alpha. Rank sector ETFs by residual return, hold the top 3, rebalance monthly.",
-      "status": "awaiting review",
+      "status": "in tournament",
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,

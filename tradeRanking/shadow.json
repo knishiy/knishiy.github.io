@@ -1,9 +1,9 @@
 {
-  "generated_utc": "2026-07-20 20:15:20",
+  "generated_utc": "2026-07-21 07:31:48",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
-  "end": "2026-07-17",
-  "days": 13,
+  "end": "2026-07-20",
+  "days": 14,
   "min_show": 20,
   "min_annual": 60,
   "ready": false,
@@ -84,13 +84,54 @@
         "GE": 0.111,
         "AMD": 0.111
       }
+    },
+    "Residual Momentum 12mo": {
+      "rule": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the idiosyncratic underreaction signal. Daniel & Moskowitz (2016, JFE) show that raw momentum crashes are driven by its market-factor loading \u2014 a residual signal sidesteps this while preserving the alpha. Rank sector ETFs by residual return, hold the top 3, rebalance monthly.",
+      "trades": "Approved proposal \u2014 forward-tested on the shared basket.",
+      "holdings": {
+        "KO": 0.333,
+        "CVX": 0.333,
+        "AMD": 0.333
+      }
+    },
+    "Low-Vol Anomaly top-3": {
+      "rule": "Frazzini & Pedersen (2014) 'Betting Against Beta': leverage-constrained and benchmark-aware investors overpay for high-volatility assets, so the lowest-realized-vol names earn superior risk-adjusted returns out-of-sample across 21+ country samples (Baker & Haugen 2012; Blitz & van Vliet 2007). Select the 3 least-volatile ETFs, size inversely to realized vol (risk parity within the selection), rebalance monthly.",
+      "trades": "Approved proposal \u2014 forward-tested on the shared basket.",
+      "holdings": {
+        "KO": 0.34,
+        "PEP": 0.334,
+        "PG": 0.31
+      }
+    },
+    "52-Week High Proximity": {
+      "rule": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 participants under-react to positive news when price approaches the reference point, creating a persistent drift. Distinct from past-return momentum; internationally documented across 49 markets.",
+      "trades": "Approved proposal \u2014 forward-tested on the shared basket.",
+      "holdings": {
+        "KO": 0.333,
+        "IBM": 0.333,
+        "GE": 0.333
+      }
+    },
+    "TSMOM vol-weighted 12mo": {
+      "rule": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size inversely to its volatility (risk parity within the long book), rebalance monthly to keep turnover \u2014 and thus cost \u2014 low. Distinct from the cross-sectional DualMomentum already tested.",
+      "trades": "Approved proposal \u2014 forward-tested on the shared basket.",
+      "holdings": {
+        "KO": 0.192,
+        "PEP": 0.181,
+        "WMT": 0.145,
+        "CVX": 0.152,
+        "IBM": 0.074,
+        "GE": 0.105,
+        "NVDA": 0.103,
+        "AMD": 0.049
+      }
     }
   },
   "leaderboard": [
     {
       "name": "MeanReversion z20",
-      "ret": 0.018456441785190902,
-      "pnl": 276.84662677786355,
+      "ret": 0.016602020428398756,
+      "pnl": 249.03030642598134,
       "cagr": null,
       "vol": null,
       "sharpe": null,
@@ -98,54 +139,94 @@
       "maxdd": -0.007909205848396383
     },
     {
-      "name": "B&H SPY",
-      "ret": -0.004660069365400421,
-      "pnl": -69.90104048100632,
+      "name": "Low-Vol Anomaly top-3",
+      "ret": 0.009521618997014425,
+      "pnl": 142.82428495521637,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.015444731439168247
+      "maxdd": -0.03932263386396906
+    },
+    {
+      "name": "Residual Momentum 12mo",
+      "ret": -0.003814054020558233,
+      "pnl": -57.210810308373496,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.036177753039186356
+    },
+    {
+      "name": "B&H SPY",
+      "ret": -0.006266989836227976,
+      "pnl": -94.00484754341964,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.017034240678190482
+    },
+    {
+      "name": "TSMOM vol-weighted 12mo",
+      "ret": -0.007994156389603546,
+      "pnl": -119.91234584405319,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.0315862878186447
     },
     {
       "name": "B&H equal-weight basket",
-      "ret": -0.02812707106712542,
-      "pnl": -421.9060660068813,
+      "ret": -0.030102535592634094,
+      "pnl": -451.53803388951144,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.04183591339139747
+      "maxdd": -0.04378351282169557
     },
     {
       "name": "DualMomentum 12mo top3",
-      "ret": -0.03149605871916805,
-      "pnl": -472.44088078752077,
+      "ret": -0.03263095670750238,
+      "pnl": -489.46435061253567,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.05984505790644212
+      "maxdd": -0.060946736389126954
     },
     {
       "name": "Donchian 50/25 breakout",
-      "ret": -0.04399007254709497,
-      "pnl": -659.8510882064246,
+      "ret": -0.044482329192404135,
+      "pnl": -667.2349378860621,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.05162771220953
+      "maxdd": -0.05211603617718563
     },
     {
       "name": "B&H QQQ",
-      "ret": -0.055771319934817765,
-      "pnl": -836.5697990222665,
+      "ret": -0.05478001086366091,
+      "pnl": -821.7001629549137,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
       "maxdd": -0.055771319934817765
+    },
+    {
+      "name": "52-Week High Proximity",
+      "ret": -0.1063349502126586,
+      "pnl": -1595.024253189879,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.12596896987328843
     }
   ],
   "curves": {
@@ -162,7 +243,8 @@
       "2026-07-14",
       "2026-07-15",
       "2026-07-16",
-      "2026-07-17"
+      "2026-07-17",
+      "2026-07-20"
     ],
     "series": {
       "B&H SPY": [
@@ -178,7 +260,8 @@
         15101.64,
         15161.5,
         15079.34,
-        14930.1
+        14930.1,
+        14906.0
       ],
       "B&H QQQ": [
         15000.0,
@@ -193,7 +276,8 @@
         14659.63,
         14619.91,
         14379.55,
-        14163.43
+        14163.43,
+        14178.3
       ],
       "B&H equal-weight basket": [
         15000.0,
@@ -208,7 +292,8 @@
         14766.67,
         14692.33,
         14751.56,
-        14578.09
+        14578.09,
+        14548.46
       ],
       "DualMomentum 12mo top3": [
         15000.0,
@@ -223,7 +308,8 @@
         15305.49,
         15241.08,
         14642.28,
-        14527.56
+        14527.56,
+        14510.54
       ],
       "Donchian 50/25 breakout": [
         15000.0,
@@ -238,7 +324,8 @@
         14503.84,
         14487.19,
         14421.83,
-        14340.15
+        14340.15,
+        14332.77
       ],
       "MeanReversion z20": [
         15000.0,
@@ -253,7 +340,72 @@
         15212.3,
         15170.86,
         15359.22,
-        15276.85
+        15276.85,
+        15249.03
+      ],
+      "Residual Momentum 12mo": [
+        15000.0,
+        14457.33,
+        14487.7,
+        14724.16,
+        14616.66,
+        14751.91,
+        14928.51,
+        15149.16,
+        15148.45,
+        15195.96,
+        14977.6,
+        14923.23,
+        14770.2,
+        14942.79
+      ],
+      "Low-Vol Anomaly top-3": [
+        15000.0,
+        15240.99,
+        15657.18,
+        15483.55,
+        15720.97,
+        15455.42,
+        15188.33,
+        15230.5,
+        15361.47,
+        15102.78,
+        15125.15,
+        15538.88,
+        15195.51,
+        15142.82
+      ],
+      "52-Week High Proximity": [
+        15000.0,
+        15015.33,
+        15331.32,
+        15248.52,
+        15336.96,
+        15202.46,
+        15082.23,
+        15006.01,
+        15016.53,
+        13689.64,
+        13617.04,
+        13737.57,
+        13464.08,
+        13404.98
+      ],
+      "TSMOM vol-weighted 12mo": [
+        15000.0,
+        14993.78,
+        15240.36,
+        15240.11,
+        15351.98,
+        15330.89,
+        15190.64,
+        15325.4,
+        15365.42,
+        15035.95,
+        14967.9,
+        15110.78,
+        14920.66,
+        14880.09
       ]
     }
   }
