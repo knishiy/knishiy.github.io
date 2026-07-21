@@ -1,71 +1,7 @@
 {
-  "generated_utc": "2026-07-21 12:09:36",
+  "generated_utc": "2026-07-21 14:25:19",
   "discord_checked": true,
   "algorithms": [
-    {
-      "slug": "insider_buys",
-      "name": "Copy insider buys (Form 4, S&P 500)",
-      "reason": "Mirror disclosed open-market insider PURCHASES (SEC Form 4, code P) among liquid S&P 500 names, held ~3 months from the filing date. Buy-side insider trades carry a documented out-of-sample premium (Lakonishok-Lee; Cohen-Malloy-Pomorski); sells are ignored as noisy. Disclosure-date keyed, one parameter (hold horizon), no discretion.",
-      "status": "in tournament",
-      "recommendation": "MARGINAL",
-      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
-      "metrics": {
-        "ret": 1.1771191945347672,
-        "sharpe": 0.7305765965055028,
-        "dsr": 0.5593019611263803,
-        "maxdd": -0.40332490521362396
-      },
-      "date": "2026-07-15 05:27:55",
-      "discord": "not sent"
-    },
-    {
-      "slug": "insider_buys_sellexit",
-      "name": "Copy insider buys \u2014 cluster-sell exit",
-      "reason": "Equal-weight insider buy mirror PLUS an early exit when >= 2 insiders sell a held name (a disclosed cluster sell). Insider sells are mostly noise (taxes/10b5-1), so only broad independent selling triggers an exit; lone sales are ignored. One knob, same universe/hold/disclosure discipline as the baseline it must beat.",
-      "status": "in tournament",
-      "recommendation": "MARGINAL",
-      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
-      "metrics": {
-        "ret": 1.2520327497421326,
-        "sharpe": 0.7418560481689548,
-        "dsr": 0.5694203021317152,
-        "maxdd": -0.4127664445078375
-      },
-      "date": "2026-07-15 05:27:04",
-      "discord": "not sent"
-    },
-    {
-      "slug": "insider_buys_conviction",
-      "name": "Copy insider buys \u2014 conviction-weighted",
-      "reason": "Weight each disclosed open-market insider buy by cluster_size x ln(1+$value): multiple independent insider buys (clusters) are the strongest documented insider signal (Lakonishok-Lee; Cohen-Malloy-Pomorski), and dollar size separates real conviction from token purchases. Log damping is standard, not tuned. Same universe, hold horizon, disclosure-date discipline as the equal-weight baseline it must beat.",
-      "status": "in tournament",
-      "recommendation": "MARGINAL",
-      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
-      "metrics": {
-        "ret": 1.0733763565221963,
-        "sharpe": 0.6910645452798793,
-        "dsr": 0.5480251836205098,
-        "maxdd": -0.4356554752919418
-      },
-      "date": "2026-07-15 05:13:59",
-      "discord": "not sent"
-    },
-    {
-      "slug": "regime_switch",
-      "name": "Regime Switch (trend/vol router)",
-      "reason": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filter (Faber 2007, JWM) and realized-volatility clustering (Engle 1982; Schwert 1989). Risk-on (SPY above its 200d MA and 20d vol under 30% annualized) holds 1/2 DualMomentum + 1/2 Donchian; risk-off holds MeanReversion, which in stress is naturally mostly cash. All three sub-rules already have measured records in this tournament \u2014 this adds only the routing layer. Null hypothesis: the equal-weight ensemble of the same three rules; if switching cannot beat that forward, it is noise.",
-      "status": "in tournament",
-      "recommendation": "MARGINAL",
-      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
-      "metrics": {
-        "ret": 0.7572251835929753,
-        "sharpe": 0.6413198633787064,
-        "dsr": 0.4390274668369081,
-        "maxdd": -0.343826186348297
-      },
-      "date": "2026-07-21 12:05:34",
-      "discord": "not sent"
-    },
     {
       "slug": "fiftytwo_week_high",
       "name": "52-Week High Proximity",
@@ -78,15 +14,37 @@
       "discord": "not sent"
     },
     {
-      "slug": "dual_ma_crossover",
-      "name": "Dual MA Crossover (50/200 golden cross)",
-      "reason": "Hold names where the 50-day moving average is above the 200-day moving average (golden cross), equally weighted among qualifying names. The signal captures trend persistence from investor underreaction documented by Brock, Lakonishok & LeBaron (1992, JoF) and cross-sectionally by Han, Zhou & Zhu (2016, JFE). Parameters fixed to the 50/200 convention used globally by practitioners.",
-      "status": "awaiting review",
+      "slug": "insider_buys",
+      "name": "Copy insider buys (Form 4, S&P 500)",
+      "reason": "Mirror disclosed open-market insider PURCHASES (SEC Form 4, code P) among liquid S&P 500 names, held ~3 months from the filing date. Buy-side insider trades carry a documented out-of-sample premium (Lakonishok-Lee; Cohen-Malloy-Pomorski); sells are ignored as noisy. Disclosure-date keyed, one parameter (hold horizon), no discretion.",
+      "status": "in tournament",
       "recommendation": null,
       "verdict_note": "",
       "metrics": null,
       "date": null,
-      "discord": "sent"
+      "discord": "not sent"
+    },
+    {
+      "slug": "insider_buys_sellexit",
+      "name": "Copy insider buys \u2014 cluster-sell exit",
+      "reason": "Equal-weight insider buy mirror PLUS an early exit when >= 2 insiders sell a held name (a disclosed cluster sell). Insider sells are mostly noise (taxes/10b5-1), so only broad independent selling triggers an exit; lone sales are ignored. One knob, same universe/hold/disclosure discipline as the baseline it must beat.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null,
+      "discord": "not sent"
+    },
+    {
+      "slug": "insider_buys_conviction",
+      "name": "Copy insider buys \u2014 conviction-weighted",
+      "reason": "Weight each disclosed open-market insider buy by cluster_size x ln(1+$value): multiple independent insider buys (clusters) are the strongest documented insider signal (Lakonishok-Lee; Cohen-Malloy-Pomorski), and dollar size separates real conviction from token purchases. Log damping is standard, not tuned. Same universe, hold horizon, disclosure-date discipline as the equal-weight baseline it must beat.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null,
+      "discord": "not sent"
     },
     {
       "slug": "gold_trend",
@@ -103,6 +61,17 @@
       "slug": "low_vol_anomaly",
       "name": "Low-Vol Anomaly top-3",
       "reason": "Frazzini & Pedersen (2014) 'Betting Against Beta': leverage-constrained and benchmark-aware investors overpay for high-volatility assets, so the lowest-realized-vol names earn superior risk-adjusted returns out-of-sample across 21+ country samples (Baker & Haugen 2012; Blitz & van Vliet 2007). Select the 3 least-volatile ETFs, size inversely to realized vol (risk parity within the selection), rebalance monthly.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null,
+      "discord": "not sent"
+    },
+    {
+      "slug": "regime_switch",
+      "name": "Regime Switch (trend/vol router)",
+      "reason": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filter (Faber 2007, JWM) and realized-volatility clustering (Engle 1982; Schwert 1989). Risk-on (SPY above its 200d MA and 20d vol under 30% annualized) holds 1/2 DualMomentum + 1/2 Donchian; risk-off holds MeanReversion, which in stress is naturally mostly cash. All three sub-rules already have measured records in this tournament \u2014 this adds only the routing layer. Null hypothesis: the equal-weight ensemble of the same three rules; if switching cannot beat that forward, it is noise.",
       "status": "in tournament",
       "recommendation": null,
       "verdict_note": "",
@@ -155,140 +124,11 @@
       "discord": "sent"
     }
   ],
-  "stocks": [
-    {
-      "ticker": "AAPL",
-      "target": "tournament basket",
-      "discord": "not sent",
-      "recommendation": "STRONG",
-      "type": "trend candidate",
-      "reason": "trend candidate; medium vol; momentum up",
-      "pros": [
-        "standalone Sharpe +1.01 vs SPY +0.76",
-        "basket Sharpe +1.07\u2192+1.17 (+0.11)",
-        "deflated Sharpe 0.99",
-        "corr to SPY +0.77"
-      ],
-      "cons": [
-        "basket maxDD -34%\u2192-35%"
-      ],
-      "d_sharpe": 0.10514639251154634,
-      "standalone_sharpe": 1.0104090823333547,
-      "spy_sharpe": 0.764324069786146,
-      "corr_spy": 0.771930319844153,
-      "dsr": 0.9855993771183016,
-      "maxdd": -0.3850920357207943,
-      "fair_value": null
-    },
-    {
-      "ticker": "ABBV",
-      "target": "tournament basket",
-      "discord": "not sent",
-      "recommendation": "MARGINAL",
-      "type": "trend candidate",
-      "reason": "trend candidate; medium vol; momentum up",
-      "pros": [
-        "basket Sharpe +1.07\u2192+1.12 (+0.06)",
-        "basket maxDD -34%\u2192-34%",
-        "deflated Sharpe 0.98",
-        "corr to SPY +0.46"
-      ],
-      "cons": [
-        "standalone Sharpe +0.61 vs SPY +0.76"
-      ],
-      "d_sharpe": 0.05907481806207082,
-      "standalone_sharpe": 0.6099935583654557,
-      "spy_sharpe": 0.764324069786146,
-      "corr_spy": 0.45585728601818537,
-      "dsr": 0.9791661662012099,
-      "maxdd": -0.4509348507722677,
-      "fair_value": null
-    },
-    {
-      "ticker": "KO",
-      "target": "momentum sleeve",
-      "discord": "not sent",
-      "recommendation": "MARGINAL",
-      "type": "stable compounder",
-      "reason": "defensive staple \u2014 low-beta cash-flow compounder for the defensive side of the sleeve",
-      "pros": [
-        "book Sharpe +0.76\u2192+0.79 (+0.03)",
-        "deflated Sharpe 0.98",
-        "corr to SPY +0.58"
-      ],
-      "cons": [
-        "standalone Sharpe +0.53 vs SPY +0.78",
-        "book maxDD -29%\u2192-29%"
-      ],
-      "d_sharpe": 0.03467781310193174,
-      "standalone_sharpe": 0.5301895478227546,
-      "spy_sharpe": 0.7836519192137645,
-      "corr_spy": 0.5838510881610257,
-      "dsr": 0.9751255742172824,
-      "maxdd": -0.3699351701782818,
-      "fair_value": {
-        "verdict": "undervalued",
-        "gap_pct": -0.14392911318522028
-      }
-    },
-    {
-      "ticker": "A",
-      "target": "tournament basket",
-      "discord": "not sent",
-      "recommendation": "MARGINAL",
-      "type": "range / mean-revert",
-      "reason": "range / mean-revert; medium vol; momentum flat",
-      "pros": [
-        "basket Sharpe +1.07\u2192+1.07 (+0.01)",
-        "basket maxDD -34%\u2192-34%",
-        "deflated Sharpe 0.97",
-        "corr to SPY +0.68"
-      ],
-      "cons": [
-        "standalone Sharpe +0.51 vs SPY +0.76"
-      ],
-      "d_sharpe": 0.0057573931010739265,
-      "standalone_sharpe": 0.5082882011702768,
-      "spy_sharpe": 0.764324069786146,
-      "corr_spy": 0.6795579069348469,
-      "dsr": 0.9731971316842312,
-      "maxdd": -0.42732474137432785,
-      "fair_value": null
-    }
-  ],
+  "stocks": [],
   "evaluated": {
-    "n_evaluated": 5,
-    "counts": {
-      "REJECT": 3,
-      "MARGINAL": 2
-    },
-    "recent": [
-      {
-        "ticker": "KO",
-        "recommendation": "MARGINAL",
-        "at": "2026-07-13 06:00:22"
-      },
-      {
-        "ticker": "URA",
-        "recommendation": "MARGINAL",
-        "at": "2026-07-13 05:18:11"
-      },
-      {
-        "ticker": "TLN",
-        "recommendation": "REJECT",
-        "at": "2026-07-13 04:41:35"
-      },
-      {
-        "ticker": "KTOS",
-        "recommendation": "REJECT",
-        "at": "2026-07-13 04:41:35"
-      },
-      {
-        "ticker": "MP",
-        "recommendation": "REJECT",
-        "at": "2026-07-13 04:41:35"
-      }
-    ]
+    "n_evaluated": 0,
+    "counts": {},
+    "recent": []
   },
   "note": "Both researchers are propose-only. An algorithm reaches the backtest tournament, and a stock the basket, only after a human approves it in Discord \u2014 the LLM never trades and never promotes a proposal to forward/paper/live on its own."
 }

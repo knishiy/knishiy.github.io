@@ -26,11 +26,8 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {},
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {

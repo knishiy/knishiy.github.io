@@ -26,18 +26,8 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 0.5923421010708059,
-        "cagr": 0.10921584036883814,
-        "vol": 0.21072625995385208,
-        "sharpe": 0.5976019583580916,
-        "dsr": 0.4523343841460641,
-        "maxdd": -0.2950440240017721
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {

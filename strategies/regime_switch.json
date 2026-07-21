@@ -38,26 +38,23 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {},
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3208
+        "weight": 0.3205
       },
       {
         "name": "GE",
-        "weight": 0.3085
+        "weight": 0.3084
       },
       {
         "name": "PWR",
-        "weight": 0.2405
+        "weight": 0.241
       },
       {
         "name": "KO",

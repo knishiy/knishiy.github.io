@@ -38,41 +38,31 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 0.26300807078664756,
-        "cagr": 0.05340279985239982,
-        "vol": 0.15412887403520173,
-        "sharpe": 0.41474033008359307,
-        "dsr": 0.30651288211225136,
-        "maxdd": -0.2472679559035622
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "AMD",
-        "weight": 0.208
+        "weight": 0.2077
       },
       {
         "name": "GE",
-        "weight": 0.2
+        "weight": 0.1999
       },
       {
         "name": "PWR",
-        "weight": 0.1985
+        "weight": 0.1988
       },
       {
         "name": "PEP",
-        "weight": 0.1975
+        "weight": 0.1973
       },
       {
         "name": "IBM",
-        "weight": 0.196
+        "weight": 0.1963
       }
     ],
     "total_names": 5,

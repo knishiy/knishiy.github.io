@@ -11,12 +11,12 @@
       "source": "congress_shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.002699368729573992,
+        "ret": 0.005145161276242982,
         "maxdd": 0.0
       },
       "extra": {
-        "inception": "2026-07-13",
-        "days": 2,
+        "inception": "2026-07-15",
+        "days": 4,
         "min_show": 20,
         "ready": false,
         "n_buys": 22,
@@ -27,72 +27,72 @@
   "holdings": {
     "items": [
       {
-        "name": "SCHP",
-        "weight": 0.01613,
-        "cluster": 3
-      },
-      {
         "name": "NVDA",
-        "weight": 0.01613,
+        "weight": 0.01449,
         "cluster": 3
       },
       {
-        "name": "IEF",
-        "weight": 0.01613,
-        "cluster": 2
-      },
-      {
-        "name": "GIGB",
-        "weight": 0.01613,
-        "cluster": 2
-      },
-      {
-        "name": "DHR",
-        "weight": 0.01613,
-        "cluster": 2
+        "name": "SCHP",
+        "weight": 0.01449,
+        "cluster": 3
       },
       {
         "name": "CEG",
-        "weight": 0.01613,
+        "weight": 0.01449,
+        "cluster": 2
+      },
+      {
+        "name": "DELL",
+        "weight": 0.01449,
+        "cluster": 2
+      },
+      {
+        "name": "IEF",
+        "weight": 0.01449,
         "cluster": 2
       },
       {
         "name": "MU",
-        "weight": 0.01613,
+        "weight": 0.01449,
         "cluster": 2
       },
       {
-        "name": "ZTS",
-        "weight": 0.01613,
-        "cluster": 2
-      },
-      {
-        "name": "GS",
-        "weight": 0.01613,
+        "name": "MA",
+        "weight": 0.01449,
         "cluster": 2
       },
       {
         "name": "XFIV",
-        "weight": 0.01613,
+        "weight": 0.01449,
         "cluster": 2
       },
       {
-        "name": "ANET",
-        "weight": 0.01613,
-        "cluster": 1
+        "name": "ZTS",
+        "weight": 0.01449,
+        "cluster": 2
       },
       {
-        "name": "AMCR",
-        "weight": 0.01613,
-        "cluster": 1
+        "name": "GS",
+        "weight": 0.01449,
+        "cluster": 2
       },
       {
-        "name": "50 other names",
-        "weight": 0.80645,
+        "name": "IFNNY",
+        "weight": 0.01449,
+        "cluster": 2
+      },
+      {
+        "name": "GIGB",
+        "weight": 0.01449,
+        "cluster": 2
+      },
+      {
+        "name": "57 other names",
+        "weight": 0.82609,
         "is_other": true
       }
     ],
-    "total_names": 62,
+    "total_names": 69,
     "as_of": "2026-07-20",
     "note": "tickers Congress disclosed buying in the last ~63 trading days (equal-weight; free live feed, page 0)"
   },
