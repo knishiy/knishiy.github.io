@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 14:52:19",
+  "generated_utc": "2026-07-21 14:53:04",
   "entries": [
     {
       "ticker": "NVDA",
@@ -415,6 +415,25 @@
         }
       ],
       "notes": "vol 46%, ~$187M/day"
+    },
+    {
+      "ticker": "AMGN",
+      "name": "Amgen Inc. Common Stock",
+      "added": "2026-07-21",
+      "last_checked": "2026-07-21",
+      "status": "fit",
+      "type": "stable compounder",
+      "vol_tier": "stable",
+      "momentum": "up (+27%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.50"
+        }
+      ],
+      "notes": "vol 24%, ~$30M/day"
     }
   ]
 }
