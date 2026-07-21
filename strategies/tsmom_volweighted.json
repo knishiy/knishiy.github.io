@@ -11,8 +11,8 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.007994156389603546,
-        "maxdd": -0.0315862878186447
+        "ret": -0.019743648482342557,
+        "maxdd": -0.029200796985488497
       },
       "extra": {
         "inception": "2026-06-30",
@@ -44,44 +44,52 @@
     "items": [
       {
         "name": "KO",
-        "weight": 0.192
+        "weight": 0.167
       },
       {
         "name": "PEP",
-        "weight": 0.181
+        "weight": 0.156
       },
       {
         "name": "CVX",
-        "weight": 0.152
+        "weight": 0.131
       },
       {
         "name": "WMT",
-        "weight": 0.145
+        "weight": 0.125
       },
       {
         "name": "GE",
-        "weight": 0.105
+        "weight": 0.091
       },
       {
         "name": "NVDA",
-        "weight": 0.103
+        "weight": 0.089
+      },
+      {
+        "name": "PWR",
+        "weight": 0.069
+      },
+      {
+        "name": "TPL",
+        "weight": 0.065
       },
       {
         "name": "IBM",
-        "weight": 0.074
+        "weight": 0.064
       },
       {
         "name": "AMD",
-        "weight": 0.049
+        "weight": 0.042
       }
     ],
-    "total_names": 8,
+    "total_names": 10,
     "as_of": "2026-06-30",
     "note": "simulated forward positions"
   },
   "trades": {
     "available": true,
-    "n": 5,
+    "n": 4,
     "simulated": true,
     "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
     "first": "2026-07-09",
@@ -89,7 +97,7 @@
     "active_days": 1,
     "span_days": 1,
     "per_week": null,
-    "buys": 3,
+    "buys": 2,
     "sells": 2,
     "items": [
       {
@@ -97,45 +105,36 @@
         "date": "2026-07-09",
         "symbol": "KO",
         "side": "sell",
-        "delta": -0.0165,
-        "weight_from": 0.209,
-        "weight_to": 0.1925
+        "delta": -0.0147,
+        "weight_from": 0.1814,
+        "weight_to": 0.1667
       },
       {
         "at": "2026-07-09",
         "date": "2026-07-09",
         "symbol": "PEP",
         "side": "sell",
-        "delta": -0.0136,
-        "weight_from": 0.1943,
-        "weight_to": 0.1807
+        "delta": -0.0122,
+        "weight_from": 0.1687,
+        "weight_to": 0.1565
       },
       {
         "at": "2026-07-09",
         "date": "2026-07-09",
         "symbol": "CVX",
         "side": "buy",
-        "delta": 0.0082,
-        "weight_from": 0.1433,
-        "weight_to": 0.1515
+        "delta": 0.0068,
+        "weight_from": 0.1244,
+        "weight_to": 0.1312
       },
       {
         "at": "2026-07-09",
         "date": "2026-07-09",
         "symbol": "GE",
         "side": "buy",
-        "delta": 0.0133,
-        "weight_from": 0.092,
-        "weight_to": 0.1053
-      },
-      {
-        "at": "2026-07-09",
-        "date": "2026-07-09",
-        "symbol": "NVDA",
-        "side": "buy",
-        "delta": 0.0056,
-        "weight_from": 0.0969,
-        "weight_to": 0.1026
+        "delta": 0.0114,
+        "weight_from": 0.0799,
+        "weight_to": 0.0912
       }
     ]
   },

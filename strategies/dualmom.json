@@ -23,8 +23,8 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.03263095670750238,
-        "maxdd": -0.060946736389126954
+        "ret": -0.09163015520786388,
+        "maxdd": -0.09180541574048506
       },
       "extra": {
         "inception": "2026-06-30",

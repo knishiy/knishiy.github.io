@@ -11,8 +11,8 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.003814054020558233,
-        "maxdd": -0.036177753039186356
+        "ret": -0.028988668472314738,
+        "maxdd": -0.05393811833140194
       },
       "extra": {
         "inception": "2026-06-30",
@@ -84,7 +84,7 @@
       {
         "at": "2026-07-09",
         "date": "2026-07-09",
-        "symbol": "WMT",
+        "symbol": "PWR",
         "side": "sell",
         "delta": -0.3333,
         "weight_from": 0.3333,

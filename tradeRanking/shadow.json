@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 08:18:54",
+  "generated_utc": "2026-07-21 08:36:32",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
   "end": "2026-07-20",
@@ -11,17 +11,19 @@
   "basket": {
     "stable": [
       "KO",
-      "PEP",
-      "PG"
+      "PG",
+      "PEP"
     ],
     "medium": [
-      "WMT",
       "CVX",
-      "IBM"
+      "WMT",
+      "GE"
     ],
     "volatile": [
-      "GE",
       "NVDA",
+      "PWR",
+      "IBM",
+      "TPL",
       "AMD"
     ]
   },
@@ -47,15 +49,17 @@
       "rule": "Hold all 9 basket names in equal weight.",
       "trades": "Never rebalances.",
       "holdings": {
-        "KO": 0.111,
-        "PEP": 0.111,
-        "PG": 0.111,
-        "WMT": 0.111,
-        "CVX": 0.111,
-        "IBM": 0.111,
-        "GE": 0.111,
-        "NVDA": 0.111,
-        "AMD": 0.111
+        "KO": 0.091,
+        "PEP": 0.091,
+        "PG": 0.091,
+        "WMT": 0.091,
+        "CVX": 0.091,
+        "IBM": 0.091,
+        "GE": 0.091,
+        "NVDA": 0.091,
+        "AMD": 0.091,
+        "PWR": 0.091,
+        "TPL": 0.091
       },
       "trade_log": {}
     },
@@ -64,8 +68,8 @@
       "trades": "Rebalances ~monthly (every 21 trading days) \u2014 low turnover.",
       "holdings": {
         "GE": 0.333,
-        "NVDA": 0.333,
-        "AMD": 0.333
+        "AMD": 0.333,
+        "PWR": 0.333
       },
       "trade_log": {
         "available": true,
@@ -83,20 +87,20 @@
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
-            "symbol": "CVX",
-            "side": "sell",
-            "delta": -0.3333,
-            "weight_from": 0.3333,
-            "weight_to": 0.0
-          },
-          {
-            "at": "2026-07-09",
-            "date": "2026-07-09",
             "symbol": "GE",
             "side": "buy",
             "delta": 0.3333,
             "weight_from": 0.0,
             "weight_to": 0.3333
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "NVDA",
+            "side": "sell",
+            "delta": -0.3333,
+            "weight_from": 0.3333,
+            "weight_to": 0.0
           }
         ]
       }
@@ -105,10 +109,10 @@
       "rule": "Go long a name when it makes a new 50-day high; exit when it makes a new 25-day low. Equal-weight the current breakouts.",
       "trades": "Buys/sells as names cross their channel.",
       "holdings": {
-        "KO": 0.111,
-        "PG": 0.111,
-        "GE": 0.111,
-        "AMD": 0.111
+        "KO": 0.091,
+        "PG": 0.091,
+        "GE": 0.091,
+        "AMD": 0.091
       },
       "trade_log": {
         "available": true,
@@ -128,8 +132,8 @@
             "date": "2026-07-15",
             "symbol": "IBM",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
           }
         ]
@@ -139,14 +143,15 @@
       "rule": "Buy names that are oversold (20-day z-score below -1); exit as they revert \u2014 contrarian.",
       "trades": "Trades when names stretch from their mean.",
       "holdings": {
-        "PEP": 0.111,
-        "IBM": 0.111,
-        "GE": 0.111,
-        "AMD": 0.111
+        "PEP": 0.091,
+        "IBM": 0.091,
+        "GE": 0.091,
+        "AMD": 0.091,
+        "PWR": 0.091
       },
       "trade_log": {
         "available": true,
-        "n": 10,
+        "n": 11,
         "simulated": true,
         "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
         "first": "2026-07-06",
@@ -154,7 +159,7 @@
         "active_days": 5,
         "span_days": 12,
         "per_week": null,
-        "buys": 5,
+        "buys": 6,
         "sells": 5,
         "items": [
           {
@@ -162,8 +167,8 @@
             "date": "2026-07-17",
             "symbol": "PG",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
           },
           {
@@ -171,8 +176,8 @@
             "date": "2026-07-17",
             "symbol": "WMT",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
           },
           {
@@ -180,53 +185,53 @@
             "date": "2026-07-17",
             "symbol": "GE",
             "side": "buy",
-            "delta": 0.1111,
+            "delta": 0.0909,
             "weight_from": 0.0,
-            "weight_to": 0.1111
+            "weight_to": 0.0909
           },
           {
             "at": "2026-07-17",
             "date": "2026-07-17",
             "symbol": "AMD",
             "side": "buy",
-            "delta": 0.1111,
+            "delta": 0.0909,
             "weight_from": 0.0,
-            "weight_to": 0.1111
+            "weight_to": 0.0909
           },
           {
             "at": "2026-07-15",
             "date": "2026-07-15",
             "symbol": "IBM",
             "side": "buy",
-            "delta": 0.1111,
+            "delta": 0.0909,
             "weight_from": 0.0,
-            "weight_to": 0.1111
+            "weight_to": 0.0909
           },
           {
             "at": "2026-07-10",
             "date": "2026-07-10",
             "symbol": "PEP",
             "side": "buy",
-            "delta": 0.1111,
+            "delta": 0.0909,
             "weight_from": 0.0,
-            "weight_to": 0.1111
+            "weight_to": 0.0909
           },
           {
             "at": "2026-07-10",
             "date": "2026-07-10",
             "symbol": "PG",
             "side": "buy",
-            "delta": 0.1111,
+            "delta": 0.0909,
             "weight_from": 0.0,
-            "weight_to": 0.1111
+            "weight_to": 0.0909
           },
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
             "symbol": "CVX",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
           },
           {
@@ -234,8 +239,8 @@
             "date": "2026-07-09",
             "symbol": "NVDA",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
           },
           {
@@ -243,9 +248,18 @@
             "date": "2026-07-06",
             "symbol": "PEP",
             "side": "sell",
-            "delta": -0.1111,
-            "weight_from": 0.1111,
+            "delta": -0.0909,
+            "weight_from": 0.0909,
             "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-06",
+            "date": "2026-07-06",
+            "symbol": "PWR",
+            "side": "buy",
+            "delta": 0.0909,
+            "weight_from": 0.0,
+            "weight_to": 0.0909
           }
         ]
       }
@@ -283,7 +297,7 @@
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
-            "symbol": "WMT",
+            "symbol": "PWR",
             "side": "sell",
             "delta": -0.3333,
             "weight_from": 0.3333,
@@ -371,18 +385,20 @@
       "rule": "Absolute (time-series) momentum, the durable Moskowitz-Ooi-Pedersen effect: hold a name only while its own trailing 12-month return is positive, size inversely to its volatility (risk parity within the long book), rebalance monthly to keep turnover \u2014 and thus cost \u2014 low. Distinct from the cross-sectional DualMomentum already tested.",
       "trades": "Approved proposal \u2014 forward-tested on the shared basket.",
       "holdings": {
-        "KO": 0.192,
-        "PEP": 0.181,
-        "WMT": 0.145,
-        "CVX": 0.152,
-        "IBM": 0.074,
-        "GE": 0.105,
-        "NVDA": 0.103,
-        "AMD": 0.049
+        "KO": 0.167,
+        "PEP": 0.156,
+        "WMT": 0.125,
+        "CVX": 0.131,
+        "IBM": 0.064,
+        "GE": 0.091,
+        "NVDA": 0.089,
+        "AMD": 0.042,
+        "PWR": 0.069,
+        "TPL": 0.065
       },
       "trade_log": {
         "available": true,
-        "n": 5,
+        "n": 4,
         "simulated": true,
         "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
         "first": "2026-07-09",
@@ -390,7 +406,7 @@
         "active_days": 1,
         "span_days": 1,
         "per_week": null,
-        "buys": 3,
+        "buys": 2,
         "sells": 2,
         "items": [
           {
@@ -398,61 +414,42 @@
             "date": "2026-07-09",
             "symbol": "KO",
             "side": "sell",
-            "delta": -0.0165,
-            "weight_from": 0.209,
-            "weight_to": 0.1925
+            "delta": -0.0147,
+            "weight_from": 0.1814,
+            "weight_to": 0.1667
           },
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
             "symbol": "PEP",
             "side": "sell",
-            "delta": -0.0136,
-            "weight_from": 0.1943,
-            "weight_to": 0.1807
+            "delta": -0.0122,
+            "weight_from": 0.1687,
+            "weight_to": 0.1565
           },
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
             "symbol": "CVX",
             "side": "buy",
-            "delta": 0.0082,
-            "weight_from": 0.1433,
-            "weight_to": 0.1515
+            "delta": 0.0068,
+            "weight_from": 0.1244,
+            "weight_to": 0.1312
           },
           {
             "at": "2026-07-09",
             "date": "2026-07-09",
             "symbol": "GE",
             "side": "buy",
-            "delta": 0.0133,
-            "weight_from": 0.092,
-            "weight_to": 0.1053
-          },
-          {
-            "at": "2026-07-09",
-            "date": "2026-07-09",
-            "symbol": "NVDA",
-            "side": "buy",
-            "delta": 0.0056,
-            "weight_from": 0.0969,
-            "weight_to": 0.1026
+            "delta": 0.0114,
+            "weight_from": 0.0799,
+            "weight_to": 0.0912
           }
         ]
       }
     }
   },
   "leaderboard": [
-    {
-      "name": "MeanReversion z20",
-      "ret": 0.016602020428398756,
-      "pnl": 249.03030642598134,
-      "cagr": null,
-      "vol": null,
-      "sharpe": null,
-      "dsr": null,
-      "maxdd": -0.007909205848396383
-    },
     {
       "name": "Low-Vol Anomaly top-3",
       "ret": 0.009521618997014425,
@@ -464,14 +461,14 @@
       "maxdd": -0.03932263386396906
     },
     {
-      "name": "Residual Momentum 12mo",
-      "ret": -0.003814054020558233,
-      "pnl": -57.210810308373496,
+      "name": "MeanReversion z20",
+      "ret": 0.008678687191633339,
+      "pnl": 130.18030787450007,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.036177753039186356
+      "maxdd": -0.006224964287176449
     },
     {
       "name": "B&H SPY",
@@ -485,43 +482,43 @@
     },
     {
       "name": "TSMOM vol-weighted 12mo",
-      "ret": -0.007994156389603546,
-      "pnl": -119.91234584405319,
+      "ret": -0.019743648482342557,
+      "pnl": -296.15472723513835,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.0315862878186447
+      "maxdd": -0.029200796985488497
     },
     {
-      "name": "B&H equal-weight basket",
-      "ret": -0.030102535592634094,
-      "pnl": -451.53803388951144,
+      "name": "Residual Momentum 12mo",
+      "ret": -0.028988668472314738,
+      "pnl": -434.83002708472105,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.04378351282169557
-    },
-    {
-      "name": "DualMomentum 12mo top3",
-      "ret": -0.03263095670750238,
-      "pnl": -489.46435061253567,
-      "cagr": null,
-      "vol": null,
-      "sharpe": null,
-      "dsr": null,
-      "maxdd": -0.060946736389126954
+      "maxdd": -0.05393811833140194
     },
     {
       "name": "Donchian 50/25 breakout",
-      "ret": -0.044482329192404135,
-      "pnl": -667.2349378860621,
+      "ret": -0.036465137370874645,
+      "pnl": -546.9770605631197,
       "cagr": null,
       "vol": null,
       "sharpe": null,
       "dsr": null,
-      "maxdd": -0.05211603617718563
+      "maxdd": -0.04277587155375784
+    },
+    {
+      "name": "B&H equal-weight basket",
+      "ret": -0.04207253930696886,
+      "pnl": -631.0880896045329,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.04207253930696886
     },
     {
       "name": "B&H QQQ",
@@ -532,6 +529,16 @@
       "sharpe": null,
       "dsr": null,
       "maxdd": -0.055771319934817765
+    },
+    {
+      "name": "DualMomentum 12mo top3",
+      "ret": -0.09163015520786388,
+      "pnl": -1374.4523281179584,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.09180541574048506
     },
     {
       "name": "52-Week High Proximity",
@@ -596,83 +603,83 @@
       ],
       "B&H equal-weight basket": [
         15000.0,
-        14913.77,
-        15070.25,
-        15165.99,
-        15206.94,
-        15152.62,
-        15093.89,
-        15214.61,
-        15185.01,
-        14766.67,
-        14692.33,
-        14751.56,
-        14578.09,
-        14548.46
+        14804.93,
+        14861.71,
+        14935.95,
+        14934.06,
+        14882.53,
+        14826.04,
+        14927.99,
+        14917.66,
+        14634.51,
+        14541.91,
+        14561.91,
+        14415.47,
+        14368.91
       ],
       "DualMomentum 12mo top3": [
         15000.0,
-        14590.62,
-        14418.6,
-        14722.83,
-        14610.5,
-        14855.39,
-        15142.34,
-        15452.3,
-        14970.06,
-        15305.49,
-        15241.08,
-        14642.28,
-        14527.56,
-        14510.54
+        14394.59,
+        13963.0,
+        14327.77,
+        13928.33,
+        14176.92,
+        14494.83,
+        14527.15,
+        14157.12,
+        14386.5,
+        14222.32,
+        13647.12,
+        13622.92,
+        13625.55
       ],
       "Donchian 50/25 breakout": [
         15000.0,
-        14929.81,
-        14992.41,
-        15120.8,
-        15057.37,
-        14928.77,
-        14967.07,
-        14977.98,
-        14926.43,
-        14503.84,
-        14487.19,
-        14421.83,
-        14340.15,
-        14332.77
+        14942.58,
+        14993.83,
+        15098.89,
+        15047.07,
+        14941.92,
+        14973.28,
+        14982.22,
+        14940.03,
+        14593.95,
+        14580.25,
+        14526.43,
+        14459.11,
+        14453.02
       ],
       "MeanReversion z20": [
         15000.0,
-        14983.95,
-        15078.34,
-        15055.32,
-        15139.39,
-        15243.28,
-        15228.93,
-        15249.7,
-        15291.81,
-        15212.3,
-        15170.86,
-        15359.22,
-        15276.85,
-        15249.03
+        14986.87,
+        15064.12,
+        15056.62,
+        15090.38,
+        15195.04,
+        15187.15,
+        15184.24,
+        15193.68,
+        15159.46,
+        15100.45,
+        15216.14,
+        15143.91,
+        15130.18
       ],
       "Residual Momentum 12mo": [
         15000.0,
-        14457.33,
-        14487.7,
-        14724.16,
-        14616.66,
-        14751.91,
-        14928.51,
-        15149.16,
-        15148.45,
-        15195.96,
-        14977.6,
-        14923.23,
-        14770.2,
-        14942.79
+        14455.2,
+        14190.93,
+        14513.43,
+        14244.75,
+        14379.11,
+        14551.25,
+        14766.32,
+        14765.63,
+        14811.94,
+        14599.1,
+        14546.1,
+        14396.94,
+        14565.17
       ],
       "Low-Vol Anomaly top-3": [
         15000.0,
@@ -708,19 +715,19 @@
       ],
       "TSMOM vol-weighted 12mo": [
         15000.0,
-        14993.78,
-        15240.36,
-        15240.11,
-        15351.98,
-        15330.89,
-        15190.64,
-        15325.4,
-        15365.42,
-        15035.95,
-        14967.9,
-        15110.78,
-        14920.66,
-        14880.09
+        14905.16,
+        15065.49,
+        15064.52,
+        15133.06,
+        15111.86,
+        14985.52,
+        15103.35,
+        15146.12,
+        14904.71,
+        14821.67,
+        14922.21,
+        14754.73,
+        14703.85
       ]
     }
   }
