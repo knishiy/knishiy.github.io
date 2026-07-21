@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 08:36:32",
+  "generated_utc": "2026-07-21 12:09:24",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
   "end": "2026-07-20",
@@ -447,6 +447,104 @@
           }
         ]
       }
+    },
+    "Risk Parity (All Weather, unlevered)": {
+      "rule": "Bridgewater All Weather (Dalio, 1996): a 60/40 book holds 60% of its dollars in equities but ~90% of its RISK there, so it is not actually diversified. Weight inversely to volatility instead, equalising each asset's risk contribution. The mechanism is leverage aversion (Asness, Frazzini & Pedersen 2012, FAJ, 'Leverage Aversion and Risk Parity'): investors who cannot borrow bid up high-beta assets, leaving low-beta assets better risk-adjusted returns; supporting evidence in Chaves et al. (2011) and Clarke et al. (2013). This is the UNLEVERED variant because the project forbids leverage, so judge it on Sharpe and drawdown, not total return. One conventional parameter (60-day vol).",
+      "trades": "Approved proposal \u2014 forward-tested on its own universe: SPY, TLT, IEF, GLD, XLP, XLU.",
+      "holdings": {
+        "SPY": 0.139,
+        "TLT": 0.207,
+        "IEF": 0.365,
+        "GLD": 0.076,
+        "XLP": 0.11,
+        "XLU": 0.104
+      },
+      "trade_log": {
+        "available": true,
+        "n": 2,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-07",
+        "last": "2026-07-17",
+        "active_days": 2,
+        "span_days": 11,
+        "per_week": null,
+        "buys": 1,
+        "sells": 1,
+        "items": [
+          {
+            "at": "2026-07-17",
+            "date": "2026-07-17",
+            "symbol": "XLP",
+            "side": "sell",
+            "delta": -0.0061,
+            "weight_from": 0.1166,
+            "weight_to": 0.1105
+          },
+          {
+            "at": "2026-07-07",
+            "date": "2026-07-07",
+            "symbol": "SPY",
+            "side": "buy",
+            "delta": 0.0062,
+            "weight_from": 0.1318,
+            "weight_to": 0.1381
+          }
+        ]
+      }
+    },
+    "Regime Switch (trend/vol router)": {
+      "rule": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filter (Faber 2007, JWM) and realized-volatility clustering (Engle 1982; Schwert 1989). Risk-on (SPY above its 200d MA and 20d vol under 30% annualized) holds 1/2 DualMomentum + 1/2 Donchian; risk-off holds MeanReversion, which in stress is naturally mostly cash. All three sub-rules already have measured records in this tournament \u2014 this adds only the routing layer. Null hypothesis: the equal-weight ensemble of the same three rules; if switching cannot beat that forward, it is noise.",
+      "trades": "Approved proposal \u2014 forward-tested on its own universe: AMD, CVX, GE, IBM, KO, NVDA, PEP, PG.",
+      "holdings": {
+        "AMD": 0.212,
+        "GE": 0.212,
+        "KO": 0.045,
+        "PG": 0.045,
+        "PWR": 0.167
+      },
+      "trade_log": {
+        "available": true,
+        "n": 3,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-15",
+        "active_days": 2,
+        "span_days": 7,
+        "per_week": null,
+        "buys": 1,
+        "sells": 2,
+        "items": [
+          {
+            "at": "2026-07-15",
+            "date": "2026-07-15",
+            "symbol": "IBM",
+            "side": "sell",
+            "delta": -0.0455,
+            "weight_from": 0.0455,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "GE",
+            "side": "buy",
+            "delta": 0.1667,
+            "weight_from": 0.0455,
+            "weight_to": 0.2121
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "NVDA",
+            "side": "sell",
+            "delta": -0.1667,
+            "weight_from": 0.1667,
+            "weight_to": 0.0
+          }
+        ]
+      }
     }
   },
   "leaderboard": [
@@ -479,6 +577,16 @@
       "sharpe": null,
       "dsr": null,
       "maxdd": -0.017034240678190482
+    },
+    {
+      "name": "Risk Parity (All Weather, unlevered)",
+      "ret": -0.00730033026277177,
+      "pnl": -109.50495394157656,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.01069230715504943
     },
     {
       "name": "TSMOM vol-weighted 12mo",
@@ -529,6 +637,16 @@
       "sharpe": null,
       "dsr": null,
       "maxdd": -0.055771319934817765
+    },
+    {
+      "name": "Regime Switch (trend/vol router)",
+      "ret": -0.06350050174924204,
+      "pnl": -952.5075262386307,
+      "cagr": null,
+      "vol": null,
+      "sharpe": null,
+      "dsr": null,
+      "maxdd": -0.06350050174924204
     },
     {
       "name": "DualMomentum 12mo top3",
@@ -728,6 +846,38 @@
         14922.21,
         14754.73,
         14703.85
+      ],
+      "Risk Parity (All Weather, unlevered)": [
+        15000.0,
+        14954.91,
+        15051.43,
+        15048.19,
+        14993.89,
+        14938.99,
+        14950.79,
+        14980.36,
+        14916.78,
+        14933.16,
+        14946.12,
+        14965.13,
+        14951.11,
+        14890.5
+      ],
+      "Regime Switch (trend/vol router)": [
+        15000.0,
+        14668.58,
+        14473.84,
+        14713.61,
+        14483.25,
+        14561.9,
+        14740.45,
+        14761.28,
+        14552.5,
+        14501.85,
+        14412.29,
+        14094.25,
+        14049.1,
+        14047.49
       ]
     }
   }

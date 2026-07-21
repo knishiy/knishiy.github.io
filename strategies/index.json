@@ -79,6 +79,22 @@
       "kind": "rule",
       "live": false,
       "editable": false
+    },
+    {
+      "slug": "risk_parity",
+      "name": "Risk Parity (All Weather, unlevered)",
+      "subtitle": "Bridgewater All Weather (Dalio, 1996): a 60/40 book holds 60% of its dollars in equities but ~90% of its RISK there, so it is not actually diversified\u2026",
+      "kind": "rule",
+      "live": false,
+      "editable": false
+    },
+    {
+      "slug": "regime_switch",
+      "name": "Regime Switch (trend/vol router)",
+      "subtitle": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filt\u2026",
+      "kind": "rule",
+      "live": true,
+      "editable": false
     }
   ]
 }

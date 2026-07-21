@@ -1,0 +1,74 @@
+{
+  "slug": "regime_switch",
+  "name": "Regime Switch (trend/vol router)",
+  "subtitle": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filt\u2026",
+  "kind": "rule",
+  "live": true,
+  "editable": false,
+  "metrics": [
+    {
+      "label": "Live paper account",
+      "source": "live.json",
+      "available": true,
+      "fields": {
+        "equity": 100000.0,
+        "ret": 0.0,
+        "pnl": 0.0,
+        "maxdd": 0.0,
+        "days": 3
+      }
+    },
+    {
+      "label": "Forward (live-collected)",
+      "source": "shadow.json",
+      "available": true,
+      "fields": {
+        "ret": -0.06350050174924204,
+        "maxdd": -0.06350050174924204
+      },
+      "extra": {
+        "inception": "2026-06-30",
+        "days": 14,
+        "min_show": 20,
+        "ready": false,
+        "n_buys": null,
+        "n_names": null
+      }
+    },
+    {
+      "label": "Backtest",
+      "source": "leaderboard.json",
+      "available": true,
+      "fields": {},
+      "extra": {
+        "window": "in-sample"
+      }
+    }
+  ],
+  "holdings": {},
+  "trades": {
+    "n": 0,
+    "available": true,
+    "items": []
+  },
+  "allocation": {
+    "kind": "rule",
+    "items": [],
+    "editable": false,
+    "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
+  },
+  "edit_policy": "live-gated",
+  "basket": [
+    "KO",
+    "PEP",
+    "PG",
+    "WMT",
+    "CVX",
+    "IBM",
+    "GE",
+    "NVDA",
+    "AMD",
+    "PWR",
+    "TPL"
+  ]
+}

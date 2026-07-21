@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 07:50:32",
+  "generated_utc": "2026-07-21 12:09:36",
   "discord_checked": true,
   "algorithms": [
     {
@@ -51,6 +51,22 @@
       "discord": "not sent"
     },
     {
+      "slug": "regime_switch",
+      "name": "Regime Switch (trend/vol router)",
+      "reason": "Trend rules earn in sustained moves; mean reversion earns in chop. Route between them with the best-documented state variables: the 200-day trend filter (Faber 2007, JWM) and realized-volatility clustering (Engle 1982; Schwert 1989). Risk-on (SPY above its 200d MA and 20d vol under 30% annualized) holds 1/2 DualMomentum + 1/2 Donchian; risk-off holds MeanReversion, which in stress is naturally mostly cash. All three sub-rules already have measured records in this tournament \u2014 this adds only the routing layer. Null hypothesis: the equal-weight ensemble of the same three rules; if switching cannot beat that forward, it is noise.",
+      "status": "in tournament",
+      "recommendation": "MARGINAL",
+      "verdict_note": "positive return, beats SPY Sharpe, beats SPY return",
+      "metrics": {
+        "ret": 0.7572251835929753,
+        "sharpe": 0.6413198633787064,
+        "dsr": 0.4390274668369081,
+        "maxdd": -0.343826186348297
+      },
+      "date": "2026-07-21 12:05:34",
+      "discord": "not sent"
+    },
+    {
       "slug": "fiftytwo_week_high",
       "name": "52-Week High Proximity",
       "reason": "George & Hwang (2004, JoF): assets trading closest to their 52-week trailing high earn superior next-month returns due to investor anchoring \u2014 participants under-react to positive news when price approaches the reference point, creating a persistent drift. Distinct from past-return momentum; internationally documented across 49 markets.",
@@ -98,6 +114,17 @@
       "slug": "residual_momentum",
       "name": "Residual Momentum 12mo",
       "reason": "Blitz, Huij & Martens (2011, JFQA) 'Residual Momentum': subtract the market beta component from each asset's trailing 12-month return to isolate the idiosyncratic underreaction signal. Daniel & Moskowitz (2016, JFE) show that raw momentum crashes are driven by its market-factor loading \u2014 a residual signal sidesteps this while preserving the alpha. Rank sector ETFs by residual return, hold the top 3, rebalance monthly.",
+      "status": "in tournament",
+      "recommendation": null,
+      "verdict_note": "",
+      "metrics": null,
+      "date": null,
+      "discord": "sent"
+    },
+    {
+      "slug": "risk_parity",
+      "name": "Risk Parity (All Weather, unlevered)",
+      "reason": "Bridgewater All Weather (Dalio, 1996): a 60/40 book holds 60% of its dollars in equities but ~90% of its RISK there, so it is not actually diversified. Weight inversely to volatility instead, equalising each asset's risk contribution. The mechanism is leverage aversion (Asness, Frazzini & Pedersen 2012, FAJ, 'Leverage Aversion and Risk Parity'): investors who cannot borrow bid up high-beta assets, leaving low-beta assets better risk-adjusted returns; supporting evidence in Chaves et al. (2011) and Clarke et al. (2013). This is the UNLEVERED variant because the project forbids leverage, so judge it on Sharpe and drawdown, not total return. One conventional parameter (60-day vol).",
       "status": "in tournament",
       "recommendation": null,
       "verdict_note": "",

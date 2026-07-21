@@ -1,0 +1,120 @@
+{
+  "slug": "risk_parity",
+  "name": "Risk Parity (All Weather, unlevered)",
+  "subtitle": "Bridgewater All Weather (Dalio, 1996): a 60/40 book holds 60% of its dollars in equities but ~90% of its RISK there, so it is not actually diversified\u2026",
+  "kind": "rule",
+  "live": false,
+  "editable": false,
+  "metrics": [
+    {
+      "label": "Forward (live-collected)",
+      "source": "shadow.json",
+      "available": true,
+      "fields": {
+        "ret": -0.00730033026277177,
+        "maxdd": -0.01069230715504943
+      },
+      "extra": {
+        "inception": "2026-06-30",
+        "days": 14,
+        "min_show": 20,
+        "ready": false,
+        "n_buys": null,
+        "n_names": null
+      }
+    },
+    {
+      "label": "Backtest",
+      "source": "leaderboard.json",
+      "available": true,
+      "fields": {},
+      "extra": {
+        "window": "in-sample"
+      }
+    }
+  ],
+  "holdings": {
+    "items": [
+      {
+        "name": "IEF",
+        "weight": 0.365
+      },
+      {
+        "name": "TLT",
+        "weight": 0.207
+      },
+      {
+        "name": "SPY",
+        "weight": 0.139
+      },
+      {
+        "name": "XLP",
+        "weight": 0.11
+      },
+      {
+        "name": "XLU",
+        "weight": 0.104
+      },
+      {
+        "name": "GLD",
+        "weight": 0.076
+      }
+    ],
+    "total_names": 6,
+    "as_of": "2026-06-30",
+    "note": "simulated forward positions"
+  },
+  "trades": {
+    "available": true,
+    "n": 2,
+    "simulated": true,
+    "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+    "first": "2026-07-07",
+    "last": "2026-07-17",
+    "active_days": 2,
+    "span_days": 11,
+    "per_week": null,
+    "buys": 1,
+    "sells": 1,
+    "items": [
+      {
+        "at": "2026-07-17",
+        "date": "2026-07-17",
+        "symbol": "XLP",
+        "side": "sell",
+        "delta": -0.0061,
+        "weight_from": 0.1166,
+        "weight_to": 0.1105
+      },
+      {
+        "at": "2026-07-07",
+        "date": "2026-07-07",
+        "symbol": "SPY",
+        "side": "buy",
+        "delta": 0.0062,
+        "weight_from": 0.1318,
+        "weight_to": 0.1381
+      }
+    ]
+  },
+  "allocation": {
+    "kind": "rule",
+    "items": [],
+    "editable": false,
+    "help": "Rule-based strategy \u2014 the rule sets positions automatically; there is no manual allocation to edit."
+  },
+  "edit_policy": "instant",
+  "basket": [
+    "KO",
+    "PEP",
+    "PG",
+    "WMT",
+    "CVX",
+    "IBM",
+    "GE",
+    "NVDA",
+    "AMD",
+    "PWR",
+    "TPL"
+  ]
+}
