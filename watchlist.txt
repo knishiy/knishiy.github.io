@@ -18,3 +18,4 @@ KRUZ
 lite
 vti
 qqqm
+shop
