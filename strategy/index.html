@@ -284,26 +284,40 @@ function tradesHTML(){
   const rate = t.per_week==null
     ? `<span style="color:var(--mut)">needs 14+ days</span>`
     : `<b>${t.per_week}</b> / week`;
+  const what = t.simulated ? "simulated trades" : "fills";
   const stats = `
     <div class="note" style="margin-bottom:10px">
-      <b>${t.n}</b> fills (${t.buys||0} buy / ${t.sells||0} sell) ·
+      ${t.simulated ? `<b style="color:var(--warn)">SIMULATED</b> — what it <i>would have</i> traded in the forward book (no broker account).<br>` : ""}
+      <b>${t.n}</b> ${what} (${t.buys||0} buy / ${t.sells||0} sell) ·
       traded on <b>${t.active_days}</b> of ${t.span_days} days ·
       rate ${rate} · last <b>${escapeHtml(t.last||'—')}</b>
     </div>`;
-  const rows = (t.items||[]).map(i=>`
-    <tr>
-      <td style="color:var(--mut)">${escapeHtml(i.at)}</td>
+  const pct = v => (v*100).toFixed(1)+"%";
+  // Two shapes: REAL broker fills (qty/price/value) vs a SIMULATED forward book, where a
+  // trade is a change in target weight. Never dress a simulation up as a filled order.
+  const head = t.simulated
+    ? `<tr><th>Date</th><th>Symbol</th><th>Side</th>
+         <th style="text-align:right">Weight</th><th style="text-align:right">Change</th></tr>`
+    : `<tr><th>Filled</th><th>Symbol</th><th>Side</th>
+         <th style="text-align:right">Qty</th><th style="text-align:right">Price</th>
+         <th style="text-align:right">Value</th></tr>`;
+  const rows = (t.items||[]).map(i=>{
+    const common = `<td style="color:var(--mut)">${escapeHtml(i.at)}</td>
       <td><b>${escapeHtml(i.symbol)}</b></td>
-      <td style="color:${i.side==='buy'?'var(--good)':'var(--bad)'};text-transform:uppercase">${escapeHtml(i.side)}</td>
-      <td style="text-align:right">${i.qty}</td>
-      <td style="text-align:right">$${i.price.toLocaleString(undefined,{minimumFractionDigits:2})}</td>
-      <td style="text-align:right">$${Math.round(i.value).toLocaleString()}</td>
-    </tr>`).join("");
+      <td style="color:${i.side==='buy'?'var(--good)':'var(--bad)'};text-transform:uppercase">${escapeHtml(i.side)}</td>`;
+    return t.simulated
+      ? `<tr>${common}
+           <td style="text-align:right">${pct(i.weight_from)} → <b>${pct(i.weight_to)}</b></td>
+           <td style="text-align:right;color:${i.delta>=0?'var(--good)':'var(--bad)'}">${i.delta>=0?'+':''}${pct(i.delta)}</td>
+         </tr>`
+      : `<tr>${common}
+           <td style="text-align:right">${i.qty}</td>
+           <td style="text-align:right">$${i.price.toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+           <td style="text-align:right">$${Math.round(i.value).toLocaleString()}</td>
+         </tr>`;
+  }).join("");
   return stats + `<div style="overflow-x:auto"><table class="trades">
-      <thead><tr><th>Filled</th><th>Symbol</th><th>Side</th>
-        <th style="text-align:right">Qty</th><th style="text-align:right">Price</th>
-        <th style="text-align:right">Value</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+      <thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
 }
 
 /* -------------------------------------- basket (read-only here; edit in the Stock Library) */

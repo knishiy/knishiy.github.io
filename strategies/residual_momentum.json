@@ -60,10 +60,37 @@
     "note": "simulated forward positions"
   },
   "trades": {
-    "available": false,
-    "items": [],
-    "n": 0,
-    "note": "no paper account yet \u2014 forward test is simulated, so it places no orders"
+    "available": true,
+    "n": 2,
+    "simulated": true,
+    "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+    "first": "2026-07-09",
+    "last": "2026-07-09",
+    "active_days": 1,
+    "span_days": 1,
+    "per_week": null,
+    "buys": 1,
+    "sells": 1,
+    "items": [
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "KO",
+        "side": "buy",
+        "delta": 0.3333,
+        "weight_from": 0.0,
+        "weight_to": 0.3333
+      },
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "WMT",
+        "side": "sell",
+        "delta": -0.3333,
+        "weight_from": 0.3333,
+        "weight_to": 0.0
+      }
+    ]
   },
   "allocation": {
     "kind": "rule",

@@ -80,10 +80,64 @@
     "note": "simulated forward positions"
   },
   "trades": {
-    "available": false,
-    "items": [],
-    "n": 0,
-    "note": "no paper account yet \u2014 forward test is simulated, so it places no orders"
+    "available": true,
+    "n": 5,
+    "simulated": true,
+    "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+    "first": "2026-07-09",
+    "last": "2026-07-09",
+    "active_days": 1,
+    "span_days": 1,
+    "per_week": null,
+    "buys": 3,
+    "sells": 2,
+    "items": [
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "KO",
+        "side": "sell",
+        "delta": -0.0165,
+        "weight_from": 0.209,
+        "weight_to": 0.1925
+      },
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "PEP",
+        "side": "sell",
+        "delta": -0.0136,
+        "weight_from": 0.1943,
+        "weight_to": 0.1807
+      },
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "CVX",
+        "side": "buy",
+        "delta": 0.0082,
+        "weight_from": 0.1433,
+        "weight_to": 0.1515
+      },
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "GE",
+        "side": "buy",
+        "delta": 0.0133,
+        "weight_from": 0.092,
+        "weight_to": 0.1053
+      },
+      {
+        "at": "2026-07-09",
+        "date": "2026-07-09",
+        "symbol": "NVDA",
+        "side": "buy",
+        "delta": 0.0056,
+        "weight_from": 0.0969,
+        "weight_to": 0.1026
+      }
+    ]
   },
   "allocation": {
     "kind": "rule",

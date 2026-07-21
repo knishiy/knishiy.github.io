@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-21 07:31:48",
+  "generated_utc": "2026-07-21 08:18:54",
   "window": "forward (live-collected)",
   "inception": "2026-06-30",
   "end": "2026-07-20",
@@ -32,14 +32,16 @@
       "trades": "Never trades.",
       "holdings": {
         "SPY": 1.0
-      }
+      },
+      "trade_log": {}
     },
     "B&H QQQ": {
       "rule": "Buy & hold the Nasdaq-100 ETF.",
       "trades": "Never trades.",
       "holdings": {
         "QQQ": 1.0
-      }
+      },
+      "trade_log": {}
     },
     "B&H equal-weight basket": {
       "rule": "Hold all 9 basket names in equal weight.",
@@ -54,7 +56,8 @@
         "GE": 0.111,
         "NVDA": 0.111,
         "AMD": 0.111
-      }
+      },
+      "trade_log": {}
     },
     "DualMomentum 12mo top3": {
       "rule": "Rank the basket by 12-month momentum; hold the top 3 that are also trending up, else move to cash.",
@@ -63,6 +66,39 @@
         "GE": 0.333,
         "NVDA": 0.333,
         "AMD": 0.333
+      },
+      "trade_log": {
+        "available": true,
+        "n": 2,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-09",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 1,
+        "sells": 1,
+        "items": [
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "CVX",
+            "side": "sell",
+            "delta": -0.3333,
+            "weight_from": 0.3333,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "GE",
+            "side": "buy",
+            "delta": 0.3333,
+            "weight_from": 0.0,
+            "weight_to": 0.3333
+          }
+        ]
       }
     },
     "Donchian 50/25 breakout": {
@@ -73,6 +109,30 @@
         "PG": 0.111,
         "GE": 0.111,
         "AMD": 0.111
+      },
+      "trade_log": {
+        "available": true,
+        "n": 1,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-15",
+        "last": "2026-07-15",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 0,
+        "sells": 1,
+        "items": [
+          {
+            "at": "2026-07-15",
+            "date": "2026-07-15",
+            "symbol": "IBM",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          }
+        ]
       }
     },
     "MeanReversion z20": {
@@ -83,6 +143,111 @@
         "IBM": 0.111,
         "GE": 0.111,
         "AMD": 0.111
+      },
+      "trade_log": {
+        "available": true,
+        "n": 10,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-06",
+        "last": "2026-07-17",
+        "active_days": 5,
+        "span_days": 12,
+        "per_week": null,
+        "buys": 5,
+        "sells": 5,
+        "items": [
+          {
+            "at": "2026-07-17",
+            "date": "2026-07-17",
+            "symbol": "PG",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-17",
+            "date": "2026-07-17",
+            "symbol": "WMT",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-17",
+            "date": "2026-07-17",
+            "symbol": "GE",
+            "side": "buy",
+            "delta": 0.1111,
+            "weight_from": 0.0,
+            "weight_to": 0.1111
+          },
+          {
+            "at": "2026-07-17",
+            "date": "2026-07-17",
+            "symbol": "AMD",
+            "side": "buy",
+            "delta": 0.1111,
+            "weight_from": 0.0,
+            "weight_to": 0.1111
+          },
+          {
+            "at": "2026-07-15",
+            "date": "2026-07-15",
+            "symbol": "IBM",
+            "side": "buy",
+            "delta": 0.1111,
+            "weight_from": 0.0,
+            "weight_to": 0.1111
+          },
+          {
+            "at": "2026-07-10",
+            "date": "2026-07-10",
+            "symbol": "PEP",
+            "side": "buy",
+            "delta": 0.1111,
+            "weight_from": 0.0,
+            "weight_to": 0.1111
+          },
+          {
+            "at": "2026-07-10",
+            "date": "2026-07-10",
+            "symbol": "PG",
+            "side": "buy",
+            "delta": 0.1111,
+            "weight_from": 0.0,
+            "weight_to": 0.1111
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "CVX",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "NVDA",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-06",
+            "date": "2026-07-06",
+            "symbol": "PEP",
+            "side": "sell",
+            "delta": -0.1111,
+            "weight_from": 0.1111,
+            "weight_to": 0.0
+          }
+        ]
       }
     },
     "Residual Momentum 12mo": {
@@ -92,6 +257,39 @@
         "KO": 0.333,
         "CVX": 0.333,
         "AMD": 0.333
+      },
+      "trade_log": {
+        "available": true,
+        "n": 2,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-09",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 1,
+        "sells": 1,
+        "items": [
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "KO",
+            "side": "buy",
+            "delta": 0.3333,
+            "weight_from": 0.0,
+            "weight_to": 0.3333
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "WMT",
+            "side": "sell",
+            "delta": -0.3333,
+            "weight_from": 0.3333,
+            "weight_to": 0.0
+          }
+        ]
       }
     },
     "Low-Vol Anomaly top-3": {
@@ -101,6 +299,30 @@
         "KO": 0.34,
         "PEP": 0.334,
         "PG": 0.31
+      },
+      "trade_log": {
+        "available": true,
+        "n": 1,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-09",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 1,
+        "sells": 0,
+        "items": [
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "PG",
+            "side": "buy",
+            "delta": 0.0115,
+            "weight_from": 0.2987,
+            "weight_to": 0.3102
+          }
+        ]
       }
     },
     "52-Week High Proximity": {
@@ -110,6 +332,39 @@
         "KO": 0.333,
         "IBM": 0.333,
         "GE": 0.333
+      },
+      "trade_log": {
+        "available": true,
+        "n": 2,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-09",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 1,
+        "sells": 1,
+        "items": [
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "CVX",
+            "side": "sell",
+            "delta": -0.3333,
+            "weight_from": 0.3333,
+            "weight_to": 0.0
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "IBM",
+            "side": "buy",
+            "delta": 0.3333,
+            "weight_from": 0.0,
+            "weight_to": 0.3333
+          }
+        ]
       }
     },
     "TSMOM vol-weighted 12mo": {
@@ -124,6 +379,66 @@
         "GE": 0.105,
         "NVDA": 0.103,
         "AMD": 0.049
+      },
+      "trade_log": {
+        "available": true,
+        "n": 5,
+        "simulated": true,
+        "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
+        "first": "2026-07-09",
+        "last": "2026-07-09",
+        "active_days": 1,
+        "span_days": 1,
+        "per_week": null,
+        "buys": 3,
+        "sells": 2,
+        "items": [
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "KO",
+            "side": "sell",
+            "delta": -0.0165,
+            "weight_from": 0.209,
+            "weight_to": 0.1925
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "PEP",
+            "side": "sell",
+            "delta": -0.0136,
+            "weight_from": 0.1943,
+            "weight_to": 0.1807
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "CVX",
+            "side": "buy",
+            "delta": 0.0082,
+            "weight_from": 0.1433,
+            "weight_to": 0.1515
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "GE",
+            "side": "buy",
+            "delta": 0.0133,
+            "weight_from": 0.092,
+            "weight_to": 0.1053
+          },
+          {
+            "at": "2026-07-09",
+            "date": "2026-07-09",
+            "symbol": "NVDA",
+            "side": "buy",
+            "delta": 0.0056,
+            "weight_from": 0.0969,
+            "weight_to": 0.1026
+          }
+        ]
       }
     }
   },
