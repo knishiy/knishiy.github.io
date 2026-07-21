@@ -56,24 +56,181 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2613
+        "weight": 0.2624
       },
       {
         "name": "KO",
-        "weight": 0.2491
+        "weight": 0.248
       },
       {
         "name": "PG",
-        "weight": 0.246
+        "weight": 0.2457
       },
       {
         "name": "GE",
-        "weight": 0.2436
+        "weight": 0.2438
       }
     ],
     "total_names": 4,
     "as_of": "now",
     "note": "live paper positions (actual money allocation)"
+  },
+  "trades": {
+    "n": 16,
+    "available": true,
+    "first": "2026-07-15",
+    "last": "2026-07-20",
+    "active_days": 4,
+    "span_days": 6,
+    "per_week": null,
+    "buys": 11,
+    "sells": 5,
+    "items": [
+      {
+        "at": "2026-07-20 14:10",
+        "date": "2026-07-20",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 0.1959,
+        "price": 512.8,
+        "value": 100.44
+      },
+      {
+        "at": "2026-07-20 14:10",
+        "date": "2026-07-20",
+        "symbol": "PG",
+        "side": "buy",
+        "qty": 0.6248,
+        "price": 149.06,
+        "value": 93.14
+      },
+      {
+        "at": "2026-07-20 14:10",
+        "date": "2026-07-20",
+        "symbol": "KO",
+        "side": "buy",
+        "qty": 5.1486,
+        "price": 82.05,
+        "value": 422.42
+      },
+      {
+        "at": "2026-07-20 14:10",
+        "date": "2026-07-20",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 0.333,
+        "price": 349.24,
+        "value": 116.29
+      },
+      {
+        "at": "2026-07-17 14:10",
+        "date": "2026-07-17",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 1.1379,
+        "price": 489.88,
+        "value": 557.42
+      },
+      {
+        "at": "2026-07-17 14:10",
+        "date": "2026-07-17",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 1.2415,
+        "price": 356.2,
+        "value": 442.23
+      },
+      {
+        "at": "2026-07-17 14:10",
+        "date": "2026-07-17",
+        "symbol": "PG",
+        "side": "sell",
+        "qty": 1.832,
+        "price": 152.86,
+        "value": 280.04
+      },
+      {
+        "at": "2026-07-17 14:10",
+        "date": "2026-07-17",
+        "symbol": "KO",
+        "side": "sell",
+        "qty": 4.1355,
+        "price": 83.13,
+        "value": 343.76
+      },
+      {
+        "at": "2026-07-16 14:10",
+        "date": "2026-07-16",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 0.6406,
+        "price": 516.37,
+        "value": 330.77
+      },
+      {
+        "at": "2026-07-16 14:10",
+        "date": "2026-07-16",
+        "symbol": "KO",
+        "side": "buy",
+        "qty": 0.4641,
+        "price": 84.54,
+        "value": 39.23
+      },
+      {
+        "at": "2026-07-16 14:10",
+        "date": "2026-07-16",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 0.7047,
+        "price": 347.03,
+        "value": 244.55
+      },
+      {
+        "at": "2026-07-16 14:10",
+        "date": "2026-07-16",
+        "symbol": "PG",
+        "side": "sell",
+        "qty": 1.3227,
+        "price": 149.16,
+        "value": 197.3
+      },
+      {
+        "at": "2026-07-15 14:10",
+        "date": "2026-07-15",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 20.2709,
+        "price": 545.54,
+        "value": 11058.61
+      },
+      {
+        "at": "2026-07-15 14:10",
+        "date": "2026-07-15",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 31.4113,
+        "price": 355.88,
+        "value": 11178.65
+      },
+      {
+        "at": "2026-07-15 14:10",
+        "date": "2026-07-15",
+        "symbol": "PG",
+        "side": "buy",
+        "qty": 76.0618,
+        "price": 146.52,
+        "value": 11144.7
+      },
+      {
+        "at": "2026-07-15 14:10",
+        "date": "2026-07-15",
+        "symbol": "KO",
+        "side": "buy",
+        "qty": 133.7399,
+        "price": 82.58,
+        "value": 11044.24
+      }
+    ]
   },
   "allocation": {
     "kind": "rule",

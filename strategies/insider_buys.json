@@ -122,6 +122,12 @@
     "as_of": "2026-03-30",
     "note": "S&P 500 names with an insider buy in the last ~63 trading days (equal-weight; latest SEC data)"
   },
+  "trades": {
+    "available": false,
+    "items": [],
+    "n": 0,
+    "note": "no paper account yet \u2014 forward test is simulated, so it places no orders"
+  },
   "allocation": {
     "kind": "people",
     "items": [

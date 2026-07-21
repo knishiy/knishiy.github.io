@@ -56,20 +56,159 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3457
+        "weight": 0.3464
       },
       {
         "name": "NVDA",
-        "weight": 0.3319
+        "weight": 0.3316
       },
       {
         "name": "GE",
-        "weight": 0.3224
+        "weight": 0.3219
       }
     ],
     "total_names": 3,
     "as_of": "now",
     "note": "live paper positions (actual money allocation)"
+  },
+  "trades": {
+    "n": 14,
+    "available": true,
+    "first": "2026-07-15",
+    "last": "2026-07-20",
+    "active_days": 4,
+    "span_days": 6,
+    "per_week": null,
+    "buys": 9,
+    "sells": 5,
+    "items": [
+      {
+        "at": "2026-07-20 14:05",
+        "date": "2026-07-20",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 1.9877,
+        "price": 513.0,
+        "value": 1019.67
+      },
+      {
+        "at": "2026-07-20 14:05",
+        "date": "2026-07-20",
+        "symbol": "NVDA",
+        "side": "buy",
+        "qty": 6.6762,
+        "price": 206.3,
+        "value": 1377.31
+      },
+      {
+        "at": "2026-07-20 14:05",
+        "date": "2026-07-20",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 1.0945,
+        "price": 348.99,
+        "value": 381.97
+      },
+      {
+        "at": "2026-07-17 14:05",
+        "date": "2026-07-17",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 2.2547,
+        "price": 480.55,
+        "value": 1083.51
+      },
+      {
+        "at": "2026-07-17 14:05",
+        "date": "2026-07-17",
+        "symbol": "NVDA",
+        "side": "buy",
+        "qty": 0.8419,
+        "price": 203.05,
+        "value": 170.95
+      },
+      {
+        "at": "2026-07-17 14:05",
+        "date": "2026-07-17",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 2.0318,
+        "price": 354.66,
+        "value": 720.61
+      },
+      {
+        "at": "2026-07-16 14:05",
+        "date": "2026-07-16",
+        "symbol": "NVDA",
+        "side": "sell",
+        "qty": 5.7803,
+        "price": 207.7,
+        "value": 1200.56
+      },
+      {
+        "at": "2026-07-16 14:05",
+        "date": "2026-07-16",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 4.8187,
+        "price": 345.85,
+        "value": 1666.53
+      },
+      {
+        "at": "2026-07-15 14:05",
+        "date": "2026-07-15",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 0.6586,
+        "price": 543.35,
+        "value": 357.86
+      },
+      {
+        "at": "2026-07-15 14:05",
+        "date": "2026-07-15",
+        "symbol": "NVDA",
+        "side": "sell",
+        "qty": 1.7045,
+        "price": 210.57,
+        "value": 358.91
+      },
+      {
+        "at": "2026-07-15 14:05",
+        "date": "2026-07-15",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 1.0206,
+        "price": 355.52,
+        "value": 362.83
+      },
+      {
+        "at": "2026-07-15 13:33",
+        "date": "2026-07-15",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 60.8128,
+        "price": 556.39,
+        "value": 33835.79
+      },
+      {
+        "at": "2026-07-15 13:32",
+        "date": "2026-07-15",
+        "symbol": "NVDA",
+        "side": "buy",
+        "qty": 157.3812,
+        "price": 212.14,
+        "value": 33386.61
+      },
+      {
+        "at": "2026-07-15 13:30",
+        "date": "2026-07-15",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 94.2338,
+        "price": 356.35,
+        "value": 33580.23
+      }
+    ]
   },
   "allocation": {
     "kind": "rule",

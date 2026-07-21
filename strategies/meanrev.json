@@ -56,11 +56,11 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2617
+        "weight": 0.2631
       },
       {
         "name": "IBM",
-        "weight": 0.2489
+        "weight": 0.2471
       },
       {
         "name": "PEP",
@@ -68,12 +68,61 @@
       },
       {
         "name": "GE",
-        "weight": 0.244
+        "weight": 0.2445
       }
     ],
     "total_names": 4,
     "as_of": "now",
     "note": "live paper positions (actual money allocation)"
+  },
+  "trades": {
+    "n": 4,
+    "available": true,
+    "first": "2026-07-20",
+    "last": "2026-07-20",
+    "active_days": 1,
+    "span_days": 1,
+    "per_week": null,
+    "buys": 4,
+    "sells": 0,
+    "items": [
+      {
+        "at": "2026-07-20 13:35",
+        "date": "2026-07-20",
+        "symbol": "GE",
+        "side": "buy",
+        "qty": 31.8525,
+        "price": 356.15,
+        "value": 11344.16
+      },
+      {
+        "at": "2026-07-20 13:35",
+        "date": "2026-07-20",
+        "symbol": "IBM",
+        "side": "buy",
+        "qty": 52.2458,
+        "price": 211.95,
+        "value": 11073.3
+      },
+      {
+        "at": "2026-07-20 13:34",
+        "date": "2026-07-20",
+        "symbol": "AMD",
+        "side": "buy",
+        "qty": 22.4123,
+        "price": 516.69,
+        "value": 11580.28
+      },
+      {
+        "at": "2026-07-20 13:30",
+        "date": "2026-07-20",
+        "symbol": "PEP",
+        "side": "buy",
+        "qty": 81.032,
+        "price": 137.5,
+        "value": 11141.9
+      }
+    ]
   },
   "allocation": {
     "kind": "rule",

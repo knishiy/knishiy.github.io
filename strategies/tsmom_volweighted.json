@@ -79,6 +79,12 @@
     "as_of": "2026-06-30",
     "note": "simulated forward positions"
   },
+  "trades": {
+    "available": false,
+    "items": [],
+    "n": 0,
+    "note": "no paper account yet \u2014 forward test is simulated, so it places no orders"
+  },
   "allocation": {
     "kind": "rule",
     "items": [],

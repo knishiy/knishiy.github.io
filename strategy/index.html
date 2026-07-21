@@ -83,6 +83,12 @@
   .topnav a.nav:hover { color:var(--fg); }
   .topnav a.nav.active { color:var(--warn); border-bottom-color:var(--warn); }
   .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:8px; }
+  /* trade history */
+  table.trades { width:100%; border-collapse:collapse; font-size:13px; min-width:520px; }
+  table.trades th { text-align:left; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+                    color:var(--mut); font-weight:600; padding:6px 10px; border-bottom:1px solid var(--line); }
+  table.trades td { padding:6px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.trades tbody tr:last-child td { border-bottom:none; }
 </style>
 </head>
 <body>
@@ -259,10 +265,45 @@ function render(){
         <div class="editor" id="basketEditor"></div>`
         : `<div class="note" style="margin-top:16px">${escapeHtml(CARD.allocation.help||'Rule-based strategy — positions are set automatically; nothing to edit.')}</div>`}
       </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>TRADE HISTORY <span class="sub" style="font-weight:400;color:var(--mut)">· every fill, and how often it trades</span></h2>
+      ${tradesHTML()}
     </div>`;
   renderHoldings();
   if(CARD.editable) renderEditor();
   else if(CARD.basket) renderBasket();
+}
+
+/* -------------------------------------- trade history + frequency */
+function tradesHTML(){
+  const t = CARD.trades || {};
+  if(!t.available || !(t.items||[]).length)
+    return `<div class="note">${escapeHtml(t.note || 'No fills recorded yet.')}</div>`;
+  // per_week is withheld until the window is >= 14 days — 4 fills in one day is not a rate.
+  const rate = t.per_week==null
+    ? `<span style="color:var(--mut)">needs 14+ days</span>`
+    : `<b>${t.per_week}</b> / week`;
+  const stats = `
+    <div class="note" style="margin-bottom:10px">
+      <b>${t.n}</b> fills (${t.buys||0} buy / ${t.sells||0} sell) ·
+      traded on <b>${t.active_days}</b> of ${t.span_days} days ·
+      rate ${rate} · last <b>${escapeHtml(t.last||'—')}</b>
+    </div>`;
+  const rows = (t.items||[]).map(i=>`
+    <tr>
+      <td style="color:var(--mut)">${escapeHtml(i.at)}</td>
+      <td><b>${escapeHtml(i.symbol)}</b></td>
+      <td style="color:${i.side==='buy'?'var(--good)':'var(--bad)'};text-transform:uppercase">${escapeHtml(i.side)}</td>
+      <td style="text-align:right">${i.qty}</td>
+      <td style="text-align:right">$${i.price.toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+      <td style="text-align:right">$${Math.round(i.value).toLocaleString()}</td>
+    </tr>`).join("");
+  return stats + `<div style="overflow-x:auto"><table class="trades">
+      <thead><tr><th>Filled</th><th>Symbol</th><th>Side</th>
+        <th style="text-align:right">Qty</th><th style="text-align:right">Price</th>
+        <th style="text-align:right">Value</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
 }
 
 /* -------------------------------------- basket (read-only here; edit in the Stock Library) */
