@@ -11,9 +11,9 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 100032.27,
-        "ret": 0.0003227000000001201,
-        "pnl": 32.270000000004075,
+        "equity": 100257.48,
+        "ret": 0.002574799999999877,
+        "pnl": 257.4799999999959,
         "maxdd": -0.008772899999999972,
         "days": 4
       }
@@ -49,20 +49,20 @@
         "weight": 0.2021
       },
       {
-        "name": "GE",
-        "weight": 0.201
+        "name": "AMD",
+        "weight": 0.2011
       },
       {
         "name": "PEP",
-        "weight": 0.1998
-      },
-      {
-        "name": "AMD",
-        "weight": 0.1997
+        "weight": 0.1991
       },
       {
         "name": "IBM",
-        "weight": 0.1974
+        "weight": 0.199
+      },
+      {
+        "name": "GE",
+        "weight": 0.1988
       }
     ],
     "total_names": 5,

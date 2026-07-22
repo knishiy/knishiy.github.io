@@ -11,9 +11,9 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 99896.14,
-        "ret": -0.0010386000000000006,
-        "pnl": -103.86000000000058,
+        "equity": 99855.12,
+        "ret": -0.0014488000000000278,
+        "pnl": -144.88000000000466,
         "maxdd": -0.011678500000000036,
         "days": 7
       }
@@ -45,20 +45,20 @@
   "holdings": {
     "items": [
       {
-        "name": "GE",
-        "weight": 0.2503
+        "name": "AMD",
+        "weight": 0.2531
       },
       {
         "name": "KO",
-        "weight": 0.25
+        "weight": 0.2491
       },
       {
-        "name": "AMD",
-        "weight": 0.2499
+        "name": "GE",
+        "weight": 0.2489
       },
       {
         "name": "PG",
-        "weight": 0.2499
+        "weight": 0.2489
       }
     ],
     "total_names": 4,
