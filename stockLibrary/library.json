@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-07-22 08:14:43",
+  "generated_utc": "2026-07-22 14:25:23",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-02",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "high-vol trender",
@@ -23,7 +23,7 @@
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "added": "2026-07-22",
+      "added": "2026-07-02",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "stable compounder",
@@ -42,7 +42,7 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-02",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -61,7 +61,7 @@
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-02",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "high-vol trender",
@@ -84,7 +84,7 @@
     {
       "ticker": "SMCI",
       "name": "Super Micro Computer, Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-08",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -103,7 +103,7 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp. Class A Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-08",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "no / short data",
@@ -117,7 +117,7 @@
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corp.",
-      "added": "2026-07-22",
+      "added": "2026-07-08",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "stable compounder",
@@ -150,7 +150,7 @@
     {
       "ticker": "HLIT",
       "name": "Harmonic Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-13",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "illiquid (skip)",
@@ -169,7 +169,7 @@
     {
       "ticker": "ASML",
       "name": "ASML Holding N.V. New York Registry Shares",
-      "added": "2026-07-22",
+      "added": "2026-07-13",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -188,7 +188,7 @@
     {
       "ticker": "NANC",
       "name": "Unusual Whales Subversive Democratic Trading ETF",
-      "added": "2026-07-22",
+      "added": "2026-07-15",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "illiquid (skip)",
@@ -221,7 +221,7 @@
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-16",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "high-vol trender",
@@ -248,7 +248,7 @@
     {
       "ticker": "VTI",
       "name": "Vanguard Total Stock Market ETF",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "stable compounder",
@@ -267,7 +267,7 @@
     {
       "ticker": "QQQM",
       "name": "Invesco Exchange-Traded Fund Trust II Invesco NASDAQ 100 ETF",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "stable compounder",
@@ -286,7 +286,7 @@
     {
       "ticker": "SHOP",
       "name": "Shopify Inc. Class A subordinate voting shares",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "range / mean-revert candidate",
@@ -305,7 +305,7 @@
     {
       "ticker": "XOM",
       "name": "ExxonMobil Holdings Corporation",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -324,7 +324,7 @@
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -343,7 +343,7 @@
     {
       "ticker": "DHT",
       "name": "DHT HOLDINGS, INC.",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "illiquid (skip)",
@@ -362,7 +362,7 @@
     {
       "ticker": "RDDT",
       "name": "Reddit, Inc.",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "high-vol trender",
@@ -381,7 +381,7 @@
     {
       "ticker": "CF",
       "name": "CF Industries Holding, Inc.",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -400,7 +400,7 @@
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "high-vol trender",
@@ -419,7 +419,7 @@
     {
       "ticker": "AMGN",
       "name": "Amgen Inc. Common Stock",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "stable compounder",
@@ -438,7 +438,7 @@
     {
       "ticker": "TMO",
       "name": "Thermo Fisher Scientific, Inc.",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "fit",
       "type": "trend candidate",
@@ -457,7 +457,7 @@
     {
       "ticker": "SRFM",
       "name": "Surf Air Mobility Inc.",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "illiquid (skip)",
@@ -476,7 +476,7 @@
     {
       "ticker": "ALM",
       "name": "Almonty Industries Inc. Common Shares",
-      "added": "2026-07-22",
+      "added": "2026-07-21",
       "last_checked": "2026-07-22",
       "status": "unfit",
       "type": "no / short data",

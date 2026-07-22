@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.00730033026277177,
+        "ret": -0.007159228709386123,
         "maxdd": -0.01069230715504943
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 14,
+        "days": 15,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -26,26 +26,23 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {},
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "IEF",
-        "weight": 0.365
+        "weight": 0.364
       },
       {
         "name": "TLT",
-        "weight": 0.207
+        "weight": 0.205
       },
       {
         "name": "SPY",
-        "weight": 0.139
+        "weight": 0.141
       },
       {
         "name": "XLP",
@@ -57,7 +54,7 @@
       },
       {
         "name": "GLD",
-        "weight": 0.076
+        "weight": 0.077
       }
     ],
     "total_names": 6,

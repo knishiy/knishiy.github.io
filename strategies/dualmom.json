@@ -11,9 +11,9 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 96156.62,
-        "ret": -0.03843380000000007,
-        "pnl": -3843.3800000000047,
+        "equity": 97537.4,
+        "ret": -0.024626000000000037,
+        "pnl": -2462.600000000006,
         "maxdd": -0.05946499999999999,
         "days": 7
       }
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.09163015520786388,
+        "ret": -0.06441548564931465,
         "maxdd": -0.09180541574048506
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 14,
+        "days": 15,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -38,33 +38,23 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 1.2883116709578206,
-        "cagr": 0.20255286424620245,
-        "vol": 0.29334860291927806,
-        "sharpe": 0.7758428031630271,
-        "dsr": 0.600787202293306,
-        "maxdd": -0.3417809565001394
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3495
+        "weight": 0.3349
       },
       {
         "name": "PWR",
-        "weight": 0.3262
+        "weight": 0.3334
       },
       {
         "name": "GE",
-        "weight": 0.3243
+        "weight": 0.3317
       }
     ],
     "total_names": 3,
@@ -72,16 +62,25 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 17,
+    "n": 18,
     "available": true,
     "first": "2026-07-15",
-    "last": "2026-07-21",
-    "active_days": 5,
-    "span_days": 7,
+    "last": "2026-07-22",
+    "active_days": 6,
+    "span_days": 8,
     "per_week": null,
     "buys": 11,
-    "sells": 6,
+    "sells": 7,
     "items": [
+      {
+        "at": "2026-07-22 14:05",
+        "date": "2026-07-22",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 5.2534,
+        "price": 546.51,
+        "value": 2871.04
+      },
       {
         "at": "2026-07-21 14:05",
         "date": "2026-07-21",

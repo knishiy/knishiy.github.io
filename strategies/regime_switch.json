@@ -11,9 +11,9 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 100019.07,
-        "ret": 0.00019070000000009912,
-        "pnl": 19.070000000006985,
+        "equity": 100947.43,
+        "ret": 0.009474299999999936,
+        "pnl": 947.429999999993,
         "maxdd": 0.0,
         "days": 4
       }
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.06350050174924204,
+        "ret": -0.046464373378023116,
         "maxdd": -0.06350050174924204
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 14,
+        "days": 15,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -38,34 +38,31 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {},
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3238
+        "weight": 0.3112
       },
       {
         "name": "GE",
-        "weight": 0.3047
+        "weight": 0.3106
       },
       {
         "name": "PWR",
-        "weight": 0.2408
+        "weight": 0.2453
       },
       {
         "name": "KO",
-        "weight": 0.0656
+        "weight": 0.0665
       },
       {
         "name": "PG",
-        "weight": 0.0651
+        "weight": 0.0665
       }
     ],
     "total_names": 5,
@@ -73,16 +70,25 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 5,
+    "n": 6,
     "available": true,
     "first": "2026-07-21",
-    "last": "2026-07-21",
-    "active_days": 1,
-    "span_days": 1,
+    "last": "2026-07-22",
+    "active_days": 2,
+    "span_days": 2,
     "per_week": null,
     "buys": 5,
-    "sells": 0,
+    "sells": 1,
     "items": [
+      {
+        "at": "2026-07-22 14:20",
+        "date": "2026-07-22",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 3.1783,
+        "price": 550.14,
+        "value": 1748.53
+      },
       {
         "at": "2026-07-21 13:33",
         "date": "2026-07-21",
@@ -133,9 +139,9 @@
   "state": {
     "label": "Risk-on",
     "sleeve": "DualMomentum + Donchian (trend)",
-    "detail": "SPY +7.0% vs its 200d average \u00b7 20d vol 12% (threshold 30%)",
+    "detail": "SPY +7.8% vs its 200d average \u00b7 20d vol 12% (threshold 30%)",
     "since": "2026-04-09",
-    "days_held": 69,
+    "days_held": 70,
     "inputs": {
       "trend_ok": true,
       "vol_ok": true

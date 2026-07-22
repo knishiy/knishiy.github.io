@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.019743648482342557,
+        "ret": -0.014678009324482155,
         "maxdd": -0.029200796985488497
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 14,
+        "days": 15,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -26,18 +26,8 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": true,
-      "fields": {
-        "ret": 0.4245467025585501,
-        "cagr": 0.08203413201428034,
-        "vol": 0.18743819601666717,
-        "sharpe": 0.514637638050088,
-        "dsr": 0.3842640249347541,
-        "maxdd": -0.2821994685400062
-      },
-      "extra": {
-        "window": "in-sample"
-      }
+      "available": false,
+      "fields": {}
     }
   ],
   "holdings": {

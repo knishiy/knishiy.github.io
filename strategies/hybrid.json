@@ -11,12 +11,12 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 102958.69,
-        "ret": 0.02958689999999997,
-        "pnl": 2958.6900000000023,
+        "equity": 103222.64,
+        "ret": 0.0322264000000001,
+        "pnl": 3222.6399999999994,
         "maxdd": -0.018878911566227785,
-        "sharpe": 2.5960186227172732,
-        "cagr": 0.35819330616736944,
+        "sharpe": 2.7698658653032067,
+        "cagr": 0.3952020449327418,
         "days": 24
       }
     }
@@ -25,19 +25,19 @@
     "items": [
       {
         "name": "SPY",
-        "weight": 0.5979
+        "weight": 0.5948
       },
       {
         "name": "XLE",
-        "weight": 0.1357
+        "weight": 0.1368
       },
       {
         "name": "XLK",
-        "weight": 0.1347
+        "weight": 0.1359
       },
       {
         "name": "XLI",
-        "weight": 0.1317
+        "weight": 0.1325
       }
     ],
     "total_names": 4,
@@ -45,16 +45,25 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 70,
+    "n": 71,
     "available": true,
     "first": "2026-06-24",
-    "last": "2026-07-20",
-    "active_days": 16,
-    "span_days": 27,
-    "per_week": 18.15,
+    "last": "2026-07-22",
+    "active_days": 17,
+    "span_days": 29,
+    "per_week": 17.14,
     "buys": 39,
-    "sells": 31,
+    "sells": 32,
     "items": [
+      {
+        "at": "2026-07-22 14:00",
+        "date": "2026-07-22",
+        "symbol": "SPY",
+        "side": "sell",
+        "qty": 0.7242,
+        "price": 748.64,
+        "value": 542.17
+      },
       {
         "at": "2026-07-20 14:00",
         "date": "2026-07-20",
@@ -585,15 +594,6 @@
         "qty": 609.2582,
         "price": 54.14,
         "value": 32983.83
-      },
-      {
-        "at": "2026-06-29 13:31",
-        "date": "2026-06-29",
-        "symbol": "XLI",
-        "side": "sell",
-        "qty": 187.1082,
-        "price": 181.85,
-        "value": 34025.63
       }
     ]
   },
