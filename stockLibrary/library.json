@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-22 06:09:50",
+  "generated_utc": "2026-07-22 08:13:55",
   "entries": [
     {
       "ticker": "NVDA",
@@ -505,6 +505,29 @@
         }
       ],
       "notes": "vol 27%, ~$432M/day"
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology, Inc. Common Stock",
+      "added": "2026-07-22",
+      "last_checked": "2026-07-22",
+      "status": "fit",
+      "type": "high-vol trender",
+      "vol_tier": "volatile",
+      "momentum": "up (+758%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "DualMomentum 12mo",
+          "verdict": "Sharpe +1.23 vs B&H +1.20, maxDD -17%"
+        },
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +1.20"
+        }
+      ],
+      "notes": "vol 53%, ~$847M/day"
     }
   ]
 }
