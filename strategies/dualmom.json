@@ -11,9 +11,9 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 96825.28,
-        "ret": -0.031747199999999975,
-        "pnl": -3174.720000000001,
+        "equity": 96156.62,
+        "ret": -0.03843380000000007,
+        "pnl": -3843.3800000000047,
         "maxdd": -0.05946499999999999,
         "days": 7
       }
@@ -56,15 +56,15 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.3499
+        "weight": 0.3495
       },
       {
         "name": "PWR",
-        "weight": 0.3276
+        "weight": 0.3262
       },
       {
         "name": "GE",
-        "weight": 0.3226
+        "weight": 0.3243
       }
     ],
     "total_names": 3,

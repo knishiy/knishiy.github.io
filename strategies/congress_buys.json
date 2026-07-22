@@ -37,27 +37,12 @@
         "cluster": 3
       },
       {
+        "name": "DHR",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
         "name": "CEG",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "IEF",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "MA",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "MU",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "GS",
         "weight": 0.01562,
         "cluster": 2
       },
@@ -67,7 +52,22 @@
         "cluster": 2
       },
       {
-        "name": "XFIV",
+        "name": "SPGI",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "IEF",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "GS",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "MU",
         "weight": 0.01562,
         "cluster": 2
       },
@@ -77,12 +77,12 @@
         "cluster": 2
       },
       {
-        "name": "WDAY",
+        "name": "XFIV",
         "weight": 0.01562,
         "cluster": 2
       },
       {
-        "name": "APH",
+        "name": "ANET",
         "weight": 0.01562,
         "cluster": 1
       },
