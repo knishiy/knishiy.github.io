@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-22 08:13:55",
+  "generated_utc": "2026-07-22 08:14:43",
   "entries": [
     {
       "ticker": "NVDA",
@@ -528,6 +528,25 @@
         }
       ],
       "notes": "vol 53%, ~$847M/day"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc. Class A Common Stock",
+      "added": "2026-07-22",
+      "last_checked": "2026-07-22",
+      "status": "fit",
+      "type": "trend candidate",
+      "vol_tier": "medium",
+      "momentum": "up (+83%)",
+      "fair_value": "\u2014",
+      "last_earnings": "\u2014",
+      "strategies": [
+        {
+          "name": "Buy & hold",
+          "verdict": "Sharpe +0.98"
+        }
+      ],
+      "notes": "vol 31%, ~$388M/day"
     }
   ]
 }
