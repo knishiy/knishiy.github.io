@@ -9,24 +9,44 @@
     {
       "label": "Backtest (in-sample)",
       "source": "proposal_result_insider_buys.json",
-      "available": false,
-      "fields": {}
+      "available": true,
+      "fields": {
+        "ret": 1.1771191945347672,
+        "cagr": 0.16012499799254276,
+        "vol": 0.24445311185128316,
+        "sharpe": 0.7305765965055028,
+        "dsr": 0.5593019611263803,
+        "maxdd": -0.40332490521362396
+      },
+      "extra": {
+        "recommendation": "MARGINAL",
+        "window": "in-sample",
+        "verdict": {
+          "positive_return": true,
+          "beats_spy_sharpe": true,
+          "beats_spy_return": true,
+          "dsr": 0.5593019611263803,
+          "dsr_strong": true,
+          "maxdd": -0.40332490521362396,
+          "maxdd_ok": false,
+          "rank_by_sharpe": 2,
+          "n_strategies_ranked": 6,
+          "n_trials_deflation": 9
+        }
+      }
     },
     {
       "label": "Forward (live-collected)",
       "source": "insider_shadow.json",
       "available": true,
-      "fields": {
-        "ret": 0.0,
-        "maxdd": 0.0
-      },
+      "fields": {},
       "extra": {
-        "inception": "2026-07-15",
-        "days": 4,
+        "inception": "2026-07-13",
+        "days": 0,
         "min_show": 20,
         "ready": false,
-        "n_buys": 1,
-        "n_names": 1
+        "n_buys": 0,
+        "n_names": 0
       }
     }
   ],

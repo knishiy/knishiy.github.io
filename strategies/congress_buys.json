@@ -11,12 +11,12 @@
       "source": "congress_shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.005145161276242982,
+        "ret": 0.002699368729573992,
         "maxdd": 0.0
       },
       "extra": {
-        "inception": "2026-07-15",
-        "days": 4,
+        "inception": "2026-07-13",
+        "days": 2,
         "min_show": 20,
         "ready": false,
         "n_buys": 22,
@@ -27,32 +27,17 @@
   "holdings": {
     "items": [
       {
-        "name": "NVDA",
-        "weight": 0.01562,
-        "cluster": 3
-      },
-      {
         "name": "SCHP",
         "weight": 0.01562,
         "cluster": 3
       },
       {
-        "name": "DHR",
+        "name": "NVDA",
         "weight": 0.01562,
-        "cluster": 2
+        "cluster": 3
       },
       {
         "name": "CEG",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "GIGB",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "MU",
         "weight": 0.01562,
         "cluster": 2
       },
@@ -62,17 +47,22 @@
         "cluster": 2
       },
       {
+        "name": "MA",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "MU",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
         "name": "GS",
         "weight": 0.01562,
         "cluster": 2
       },
       {
-        "name": "SPGI",
-        "weight": 0.01562,
-        "cluster": 2
-      },
-      {
-        "name": "ZTS",
+        "name": "GIGB",
         "weight": 0.01562,
         "cluster": 2
       },
@@ -82,7 +72,17 @@
         "cluster": 2
       },
       {
-        "name": "ANET",
+        "name": "ZTS",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "WDAY",
+        "weight": 0.01562,
+        "cluster": 2
+      },
+      {
+        "name": "APH",
         "weight": 0.01562,
         "cluster": 1
       },

@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 98832.15,
-        "ret": -0.011678500000000036,
-        "pnl": -1167.8500000000058,
+        "equity": 99510.92,
+        "ret": -0.004890799999999973,
+        "pnl": -489.08000000000175,
         "maxdd": -0.011678500000000036,
-        "days": 6
+        "days": 7
       }
     },
     {
@@ -38,27 +38,37 @@
     {
       "label": "Backtest",
       "source": "leaderboard.json",
-      "available": false,
-      "fields": {}
+      "available": true,
+      "fields": {
+        "ret": 0.37823141909716274,
+        "cagr": 0.07409476577340657,
+        "vol": 0.09648282177314002,
+        "sharpe": 0.7892938814365414,
+        "dsr": 0.6098183208093289,
+        "maxdd": -0.16652334447325612
+      },
+      "extra": {
+        "window": "in-sample"
+      }
     }
   ],
   "holdings": {
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2661
+        "weight": 0.2633
       },
       {
         "name": "GE",
-        "weight": 0.2451
+        "weight": 0.2462
       },
       {
         "name": "KO",
-        "weight": 0.245
+        "weight": 0.2458
       },
       {
         "name": "PG",
-        "weight": 0.2438
+        "weight": 0.2447
       }
     ],
     "total_names": 4,
