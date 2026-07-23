@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 100257.48,
-        "ret": 0.002574799999999877,
-        "pnl": 257.4799999999959,
+        "equity": 100041.28,
+        "ret": 0.00041279999999987993,
+        "pnl": 41.279999999998836,
         "maxdd": -0.008772899999999972,
-        "days": 4
+        "days": 5
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.015532821532349361,
+        "ret": 0.013662796993792803,
         "maxdd": -0.006224964287176449
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 15,
+        "days": 16,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -46,23 +46,23 @@
     "items": [
       {
         "name": "PWR",
-        "weight": 0.2021
-      },
-      {
-        "name": "AMD",
-        "weight": 0.2011
-      },
-      {
-        "name": "PEP",
-        "weight": 0.1991
-      },
-      {
-        "name": "IBM",
-        "weight": 0.199
+        "weight": 0.2078
       },
       {
         "name": "GE",
+        "weight": 0.2048
+      },
+      {
+        "name": "PEP",
         "weight": 0.1988
+      },
+      {
+        "name": "WMT",
+        "weight": 0.1952
+      },
+      {
+        "name": "IBM",
+        "weight": 0.1934
       }
     ],
     "total_names": 5,
@@ -70,16 +70,34 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 14,
+    "n": 16,
     "available": true,
     "first": "2026-07-20",
-    "last": "2026-07-22",
-    "active_days": 3,
-    "span_days": 3,
+    "last": "2026-07-23",
+    "active_days": 4,
+    "span_days": 4,
     "per_week": null,
-    "buys": 7,
-    "sells": 7,
+    "buys": 8,
+    "sells": 8,
     "items": [
+      {
+        "at": "2026-07-23 14:15",
+        "date": "2026-07-23",
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": 82.3236,
+        "price": 107.43,
+        "value": 8843.76
+      },
+      {
+        "at": "2026-07-23 14:15",
+        "date": "2026-07-23",
+        "symbol": "AMD",
+        "side": "sell",
+        "qty": 16.481,
+        "price": 549.44,
+        "value": 9055.28
+      },
       {
         "at": "2026-07-22 13:31",
         "date": "2026-07-22",

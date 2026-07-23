@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.007159228709386123,
+        "ret": -0.004938531955216319,
         "maxdd": -0.01069230715504943
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 15,
+        "days": 16,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -34,27 +34,27 @@
     "items": [
       {
         "name": "IEF",
-        "weight": 0.364
+        "weight": 0.361
       },
       {
         "name": "TLT",
-        "weight": 0.205
+        "weight": 0.204
       },
       {
         "name": "SPY",
-        "weight": 0.141
+        "weight": 0.139
       },
       {
         "name": "XLP",
-        "weight": 0.11
+        "weight": 0.111
       },
       {
         "name": "XLU",
-        "weight": 0.104
+        "weight": 0.11
       },
       {
         "name": "GLD",
-        "weight": 0.077
+        "weight": 0.075
       }
     ],
     "total_names": 6,
@@ -63,17 +63,26 @@
   },
   "trades": {
     "available": true,
-    "n": 2,
+    "n": 3,
     "simulated": true,
     "note": "simulated \u2014 target-weight changes in the forward book, not broker fills",
     "first": "2026-07-07",
-    "last": "2026-07-17",
-    "active_days": 2,
-    "span_days": 11,
-    "per_week": null,
-    "buys": 1,
+    "last": "2026-07-22",
+    "active_days": 3,
+    "span_days": 16,
+    "per_week": 1.31,
+    "buys": 2,
     "sells": 1,
     "items": [
+      {
+        "at": "2026-07-22",
+        "date": "2026-07-22",
+        "symbol": "XLU",
+        "side": "buy",
+        "delta": 0.0054,
+        "weight_from": 0.1041,
+        "weight_to": 0.1095
+      },
       {
         "at": "2026-07-17",
         "date": "2026-07-17",

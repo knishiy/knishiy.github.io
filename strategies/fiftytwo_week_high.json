@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.11089909679201493,
-        "maxdd": -0.1304328411384268
+        "ret": -0.11630073708540012,
+        "maxdd": -0.13571580619465773
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 15,
+        "days": 16,
         "min_show": 20,
         "ready": false,
         "n_buys": null,

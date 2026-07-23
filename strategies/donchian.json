@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 99855.12,
-        "ret": -0.0014488000000000278,
-        "pnl": -144.88000000000466,
+        "equity": 99664.37,
+        "ret": -0.0033563000000000898,
+        "pnl": -335.63000000000466,
         "maxdd": -0.011678500000000036,
-        "days": 7
+        "days": 8
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.03027667261071354,
+        "ret": -0.028163446779369217,
         "maxdd": -0.04277587155375784
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 15,
+        "days": 16,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -46,36 +46,41 @@
     "items": [
       {
         "name": "AMD",
-        "weight": 0.2531
+        "weight": 0.3386
       },
       {
         "name": "KO",
-        "weight": 0.2491
-      },
-      {
-        "name": "GE",
-        "weight": 0.2489
+        "weight": 0.332
       },
       {
         "name": "PG",
-        "weight": 0.2489
+        "weight": 0.3294
       }
     ],
-    "total_names": 4,
+    "total_names": 3,
     "as_of": "now",
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 21,
+    "n": 22,
     "available": true,
     "first": "2026-07-15",
-    "last": "2026-07-22",
-    "active_days": 6,
-    "span_days": 8,
+    "last": "2026-07-23",
+    "active_days": 7,
+    "span_days": 9,
     "per_week": null,
     "buys": 11,
-    "sells": 10,
+    "sells": 11,
     "items": [
+      {
+        "at": "2026-07-23 14:10",
+        "date": "2026-07-23",
+        "symbol": "GE",
+        "side": "sell",
+        "qty": 26.4458,
+        "price": 348.09,
+        "value": 9205.52
+      },
       {
         "at": "2026-07-22 14:10",
         "date": "2026-07-22",

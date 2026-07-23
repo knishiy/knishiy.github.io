@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 97847.15,
-        "ret": -0.02152850000000006,
-        "pnl": -2152.850000000006,
+        "equity": 98841.84,
+        "ret": -0.01158160000000008,
+        "pnl": -1158.1600000000035,
         "maxdd": -0.05946499999999999,
-        "days": 7
+        "days": 8
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.06441548564931465,
+        "ret": -0.05751936721577433,
         "maxdd": -0.09180541574048506
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 15,
+        "days": 16,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -45,16 +45,16 @@
   "holdings": {
     "items": [
       {
-        "name": "AMD",
-        "weight": 0.3377
-      },
-      {
         "name": "PWR",
-        "weight": 0.3339
+        "weight": 0.3368
       },
       {
         "name": "GE",
-        "weight": 0.3285
+        "weight": 0.3319
+      },
+      {
+        "name": "AMD",
+        "weight": 0.3313
       }
     ],
     "total_names": 3,

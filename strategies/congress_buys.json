@@ -11,16 +11,16 @@
       "source": "congress_shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.018443435507982775,
-        "maxdd": 0.0
+        "ret": 0.015965667271337303,
+        "maxdd": -0.0024328972530610615
       },
       "extra": {
         "inception": "2026-07-15",
-        "days": 5,
+        "days": 6,
         "min_show": 20,
         "ready": false,
-        "n_buys": 91,
-        "n_names": 91
+        "n_buys": 108,
+        "n_names": 108
       }
     }
   ],
@@ -28,71 +28,71 @@
     "items": [
       {
         "name": "NVDA",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 3
       },
       {
-        "name": "ZTS",
-        "weight": 0.01,
+        "name": "MA",
+        "weight": 0.0087,
         "cluster": 2
       },
       {
-        "name": "ACN",
-        "weight": 0.01,
-        "cluster": 1
+        "name": "DELL",
+        "weight": 0.0087,
+        "cluster": 2
       },
       {
-        "name": "AMCR",
-        "weight": 0.01,
-        "cluster": 1
+        "name": "ZTS",
+        "weight": 0.0087,
+        "cluster": 2
       },
       {
-        "name": "CEG",
-        "weight": 0.01,
+        "name": "APH",
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "CFRUY",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "CI",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "CMPGY",
-        "weight": 0.01,
+        "weight": 0.0087,
+        "cluster": 1
+      },
+      {
+        "name": "ATR",
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "CMWAY",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "COO",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 1
       },
       {
         "name": "COST",
-        "weight": 0.01,
+        "weight": 0.0087,
         "cluster": 1
       },
       {
-        "name": "CPB",
-        "weight": 0.01,
-        "cluster": 1
-      },
-      {
-        "name": "88 other names",
-        "weight": 0.88,
+        "name": "103 other names",
+        "weight": 0.89565,
         "is_other": true
       }
     ],
-    "total_names": 100,
+    "total_names": 115,
     "as_of": "2026-07-21",
     "note": "tickers Congress disclosed buying in the last ~63 trading days (equal-weight; free live feed, page 0)"
   },

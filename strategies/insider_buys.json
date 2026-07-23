@@ -17,12 +17,12 @@
       "source": "insider_shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.0,
+        "ret": 0.0067147248812393645,
         "maxdd": 0.0
       },
       "extra": {
         "inception": "2026-07-15",
-        "days": 5,
+        "days": 6,
         "min_show": 20,
         "ready": false,
         "n_buys": 2,
