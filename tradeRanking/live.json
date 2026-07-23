@@ -1,30 +1,34 @@
 {
-  "generated_utc": "2026-07-23 06:43:52",
+  "generated_utc": "2026-07-23 08:48:33",
   "accounts": [
     {
       "slug": "hybrid",
       "name": "Hybrid 60/40",
       "detail": "hybrid",
-      "equity": 103071.56,
+      "equity": 103054.85,
       "start": 100000.0,
-      "ret": 0.030715599999999954,
-      "pnl": 3071.5599999999977,
-      "daily_pnl": 12.532052499998827,
+      "ret": 0.03054850000000009,
+      "pnl": 3054.850000000006,
+      "daily_pnl": 103054.85,
       "tax": 0.0,
-      "after_tax_pnl": 3071.5599999999977,
+      "after_tax_pnl": 3054.850000000006,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
-      "cagr": 0.3565618513751696,
-      "vol": 0.11897629049763299,
-      "sharpe": 2.621731843376012,
+      "tax_full": 336.03350000000063,
+      "after_tax_pnl_full": 2718.8165000000054,
+      "tax_full_eff_rate": 0.11,
+      "tax_full_marginal_rate": 0.11,
+      "cagr": 0.3543466250573508,
+      "vol": 0.11899337517959344,
+      "sharpe": 2.6076204399443514,
       "dsr": null,
       "maxdd": -0.018878911566227785,
       "days": 25,
       "holdings": {
-        "SPY": 0.5944,
-        "XLE": 0.1371,
+        "SPY": 0.5935,
+        "XLE": 0.1379,
         "XLI": 0.1324,
-        "XLK": 0.1361
+        "XLK": 0.1362
       },
       "trades": {
         "n": 71,
@@ -581,21 +585,25 @@
       },
       "backfilled": false,
       "spy_ret": 0.011298135469379966,
-      "excess": 0.019417464530619988
+      "excess": 0.019250364530620123
     },
     {
       "slug": "regime_switch",
       "name": "Regime Switch",
       "detail": null,
-      "equity": 101220.25,
+      "equity": 101146.51,
       "start": 100000.0,
-      "ret": 0.012202499999999894,
-      "pnl": 1220.25,
-      "daily_pnl": 783.593115369993,
+      "ret": 0.011465099999999895,
+      "pnl": 1146.5099999999948,
+      "daily_pnl": 101146.51,
       "tax": 0.0,
-      "after_tax_pnl": 1220.25,
+      "after_tax_pnl": 1146.5099999999948,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
+      "tax_full": 126.11609999999943,
+      "after_tax_pnl_full": 1020.3938999999954,
+      "tax_full_eff_rate": 0.11000000000000001,
+      "tax_full_marginal_rate": 0.11,
       "cagr": null,
       "vol": null,
       "sharpe": null,
@@ -603,11 +611,11 @@
       "maxdd": 0.0,
       "days": 5,
       "holdings": {
-        "AMD": 0.3131,
-        "GE": 0.3079,
-        "KO": 0.066,
-        "PG": 0.066,
-        "PWR": 0.247
+        "AMD": 0.3133,
+        "GE": 0.3073,
+        "KO": 0.0661,
+        "PG": 0.0659,
+        "PWR": 0.2473
       },
       "trades": {
         "n": 6,
@@ -678,21 +686,25 @@
       },
       "backfilled": true,
       "spy_ret": 0.0008570242511081183,
-      "excess": 0.011345475748891776
+      "excess": 0.010608075748891777
     },
     {
       "slug": "donchian",
       "name": "Donchian",
       "detail": null,
-      "equity": 99887.39,
+      "equity": 99852.18,
       "start": 100000.0,
-      "ret": -0.0011261000000000188,
-      "pnl": -112.61000000000058,
-      "daily_pnl": 332.8956581599923,
+      "ret": -0.001478200000000096,
+      "pnl": -147.82000000000698,
+      "daily_pnl": 99852.18,
       "tax": 0.0,
-      "after_tax_pnl": -112.61000000000058,
+      "after_tax_pnl": -147.82000000000698,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
+      "tax_full": 0.0,
+      "after_tax_pnl_full": -147.82000000000698,
+      "tax_full_eff_rate": 0.0,
+      "tax_full_marginal_rate": 0.0,
       "cagr": null,
       "vol": null,
       "sharpe": null,
@@ -700,10 +712,10 @@
       "maxdd": -0.011678500000000036,
       "days": 8,
       "holdings": {
-        "AMD": 0.2524,
-        "GE": 0.2492,
-        "KO": 0.2493,
-        "PG": 0.2491
+        "AMD": 0.2526,
+        "GE": 0.2487,
+        "KO": 0.2497,
+        "PG": 0.249
       },
       "trades": {
         "n": 21,
@@ -909,7 +921,7 @@
       },
       "backfilled": false,
       "spy_ret": -0.005878988601146662,
-      "excess": 0.004752888601146643
+      "excess": 0.004400788601146566
     },
     {
       "slug": "bench_spy",
@@ -925,6 +937,10 @@
       "after_tax_pnl": 1129.8135469379922,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
+      "tax_full": 124.27949016317916,
+      "after_tax_pnl_full": 1005.534056774813,
+      "tax_full_eff_rate": 0.11000000000000001,
+      "tax_full_marginal_rate": 0.11,
       "cagr": 0.1252050395059392,
       "vol": 0.11463823650603311,
       "sharpe": 1.0841351796181389,
@@ -947,15 +963,19 @@
       "slug": "meanrev",
       "name": "MeanReversion",
       "detail": null,
-      "equity": 99990.24,
+      "equity": 100024.9,
       "start": 100000.0,
-      "ret": -9.759999999991997e-05,
-      "pnl": -9.759999999994761,
-      "daily_pnl": 158.2965050000057,
+      "ret": 0.0002489999999999437,
+      "pnl": 24.89999999999418,
+      "daily_pnl": 100024.9,
       "tax": 0.0,
-      "after_tax_pnl": -9.759999999994761,
+      "after_tax_pnl": 24.89999999999418,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
+      "tax_full": 2.73899999999936,
+      "after_tax_pnl_full": 22.160999999994818,
+      "tax_full_eff_rate": 0.11000000000000001,
+      "tax_full_marginal_rate": 0.11,
       "cagr": null,
       "vol": null,
       "sharpe": null,
@@ -963,11 +983,11 @@
       "maxdd": -0.008772899999999972,
       "days": 5,
       "holdings": {
-        "AMD": 0.2019,
-        "GE": 0.2003,
-        "IBM": 0.1931,
-        "PEP": 0.2002,
-        "PWR": 0.2045
+        "AMD": 0.2017,
+        "GE": 0.1995,
+        "IBM": 0.1941,
+        "PEP": 0.2003,
+        "PWR": 0.2044
       },
       "trades": {
         "n": 14,
@@ -1110,21 +1130,25 @@
       },
       "backfilled": true,
       "spy_ret": 0.0008570242511081183,
-      "excess": -0.0009546242511080383
+      "excess": -0.0006080242511081746
     },
     {
       "slug": "dualmom",
       "name": "DualMomentum",
       "detail": null,
-      "equity": 98057.76,
+      "equity": 97950.21,
       "start": 100000.0,
-      "ret": -0.019422400000000062,
-      "pnl": -1942.2400000000052,
-      "daily_pnl": 1166.3612924100016,
+      "ret": -0.020497899999999958,
+      "pnl": -2049.7899999999936,
+      "daily_pnl": 97950.21,
       "tax": 0.0,
-      "after_tax_pnl": -1942.2400000000052,
+      "after_tax_pnl": -2049.7899999999936,
       "tax_eff_rate": 0.0,
       "tax_marginal_rate": 0.0,
+      "tax_full": 0.0,
+      "after_tax_pnl_full": -2049.7899999999936,
+      "tax_full_eff_rate": 0.0,
+      "tax_full_marginal_rate": 0.0,
       "cagr": null,
       "vol": null,
       "sharpe": null,
@@ -1132,9 +1156,9 @@
       "maxdd": -0.05946499999999999,
       "days": 8,
       "holdings": {
-        "AMD": 0.3363,
-        "GE": 0.3284,
-        "PWR": 0.3353
+        "AMD": 0.3366,
+        "GE": 0.3278,
+        "PWR": 0.3357
       },
       "trades": {
         "n": 18,
@@ -1313,7 +1337,7 @@
       },
       "backfilled": false,
       "spy_ret": -0.005878988601146662,
-      "excess": -0.0135434113988534
+      "excess": -0.014618911398853296
     }
   ],
   "curves": {
@@ -1380,7 +1404,7 @@
         null,
         101978.63,
         103059.03,
-        103071.56
+        103054.85
       ],
       "Regime Switch": [
         null,
@@ -1412,7 +1436,7 @@
         null,
         100000.0,
         100436.66,
-        101220.25
+        101146.51
       ],
       "Donchian": [
         null,
@@ -1444,7 +1468,7 @@
         null,
         98832.15,
         99554.49,
-        99887.39
+        99852.18
       ],
       "B&H SPY": [
         100000.0,
@@ -1508,7 +1532,7 @@
         null,
         99122.71,
         99831.94,
-        99990.24
+        100024.9
       ],
       "DualMomentum": [
         null,
@@ -1540,7 +1564,7 @@
         null,
         94053.5,
         96891.4,
-        98057.76
+        97950.21
       ]
     }
   },
@@ -1548,26 +1572,30 @@
     "slug": "hybrid",
     "name": "Hybrid 60/40",
     "detail": "hybrid",
-    "equity": 103071.56,
+    "equity": 103054.85,
     "start": 100000.0,
-    "ret": 0.030715599999999954,
-    "pnl": 3071.5599999999977,
-    "daily_pnl": 12.532052499998827,
+    "ret": 0.03054850000000009,
+    "pnl": 3054.850000000006,
+    "daily_pnl": 103054.85,
     "tax": 0.0,
-    "after_tax_pnl": 3071.5599999999977,
+    "after_tax_pnl": 3054.850000000006,
     "tax_eff_rate": 0.0,
     "tax_marginal_rate": 0.0,
-    "cagr": 0.3565618513751696,
-    "vol": 0.11897629049763299,
-    "sharpe": 2.621731843376012,
+    "tax_full": 336.03350000000063,
+    "after_tax_pnl_full": 2718.8165000000054,
+    "tax_full_eff_rate": 0.11,
+    "tax_full_marginal_rate": 0.11,
+    "cagr": 0.3543466250573508,
+    "vol": 0.11899337517959344,
+    "sharpe": 2.6076204399443514,
     "dsr": null,
     "maxdd": -0.018878911566227785,
     "days": 25,
     "holdings": {
-      "SPY": 0.5944,
-      "XLE": 0.1371,
+      "SPY": 0.5935,
+      "XLE": 0.1379,
       "XLI": 0.1324,
-      "XLK": 0.1361
+      "XLK": 0.1362
     },
     "trades": {
       "n": 71,
@@ -2124,6 +2152,6 @@
     },
     "backfilled": false,
     "spy_ret": 0.011298135469379966,
-    "excess": 0.019417464530619988
+    "excess": 0.019250364530620123
   }
 }

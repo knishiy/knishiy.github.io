@@ -123,6 +123,11 @@
     <h2><span class="dot"></span> Live Paper Accounts <span id="liveSub" class="sub"></span></h2>
     <div id="liveRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
     <div id="liveChart" style="margin:0 0 12px"></div>
+    <div id="taxToggle" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px;align-items:center">
+      <span class="sub" style="margin-right:4px">After-tax basis:</span>
+      <button class="tf sel" data-tax="full">At tax rate</button>
+      <button class="tf" data-tax="owed">Actually owed</button>
+    </div>
     <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
     <p class="pagesub" id="taxNote" style="margin-top:8px"></p>
   </div>
@@ -260,15 +265,36 @@ function rowHtml(x, rankCell, extraClass=""){
 }
 // Dedicated renderer for the LIVE table: it has extra columns (vs-SPY, today, after-tax)
 // that the shared rowHtml doesn't, and splicing cells into a shared string was fragile.
+let TAX_BASIS = "full";   // "full" = tax the gains (shows the drag) · "owed" = respects deduction
+function renderTaxNote(){
+  const el = document.getElementById("taxNote"); if(!el) return;
+  el.innerHTML = TAX_BASIS==="owed"
+    ? "<b>Actually owed:</b> these gains are your only income, so the $15,000 standard deduction covers them — $0 until a gain exceeds it. True, but flat at $0 for now. Assumes CA single filer, <b>short-term</b> (ordinary) rates."
+    : "<b>At tax rate:</b> gains taxed at the rate they'd face as income (deduction assumed used) — the real drag on returns. CA single, <b>short-term</b> ordinary rates, since every strategy holds <1yr and never reaches the lower long-term rate a >1yr hold earns. Illustrative, on realized gains — paper money.";
+}
+function setTaxBasis(b){
+  TAX_BASIS = b;
+  document.querySelectorAll("#taxToggle .tf").forEach(x=>x.classList.toggle("sel", x.dataset.tax===b));
+  if(window._ACCTS){
+    document.getElementById("liveRow").innerHTML = window._ACCTS.map((a,i)=>liveRowHtml(a,i+1)).join("");
+  }
+  renderTaxNote();
+}
+document.addEventListener("click", e => { const b=e.target.closest("#taxToggle .tf"); if(b) setTaxBasis(b.dataset.tax); });
+
 function liveRowHtml(x, rank){
   const dsr = x.dsr==null ? "<span class='pill'>passive</span>" : x.dsr.toFixed(2);
   const signed = (v,f) => v==null ? "<span class='na'>—</span>"
     : `<span class="${v>=0?'pos':'neg'}">${f(v)}</span>`;
   const exCell = x.excess==null ? "<span class='na'>—</span>"
     : `<span class="${x.excess>=0?'pos':'neg'}">${(x.excess>=0?'+':'')+(x.excess*100).toFixed(2)}%</span>`;
-  // After-tax equals PnL until gains clear the standard deduction; show the tax bite only when > 0.
-  const taxPill = (x.tax>0)
-    ? ` <span class="pill" title="est. ${(x.tax_eff_rate*100).toFixed(1)}% effective, ${(x.tax_marginal_rate*100).toFixed(0)}% marginal (CA single, short-term)">−$${Math.round(x.tax).toLocaleString()}</span>`
+  // Two bases (see the toggle): "owed" respects the standard deduction ($0 until cleared);
+  // "full" taxes the gains at the applicable rate to show the drag. TAX_BASIS holds the choice.
+  const tax = TAX_BASIS==="owed" ? x.tax : x.tax_full;
+  const afterTax = TAX_BASIS==="owed" ? x.after_tax_pnl : x.after_tax_pnl_full;
+  const effRate = TAX_BASIS==="owed" ? x.tax_eff_rate : x.tax_full_eff_rate;
+  const taxPill = (tax>0)
+    ? ` <span class="pill" title="est. ${(effRate*100).toFixed(1)}% effective (CA single, short-term)">−$${Math.round(tax).toLocaleString()}</span>`
     : "";
   return `<tr class="${x.benchmark?'bench':''}">
     <td class="rank">${rank}</td><td class="name">${linkName(x.name)}</td>
@@ -276,7 +302,7 @@ function liveRowHtml(x, rank){
     <td>${exCell}</td>
     <td class="${x.pnl>=0?'pos':'neg'}">${usd(x.pnl)}</td>
     <td>${signed(x.daily_pnl, usd)}</td>
-    <td>${signed(x.after_tax_pnl, usd)}${taxPill}</td>
+    <td>${signed(afterTax, usd)}${taxPill}</td>
     <td class="${x.cagr==null?'na':cls(x.cagr)}">${pct(x.cagr)}</td>
     <td>${pct(x.vol)}</td>
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td>
@@ -406,10 +432,8 @@ SLUGS_READY.then(()=>fetch("./live.json?cb="+Date.now())).then(r=>r.json()).then
   // who started earliest (Hybrid has 24 days of exposure, Regime Switch 1).
   document.getElementById("liveRow").innerHTML = accts.map((a,i)=>liveRowHtml(a, i+1)).join("")
     || `<tr><td colspan="12" class="na" style="text-align:center;padding:22px">no live accounts</td></tr>`;
-  const taxed = accts.some(a => a.tax > 0);
-  document.getElementById("taxNote").innerHTML = taxed
-    ? "After-tax assumes CA single filer, these gains as sole income, <b>short-term</b> (ordinary) rates — active strategies realize short-term so never reach the lower long-term rate a >1yr hold earns. Estimate on realized gains; paper money, illustrative."
-    : "After-tax = PnL right now: every gain is below the $15,000 standard deduction, so $0 is owed. Tax appears as gains grow. Assumes CA single filer, gains as sole income, <b>short-term</b> (ordinary) rates. Illustrative — paper money.";
+  window._ACCTS = accts;
+  renderTaxNote();
   liveChart.load(d.curves, null);
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
