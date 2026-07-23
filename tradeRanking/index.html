@@ -124,6 +124,7 @@
     <div id="liveRanges" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px"></div>
     <div id="liveChart" style="margin:0 0 12px"></div>
     <div class="scroll"><table class="live"><thead><tr id="hdrLive"></tr></thead><tbody id="liveRow"></tbody></table></div>
+    <p class="pagesub" id="taxNote" style="margin-top:8px"></p>
   </div>
 
   <!-- ===================== TESTS: forward + backtest ===================== -->
@@ -204,8 +205,8 @@ const usd = x => (x<0?"-$":"+$")+Math.abs(x).toLocaleString(undefined,{maximumFr
 // The ▼ marks the SORT key. Without it the table reads as broken: a strategy can show a
 // better Total Return yet rank lower, because each account is compared to SPY over its OWN
 // window and those windows saw different markets.
-const COLS_LIVE = ["#","Strategy","Total Return","▼ vs B&H SPY","PnL","CAGR (annualized)",
-                   "Volatility (annualized)","Sharpe Ratio","Deflated Sharpe","Max Drawdown"];
+const COLS_LIVE = ["#","Strategy","Total Return","▼ vs B&H SPY","PnL","Today","After-tax PnL",
+                   "CAGR (annualized)","Volatility (annualized)","Sharpe Ratio","Deflated Sharpe","Max Drawdown"];
 const header = (id, cols=COLS) => document.getElementById(id).innerHTML = cols.map(c=>`<th>${c}</th>`).join("");
 const parseUTC = s => s ? new Date(s.replace(" ","T")+"Z") : null;
 const ago = s => { const d=parseUTC(s); if(!d) return "—"; const h=(Date.now()-d.getTime())/3.6e6;
@@ -257,6 +258,32 @@ function rowHtml(x, rankCell, extraClass=""){
     <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td><td>${dsr}</td>
     <td class="neg">${pct(x.maxdd)}</td></tr>`;
 }
+// Dedicated renderer for the LIVE table: it has extra columns (vs-SPY, today, after-tax)
+// that the shared rowHtml doesn't, and splicing cells into a shared string was fragile.
+function liveRowHtml(x, rank){
+  const dsr = x.dsr==null ? "<span class='pill'>passive</span>" : x.dsr.toFixed(2);
+  const signed = (v,f) => v==null ? "<span class='na'>—</span>"
+    : `<span class="${v>=0?'pos':'neg'}">${f(v)}</span>`;
+  const exCell = x.excess==null ? "<span class='na'>—</span>"
+    : `<span class="${x.excess>=0?'pos':'neg'}">${(x.excess>=0?'+':'')+(x.excess*100).toFixed(2)}%</span>`;
+  // After-tax equals PnL until gains clear the standard deduction; show the tax bite only when > 0.
+  const taxPill = (x.tax>0)
+    ? ` <span class="pill" title="est. ${(x.tax_eff_rate*100).toFixed(1)}% effective, ${(x.tax_marginal_rate*100).toFixed(0)}% marginal (CA single, short-term)">−$${Math.round(x.tax).toLocaleString()}</span>`
+    : "";
+  return `<tr class="${x.benchmark?'bench':''}">
+    <td class="rank">${rank}</td><td class="name">${linkName(x.name)}</td>
+    <td class="${x.ret>=0?'pos':'neg'}">${pct(x.ret)}</td>
+    <td>${exCell}</td>
+    <td class="${x.pnl>=0?'pos':'neg'}">${usd(x.pnl)}</td>
+    <td>${signed(x.daily_pnl, usd)}</td>
+    <td>${signed(x.after_tax_pnl, usd)}${taxPill}</td>
+    <td class="${x.cagr==null?'na':cls(x.cagr)}">${pct(x.cagr)}</td>
+    <td>${pct(x.vol)}</td>
+    <td class="${x.sharpe==null?'na':cls(x.sharpe)}">${srf(x.sharpe)}</td>
+    <td>${dsr}</td>
+    <td class="neg">${pct(x.maxdd)}</td></tr>`;
+}
+
 // Apple-Stocks-style equity chart: timeframe pills + date axis, reusable across panels.
 // Data is DAILY, so "1D" = the most recent active session (last 2 closes). Ranges CLAMP to the
 // tracking start (inception): a range longer than the data just begins at the first day rather
@@ -377,16 +404,12 @@ SLUGS_READY.then(()=>fetch("./live.json?cb="+Date.now())).then(r=>r.json()).then
   // One row per real account; the account name links to its detail page when it has one.
   // Ranked by EXCESS over SPY on each account's own window — raw return would just rank by
   // who started earliest (Hybrid has 24 days of exposure, Regime Switch 1).
-  document.getElementById("liveRow").innerHTML = accts.map((a,i)=>{
-    const ex = a.excess;
-    const cell = ex==null ? "<span class='na'>—</span>"
-      : `<span class="${ex>=0?'pos':'neg'}">${(ex>=0?'+':'')+(ex*100).toFixed(2)}%</span>`;
-    const html = rowHtml(a, i+1, a.benchmark ? "bench" : "");
-    // splice the vs-SPY cell in right after Total Return (4th <td>)
-    let n=0;
-    return html.replace(/<\/td>/g, m => (++n===3 ? `</td><td>${cell}</td>` : m));
-  }).join("")
-    || `<tr><td colspan="9" class="na" style="text-align:center;padding:22px">no live accounts</td></tr>`;
+  document.getElementById("liveRow").innerHTML = accts.map((a,i)=>liveRowHtml(a, i+1)).join("")
+    || `<tr><td colspan="12" class="na" style="text-align:center;padding:22px">no live accounts</td></tr>`;
+  const taxed = accts.some(a => a.tax > 0);
+  document.getElementById("taxNote").innerHTML = taxed
+    ? "After-tax assumes CA single filer, these gains as sole income, <b>short-term</b> (ordinary) rates — active strategies realize short-term so never reach the lower long-term rate a >1yr hold earns. Estimate on realized gains; paper money, illustrative."
+    : "After-tax = PnL right now: every gain is below the $15,000 standard deduction, so $0 is owed. Tax appears as gains grow. Assumes CA single filer, gains as sole income, <b>short-term</b> (ordinary) rates. Illustrative — paper money.";
   liveChart.load(d.curves, null);
 }).catch(()=>{ document.getElementById("liveSub").textContent = "· live data unavailable"; });
 
