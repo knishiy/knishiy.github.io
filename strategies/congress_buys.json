@@ -19,81 +19,81 @@
         "days": 6,
         "min_show": 20,
         "ready": false,
-        "n_buys": 108,
-        "n_names": 108
+        "n_buys": 109,
+        "n_names": 109
       }
     }
   ],
   "holdings": {
     "items": [
       {
-        "name": "NVDA",
-        "weight": 0.0087,
+        "name": "SPGI",
+        "weight": 0.00893,
         "cluster": 3
       },
       {
-        "name": "MA",
-        "weight": 0.0087,
-        "cluster": 2
-      },
-      {
-        "name": "DELL",
-        "weight": 0.0087,
-        "cluster": 2
-      },
-      {
         "name": "ZTS",
-        "weight": 0.0087,
+        "weight": 0.00893,
+        "cluster": 3
+      },
+      {
+        "name": "NVDA",
+        "weight": 0.00893,
+        "cluster": 3
+      },
+      {
+        "name": "DHR",
+        "weight": 0.00893,
         "cluster": 2
       },
       {
         "name": "APH",
-        "weight": 0.0087,
+        "weight": 0.00893,
         "cluster": 1
       },
       {
-        "name": "CFRUY",
-        "weight": 0.0087,
+        "name": "ACN",
+        "weight": 0.00893,
         "cluster": 1
       },
       {
-        "name": "CI",
-        "weight": 0.0087,
+        "name": "AMCR",
+        "weight": 0.00893,
         "cluster": 1
       },
       {
-        "name": "CMPGY",
-        "weight": 0.0087,
+        "name": "AJG",
+        "weight": 0.00893,
         "cluster": 1
       },
       {
-        "name": "ATR",
-        "weight": 0.0087,
+        "name": "CMSQY",
+        "weight": 0.00893,
         "cluster": 1
       },
       {
         "name": "CMWAY",
-        "weight": 0.0087,
+        "weight": 0.00893,
         "cluster": 1
       },
       {
         "name": "COO",
-        "weight": 0.0087,
+        "weight": 0.00893,
         "cluster": 1
       },
       {
         "name": "COST",
-        "weight": 0.0087,
+        "weight": 0.00893,
         "cluster": 1
       },
       {
-        "name": "103 other names",
-        "weight": 0.89565,
+        "name": "100 other names",
+        "weight": 0.89286,
         "is_other": true
       }
     ],
-    "total_names": 115,
-    "as_of": "2026-07-21",
+    "total_names": 112,
+    "as_of": "2026-07-23",
     "note": "tickers Congress disclosed buying in the last ~63 trading days (equal-weight; free live feed, page 0)"
   },
   "trades": {
