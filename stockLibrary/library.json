@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-07-23 20:15:29",
+  "generated_utc": "2026-07-24 14:25:26",
   "entries": [
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+27%)",
+      "momentum": "up (+22%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -18,13 +18,13 @@
           "verdict": "Sharpe +1.25"
         }
       ],
-      "notes": "vol 50%, ~$992M/day"
+      "notes": "vol 50%, ~$997M/day"
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
       "added": "2026-07-02",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
@@ -34,77 +34,77 @@
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.79"
+          "verdict": "Sharpe +0.78"
         }
       ],
-      "notes": "vol 17%, ~$85M/day"
+      "notes": "vol 17%, ~$86M/day"
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc. Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+53%)",
+      "momentum": "up (+51%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.88"
+          "verdict": "Sharpe +0.87"
         }
       ],
-      "notes": "vol 29%, ~$513M/day"
+      "notes": "vol 29%, ~$514M/day"
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation Common Stock",
       "added": "2026-07-02",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+341%)",
+      "momentum": "up (+326%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +0.81 vs B&H +0.53, maxDD -16%"
+          "verdict": "Sharpe +0.79 vs B&H +0.52, maxDD -16%"
         },
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.53"
+          "verdict": "Sharpe +0.52"
         }
       ],
-      "notes": "vol 51%, ~$400M/day"
+      "notes": "vol 51%, ~$404M/day"
     },
     {
       "ticker": "SMCI",
       "name": "Super Micro Computer, Inc. Common Stock",
       "added": "2026-07-08",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "volatile",
-      "momentum": "down (-39%)",
+      "momentum": "down (-40%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.89"
+          "verdict": "Sharpe +0.90"
         }
       ],
-      "notes": "vol 82%, ~$65M/day"
+      "notes": "vol 82%, ~$66M/day"
     },
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp. Class A Common Stock",
       "added": "2026-07-08",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "no / short data",
       "vol_tier": "\u2014",
@@ -118,26 +118,26 @@
       "ticker": "LMT",
       "name": "Lockheed Martin Corp.",
       "added": "2026-07-08",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+29%)",
+      "momentum": "up (+39%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.47"
+          "verdict": "Sharpe +0.53"
         }
       ],
-      "notes": "vol 23%, ~$29M/day"
+      "notes": "vol 23%, ~$30M/day"
     },
     {
       "ticker": "SKHYV",
       "name": "skhyv",
-      "added": "2026-07-23",
-      "last_checked": "2026-07-23",
+      "added": "2026-07-24",
+      "last_checked": "2026-07-24",
       "status": "unresolved",
       "type": "\u2014",
       "vol_tier": "\u2014",
@@ -151,11 +151,11 @@
       "ticker": "HLIT",
       "name": "Harmonic Inc. Common Stock",
       "added": "2026-07-13",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "volatile",
-      "momentum": "up (+30%)",
+      "momentum": "up (+28%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -170,11 +170,11 @@
       "ticker": "ASML",
       "name": "ASML Holding N.V. New York Registry Shares",
       "added": "2026-07-13",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+157%)",
+      "momentum": "up (+153%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -183,17 +183,17 @@
           "verdict": "Sharpe +0.85"
         }
       ],
-      "notes": "vol 42%, ~$159M/day"
+      "notes": "vol 42%, ~$157M/day"
     },
     {
       "ticker": "NANC",
       "name": "Unusual Whales Subversive Democratic Trading ETF",
       "added": "2026-07-15",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "stable",
-      "momentum": "up (+19%)",
+      "momentum": "up (+18%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -207,8 +207,8 @@
     {
       "ticker": "KRUZ",
       "name": "KRUZ",
-      "added": "2026-07-23",
-      "last_checked": "2026-07-23",
+      "added": "2026-07-24",
+      "last_checked": "2026-07-24",
       "status": "unresolved",
       "type": "\u2014",
       "vol_tier": "\u2014",
@@ -222,11 +222,11 @@
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc. Common Stock",
       "added": "2026-07-16",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+731%)",
+      "momentum": "up (+717%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -249,36 +249,36 @@
       "ticker": "VTI",
       "name": "Vanguard Total Stock Market ETF",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+21%)",
+      "momentum": "up (+18%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.96"
+          "verdict": "Sharpe +0.95"
         }
       ],
-      "notes": "vol 17%, ~$25M/day"
+      "notes": "vol 17%, ~$26M/day"
     },
     {
       "ticker": "QQQM",
       "name": "Invesco Exchange-Traded Fund Trust II Invesco NASDAQ 100 ETF",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+26%)",
+      "momentum": "up (+23%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.82"
+          "verdict": "Sharpe +0.80"
         }
       ],
       "notes": "vol 23%, ~$18M/day"
@@ -287,21 +287,17 @@
       "ticker": "SHOP",
       "name": "Shopify Inc. Class A subordinate voting shares",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
-      "type": "range / mean-revert candidate",
+      "type": "trend candidate",
       "vol_tier": "volatile",
-      "momentum": "flat (-4%)",
+      "momentum": "down (-8%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
-          "name": "MeanReversion z20",
-          "verdict": "Sharpe +0.36 vs B&H +0.36, maxDD -74%"
-        },
-        {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.36"
+          "verdict": "Sharpe +0.35"
         }
       ],
       "notes": "vol 63%, ~$48M/day"
@@ -310,7 +306,7 @@
       "ticker": "XOM",
       "name": "ExxonMobil Holdings Corporation",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
@@ -320,7 +316,7 @@
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +1.03"
+          "verdict": "Sharpe +1.04"
         }
       ],
       "notes": "vol 29%, ~$87M/day"
@@ -329,17 +325,17 @@
       "ticker": "RTX",
       "name": "RTX Corporation",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+33%)",
+      "momentum": "up (+36%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.99"
+          "verdict": "Sharpe +1.03"
         }
       ],
       "notes": "vol 25%, ~$39M/day"
@@ -348,11 +344,11 @@
       "ticker": "DHT",
       "name": "DHT HOLDINGS, INC.",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "medium",
-      "momentum": "up (+85%)",
+      "momentum": "up (+82%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -367,49 +363,49 @@
       "ticker": "RDDT",
       "name": "Reddit, Inc.",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+17%)",
+      "momentum": "up (+16%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +1.04"
+          "verdict": "Sharpe +1.03"
         }
       ],
-      "notes": "vol 81%, ~$36M/day"
+      "notes": "vol 81%, ~$37M/day"
     },
     {
       "ticker": "CF",
       "name": "CF Industries Holding, Inc.",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+42%)",
+      "momentum": "up (+38%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.87"
+          "verdict": "Sharpe +0.86"
         }
       ],
-      "notes": "vol 38%, ~$17M/day"
+      "notes": "vol 38%, ~$18M/day"
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc. Common Stock",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+198%)",
+      "momentum": "up (+203%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
@@ -418,23 +414,23 @@
           "verdict": "Sharpe +1.05"
         }
       ],
-      "notes": "vol 46%, ~$189M/day"
+      "notes": "vol 46%, ~$190M/day"
     },
     {
       "ticker": "AMGN",
       "name": "Amgen Inc. Common Stock",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "stable compounder",
       "vol_tier": "stable",
-      "momentum": "up (+23%)",
+      "momentum": "up (+24%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.50"
+          "verdict": "Sharpe +0.51"
         }
       ],
       "notes": "vol 24%, ~$30M/day"
@@ -443,26 +439,26 @@
       "ticker": "TMO",
       "name": "Thermo Fisher Scientific, Inc.",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+24%)",
+      "momentum": "up (+23%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.30"
+          "verdict": "Sharpe +0.35"
         }
       ],
-      "notes": "vol 27%, ~$73M/day"
+      "notes": "vol 28%, ~$76M/day"
     },
     {
       "ticker": "SRFM",
       "name": "Surf Air Mobility Inc.",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "illiquid (skip)",
       "vol_tier": "volatile",
@@ -481,7 +477,7 @@
       "ticker": "ALM",
       "name": "Almonty Industries Inc. Common Shares",
       "added": "2026-07-21",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "unfit",
       "type": "no / short data",
       "vol_tier": "\u2014",
@@ -495,62 +491,62 @@
       "ticker": "MSFT",
       "name": "Microsoft Corporation Common Stock",
       "added": "2026-07-22",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "down (-22%)",
+      "momentum": "down (-24%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.57"
+          "verdict": "Sharpe +0.56"
         }
       ],
-      "notes": "vol 27%, ~$433M/day"
+      "notes": "vol 27%, ~$436M/day"
     },
     {
       "ticker": "MU",
       "name": "Micron Technology, Inc. Common Stock",
       "added": "2026-07-22",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "high-vol trender",
       "vol_tier": "volatile",
-      "momentum": "up (+780%)",
+      "momentum": "up (+802%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "DualMomentum 12mo",
-          "verdict": "Sharpe +1.23 vs B&H +1.20, maxDD -17%"
+          "verdict": "Sharpe +1.24 vs B&H +1.20, maxDD -17%"
         },
         {
           "name": "Buy & hold",
           "verdict": "Sharpe +1.20"
         }
       ],
-      "notes": "vol 53%, ~$852M/day"
+      "notes": "vol 53%, ~$863M/day"
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc. Class A Common Stock",
       "added": "2026-07-22",
-      "last_checked": "2026-07-23",
+      "last_checked": "2026-07-24",
       "status": "fit",
       "type": "trend candidate",
       "vol_tier": "medium",
-      "momentum": "up (+79%)",
+      "momentum": "up (+67%)",
       "fair_value": "\u2014",
       "last_earnings": "\u2014",
       "strategies": [
         {
           "name": "Buy & hold",
-          "verdict": "Sharpe +0.97"
+          "verdict": "Sharpe +0.93"
         }
       ],
-      "notes": "vol 31%, ~$391M/day"
+      "notes": "vol 31%, ~$401M/day"
     }
   ]
 }

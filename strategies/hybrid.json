@@ -11,13 +11,13 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 102707.45,
-        "ret": 0.02707449999999989,
-        "pnl": 2707.449999999997,
+        "equity": 102761.4,
+        "ret": 0.027614000000000027,
+        "pnl": 2761.399999999994,
         "maxdd": -0.018878911566227785,
-        "sharpe": 2.305476168200471,
-        "cagr": 0.30902404344715273,
-        "days": 25
+        "sharpe": 2.304635747841213,
+        "cagr": 0.30214731544056206,
+        "days": 26
       }
     }
   ],
@@ -25,19 +25,19 @@
     "items": [
       {
         "name": "SPY",
-        "weight": 0.5911
-      },
-      {
-        "name": "XLE",
-        "weight": 0.1374
-      },
-      {
-        "name": "XLK",
-        "weight": 0.1364
+        "weight": 0.5943
       },
       {
         "name": "XLI",
-        "weight": 0.1351
+        "weight": 0.1366
+      },
+      {
+        "name": "XLK",
+        "weight": 0.1347
+      },
+      {
+        "name": "XLE",
+        "weight": 0.1344
       }
     ],
     "total_names": 4,
@@ -45,16 +45,25 @@
     "note": "live paper positions (actual money allocation)"
   },
   "trades": {
-    "n": 71,
+    "n": 72,
     "available": true,
     "first": "2026-06-24",
-    "last": "2026-07-22",
-    "active_days": 17,
-    "span_days": 29,
-    "per_week": 17.14,
+    "last": "2026-07-24",
+    "active_days": 18,
+    "span_days": 31,
+    "per_week": 16.26,
     "buys": 39,
-    "sells": 32,
+    "sells": 33,
     "items": [
+      {
+        "at": "2026-07-24 14:00",
+        "date": "2026-07-24",
+        "symbol": "XLE",
+        "side": "sell",
+        "qty": 9.2029,
+        "price": 59.85,
+        "value": 550.79
+      },
       {
         "at": "2026-07-22 14:00",
         "date": "2026-07-22",
@@ -585,15 +594,6 @@
         "qty": 0.8981,
         "price": 181.74,
         "value": 163.22
-      },
-      {
-        "at": "2026-06-29 13:36",
-        "date": "2026-06-29",
-        "symbol": "XLE",
-        "side": "sell",
-        "qty": 609.2582,
-        "price": 54.14,
-        "value": 32983.83
       }
     ]
   },

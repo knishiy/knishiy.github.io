@@ -11,11 +11,11 @@
       "source": "live.json",
       "available": true,
       "fields": {
-        "equity": 100107.67,
-        "ret": 0.0010767000000000415,
-        "pnl": 107.66999999999825,
+        "equity": 100539.99,
+        "ret": 0.005399900000000013,
+        "pnl": 539.9900000000052,
         "maxdd": -0.008772899999999972,
-        "days": 5
+        "days": 6
       }
     },
     {
@@ -23,12 +23,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": 0.013662796993792803,
-        "maxdd": -0.006224964287176449
+        "ret": 0.016437016737433252,
+        "maxdd": -0.006225718746914022
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 16,
+        "days": 17,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -45,24 +45,24 @@
   "holdings": {
     "items": [
       {
-        "name": "PWR",
-        "weight": 0.207
+        "name": "GE",
+        "weight": 0.2087
       },
       {
-        "name": "GE",
-        "weight": 0.2036
+        "name": "PWR",
+        "weight": 0.1999
       },
       {
         "name": "PEP",
-        "weight": 0.1988
-      },
-      {
-        "name": "WMT",
-        "weight": 0.1964
+        "weight": 0.1983
       },
       {
         "name": "IBM",
-        "weight": 0.1941
+        "weight": 0.197
+      },
+      {
+        "name": "WMT",
+        "weight": 0.1962
       }
     ],
     "total_names": 5,

@@ -11,12 +11,12 @@
       "source": "shadow.json",
       "available": true,
       "fields": {
-        "ret": -0.004938531955216319,
-        "maxdd": -0.01069230715504943
+        "ret": -0.010735359288514434,
+        "maxdd": -0.01411559895609582
       },
       "extra": {
         "inception": "2026-06-30",
-        "days": 16,
+        "days": 17,
         "min_show": 20,
         "ready": false,
         "n_buys": null,
@@ -34,7 +34,7 @@
     "items": [
       {
         "name": "IEF",
-        "weight": 0.361
+        "weight": 0.363
       },
       {
         "name": "TLT",
@@ -42,7 +42,7 @@
       },
       {
         "name": "SPY",
-        "weight": 0.139
+        "weight": 0.141
       },
       {
         "name": "XLP",
@@ -50,7 +50,7 @@
       },
       {
         "name": "XLU",
-        "weight": 0.11
+        "weight": 0.106
       },
       {
         "name": "GLD",
